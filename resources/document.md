@@ -6,7 +6,7 @@
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
 |`body`|  [Body](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
-|`saved`|  bool |Indicates if the document is dirty, and requires to be saved | |
+|`saved`|  Bool |Indicates if the document is dirty, and requires to be saved | |
 |`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
 
 
@@ -16,7 +16,7 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
+|[`sections`](#Sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
 
 ## Methods
 
@@ -30,32 +30,49 @@ The Worksheet resource has the following relationships defined:
 
 
 
-### Charts 
+### Sections 
 
-Get Charts collection that contains each of the chart objects contained in the worksheet. Each item contains the following properties. 
+Contains each of the section objects composing the document.
 
 #### Syntax
 ```js
-worksheetObject.charts;
+  document.sections
+
 ```
 
 #### Returns
 
-[Chart](resources/chart.md) collection.
+[Section](resources/section.md) collection.
 
 #### Examples
 
 ```js
-var wSheetName = 'Sheet1';
-var ctx = new Excel.ExcelClientContext();
-var charts = ctx.workbook.worksheets.getItem(wSheetName).charts;
-ctx.load(charts);
-ctx.executeAsync().then(function () {
-	for (var i = 0; i < charts.items.length; i++)
-	{
-		Console.log(charts.items[i].name);
-	}
-});
+// gets the paragprahs of the first section in the document. 
+var ctx = new Word.WordClientContext();
+ctx.customData = OfficeExtension.Constants.iterativeExecutor;
+
+var paras = Ctx.document.sections.getItemAt(0).body.paragraphs;
+ctx.load(paras);
+
+ctx.executeAsync().then(
+    function () {
+        var results = new Array();
+        for (var i = 0; i < paras.count; i++) {
+            results.push(paras.getItemAt(i).getPlainText());
+        }
+        ctx.executeAsync().then(
+            function () {
+                for (var i = 0; i < results.length; i++) {
+                    console.log("paras[" + i + "].length = " + results[i].value.length);
+                }
+            }
+        );
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
 ```
 [Back](#relationships)
 
