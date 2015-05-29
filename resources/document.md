@@ -16,7 +16,7 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`sections`](#Sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
+|[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
 
 ## Methods
 
@@ -30,7 +30,7 @@ The Worksheet resource has the following relationships defined:
 
 
 
-###Sections 
+### Sections 
 
 Contains each of the section objects composing the document.
 
