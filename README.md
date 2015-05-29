@@ -5,10 +5,10 @@ Welcome to the new Word Javascript API! We hope you enjoy it an find it useful. 
 ## Release Notes 
 
 This is the first release of JavaScript APIs for Word and we focused on the following functional areas:
-1. Basic document navigation. On top of having access to the user's current selection, we are also providing ways to traverse the document by exposing collection of two of the most important objects in Word: Paragraphs and Content Controls, having easy access to the content of the entire document.
-2. Insertion of content: Once positioned in a location of the document to add content, we are enabling developers to insert fully formatted content into Word document and capabilities to do append/prepend before/after type of insertions against our main set of objects. Developers can insert either formatted text, HTML, Office Open XML. Developers are also enabled to reuse content from other Word documents by inserting a Word file into the current document.
-3. Full control to Paragraphs and Content Controls. We are providing access to the most important properties of these objects.
-4.  Search: Developers can search for content in the document and then iterate and manipulate the search results.
+* 1. Basic document navigation. On top of having access to the user's current selection, we are also providing ways to traverse the document by exposing collection of two of the most important objects in Word: Paragraphs and Content Controls, having easy access to the content of the entire document.
+* 2. Insertion of content: Once positioned in a location of the document to add content, we are enabling developers to insert fully formatted content into Word document and capabilities to do append/prepend before/after type of insertions against our main set of objects. Developers can insert either formatted text, HTML, Office Open XML. Developers are also enabled to reuse content from other Word documents by inserting a Word file into the current document.
+* 3. Full control to Paragraphs and Content Controls. We are providing access to the most important properties of these objects.
+* 4.  Search: Developers can search for content in the document and then iterate and manipulate the search results.
 
 
 ## Main Objects  
