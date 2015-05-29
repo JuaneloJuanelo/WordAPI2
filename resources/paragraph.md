@@ -1,12 +1,12 @@
-# Worksheet
-The Worksheet object is a member of the Worksheets collection. The Worksheets collection contains all the Worksheet objects in a workbook.
+# Paragraph
+<description>
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
 |`index`|  Number |The zero-based index of the worksheet within the workbook|Worksheet.Index|
-|`name`| String|The user-visible name of the worksheet|Worksheet.Name |
+
 
 
 ## Relationships
@@ -18,12 +18,11 @@ The Worksheet resource has the following relationships defined:
 
 ## Methods
 
-The Worksheet resource has the following methods defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`getCell(row: number, column: number)`](#getcell)| [Range](range.md) object |Returns a range containing the single cell specified by the zero-indexed row and column numbers| |          
-|[`getUsedRange()`](#getusedrange)| [Range](range.md) object |Returns the used range of the worksheet| |  
+  
 
 
 ### Charts 
@@ -52,9 +51,9 @@ ctx.executeAsync().then(function () {
 		Console.log(charts.items[i].name);
 	}
 });
-'''
-
+```
 [Back](#relationships)
+
 
 
 ### getCell
