@@ -1,15 +1,11 @@
-# Document 
- Represents a Word document. Main entry point to all interactions with the document. A document is composed of one or more sections(resources/section.md), and a body where the main content of the document resides.
+# Font
+<description>
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`body`|  `[Body'](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
-|`saved`|  bool |Indicates if the document is dirty, and requires to be saved | |
-|`selection'|  `[Range'](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. 
-If there is no selection, it represents the insertion point in the document.
- |Multiple selection is not supported|
+|`index`|  Number |The zero-based index of the worksheet within the workbook|Worksheet.Index|
 
 
 
@@ -18,18 +14,15 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
+|[`charts`](#charts)| [Chart](chart.md) collection |Collection of charts in the worksheet|Worksheet.ChartObject  |       
 
 ## Methods
 
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getContentControlById(id: string)`](#getContentControlById)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
-|[`getContentControlByName(name: string)`](#getContentControlByName)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified name| Since there could be many Content Controls with the same name, this method returns a collection|  
-|[`getContentControlByTag(tag: string)`](#getContentControlByTag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
-|[`save(void)`](#save)| Void |Saves the Document | If document has not saved before it will use Word default names (i.e. Document1.docx, etc.) |     
-
+|[`getCell(row: number, column: number)`](#getcell)| [Range](range.md) object |Returns a range containing the single cell specified by the zero-indexed row and column numbers| |          
+  
 
 
 ### Charts 
@@ -63,14 +56,14 @@ ctx.executeAsync().then(function () {
 
 
 
-### getContentControlById
+### getCell
 
-Creates a content control, gets the Id, then retrieves the content control and changes it appearance. 
+Get the Cell (as a Range object) object based on row and column address relative to a top of worksheet. 
 
 #### Syntax
 
 ```js
-var ctx = new 
+worksheetObject.getCell(row, column);
 ```
 
 #### Parameters 
