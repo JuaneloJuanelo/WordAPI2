@@ -5,9 +5,9 @@
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`body`|  `[Body'](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
+|`body`|  [Body](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
 |`saved`|  bool |Indicates if the document is dirty, and requires to be saved | |
-|`selection`| [Range'](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
+|`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
 
 
 
