@@ -30,7 +30,7 @@ The Worksheet resource has the following relationships defined:
 
 
 
-### Sections 
+###Sections 
 
 Contains each of the section objects composing the document.
 
