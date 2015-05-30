@@ -42,7 +42,7 @@ Contains each of the section objects composing the document.
 
 #### Returns
 
-[Section](resources/section.md) collection.
+[Section](section.md) collection.
 
 #### Examples
 
@@ -77,51 +77,65 @@ ctx.executeAsync().then(
 [Back](#relationships)
 
 
+#### Examples
 
 ### getContentControlById
 
-Creates a content control, gets the Id, then retrieves the content control and changes it appearance. 
+Gets the content control with the specified ID. 
 
 #### Syntax
 
 ```js
-var ctx = new 
+var myContentContolId = myContentControl.id;
+
 ```
 
 #### Parameters 
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`row`          | Number | Required. Row number of the cell to be retrieved. Zero indexed. 
-`col`          | Number | Required. Column number of the cell to be retrieved. Zero indexed.
+`id`          | string | Required. Id of the content control.
 
 #### Returns
 
-[Range](resources/range.md) object.
+[ContentControl](contentContol.md) object.
 
 #### Examples
 
 ```js
-var sheetName = "Sheet1";
-var rangeAddress = "D5:F8";
-var ctx = new Excel.ExcelClientContext();
-var worksheet = ctx.workbook.worksheets.getItem(sheetName);
-var cell = worksheet.cell(0,0);
-ctx.load(cell);
-ctx.executeAsync().then(function() {
-	Console.log(cell.address);
-});
+// this is an example of inserting a content control then getting the content control by ID and changing its title. 
+var ctx = new Word.WordClientContext();
+var myContentControl = ctx.document.body.paragraphs.getItemAt(1).insertContentControl();
+var myContentContolId = myContentControl.id;
+ctx.executeAsync().then(
+    function() {
+    }
+);
+
+
+var myCC = ctx.document.getContentControlById(myContentContolId);
+ctx.load(myCC);
+ctx.executeAsync().then(
+    function () {
+        var results = new Array();
+    	 myCC.title = "this is the new title";
+},  function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+
+);
 ```
 [Back](#methods)
 
 
-### getUsedRange
+### getContentControlByName
 
-Get the used-range of a worksheet. 
+Gets a collection of content controls with the same name/title.
 
 #### Syntax
 ```js
-worksheetObject.getUsedRange();
+var ccs = document.getContentControlByName("Address");
 ```
 #### Parameters
 
@@ -129,19 +143,37 @@ None
 
 #### Returns
 
-[Range](resources/r.md) object.
+[ContentControls](contentControls.md) collection.
 
 
 #### Examples
 
 ```js
-var ctx = new Excel.ExcelClientContext();
-var wSheetName = 'Sheet1';
-var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
-var usedRange = worksheet.getUsedRange();
-ctx.load(usedRange);
-ctx.executeAsync().then(function () {
-		Console.log(usedRange.address);
-});
+var ccs = document.getContentControlByName("Address");
+```
+[Back](#methods)
+
+
+### getContentControlByTag
+
+Gets a collection of content controls with the same tag.
+
+#### Syntax
+```js
+var ccs = document.getContentControlByTag("TagForName");
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getContentControlByTag("TagForName");
 ```
 [Back](#methods)
