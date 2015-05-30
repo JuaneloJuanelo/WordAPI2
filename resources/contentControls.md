@@ -3,7 +3,10 @@
 
 ## Properties
 
-None
+| Property         | Type    |Description|Notes |
+|:-----------------|:--------|:----------|:-----|
+|`count`|  Integer   | Gets the number of content controls in the collection.  | |
+
 
 ## Relationships
 
@@ -16,9 +19,9 @@ None
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`getById(id: string)`](#getbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
-|[`getByName(name: string)`](#getbyname)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified name| Since there could be many Content Controls with the same name, this method returns a collection|  
+|[`getByTitle(name: string)`](#getbytitle)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified title| Since there could be many Content Controls with the same name, this method returns a collection|  
 |[`getByTag(tag: string)`](#getbytag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
-
+|[`getItemAt(index: int )`](#getitemat)| [ContentControl](contentControl.md)  |Returns the content control on the specified location |
 
 ### Methods 
 
@@ -48,7 +51,7 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-// this is an example of inserting a content control then getting the content control by ID and changing its title. 
+// this is an example of inserting a content control wrapping the first paragraph on the document then getting the content control by ID and changing its title. 
 var ctx = new Word.WordClientContext();
 var myContentControl = ctx.document.body.paragraphs.getItemAt(1).insertContentControl();
 var myContentContolId = myContentControl.id;
@@ -74,13 +77,13 @@ ctx.executeAsync().then(
 [Back](#methods)
 
 
-### getByName
+### getByTitle
 
 Gets a collection of content controls with the same name/title.
 
 #### Syntax
 ```js
-var ccs = document.getByName("Customer Address");
+var ccs = document.getByTitle("Customer Address");
 ```
 #### Parameters
 
@@ -96,7 +99,7 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var ccs = document.getByName("Address");
+var ccs = document.getByTitle("Customer Address");
 ```
 [Back](#methods)
 
@@ -125,5 +128,41 @@ Parameter      | Type   | Description
 
 ```js
 var ccs = document.getByTag("TagForName");
+```
+[Back](#methods)
+
+### getItemAt
+
+Returns the content control on the specified location 
+
+#### Syntax
+
+```js
+var myContentContol = ctx.document.contentControls.getItemAt(0);
+
+```
+
+#### Parameters 
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`index`          | integer | Required. Position of the content control within the collection. Zero based.
+
+#### Returns
+
+[ContentControl](contentContol.md) object.
+
+#### Examples
+
+```js
+// Retrieves the first content control in the document and sets the title. 
+var ctx = new Word.WordClientContext();
+var myContentControl = ctx.document.contentControls.getItemAt(1);
+var myContentControl.Title = "This is the new title!";
+ctx.executeAsync().then(
+    function() {
+    }
+);
+
 ```
 [Back](#methods)
