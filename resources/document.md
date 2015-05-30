@@ -140,7 +140,9 @@ var ccs = document.getContentControlByName("Address");
 ```
 #### Parameters
 
-None
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
 
 #### Returns
 
@@ -165,7 +167,10 @@ var ccs = document.getContentControlByTag("TagForName");
 ```
 #### Parameters
 
-None
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`tag`          | string | Required. Tag of the content control(s) to retrieve.
+
 
 #### Returns
 
