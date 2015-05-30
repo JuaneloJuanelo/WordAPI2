@@ -16,19 +16,64 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
 |[`contentControls`](#contentcontrols)| [ContentControl](contentControl.md) collection |Collection of content controls in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
+
 
 ## Methods
 
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getContentControlById(id: string)`](#getcontentcontrolbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
-|[`getContentControlByName(name: string)`](#getcontentcontrolbyname)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified name| Since there could be many Content Controls with the same name, this method returns a collection|  
-|[`getContentControlByTag(tag: string)`](#getcontentcontrolbytag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
+
 |[`save(void)`](#save)| Void |Saves the Document | If document has not saved before it will use Word default names (i.e. Document1.docx, etc.) |     
 
+
+### ContentControls 
+
+The colection holds all the content controls in the document.
+
+#### Syntax
+```js
+  document.contentControls
+
+```
+
+#### Returns
+
+[Section](section.md) collection.
+
+#### Examples
+
+```js
+// enumerates all the content controls in the document
+var ctx = new Word.WordClientContext();
+var cCtrls = ctx.document.body.contentControls;
+ctx.load(cCtrls);
+
+ctx.executeAsync().then(
+	function () {
+		var results = new Array();
+		for (var i = 0; i < cCtrls.count; i++) {
+			results.push(cCtrls.getItemAt(i));
+		}
+		ctx.executeAsync().then(
+			function () {
+				for (var i = 0; i < results.length; i++) {
+					console.log("contentControl[" + i + "].length = " + results[i].text.length);
+				}
+			}
+		);
+	},
+	function (result) {
+		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+		console.log(result.traceMessages);
+	}
+);
+
+
+```
+[Back](#relationships)
 
 
 ### Sections 
