@@ -1,11 +1,11 @@
 # ContentControls 
- Represents a a collection of ContentControl objects, on the specified scope.  
+ Represents a a collection of ContentControl objects, on the specified scope (i.e. content controls within the document, paragraph, selection etc.)
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`count`|  Integer   | Gets the number of content controls in the collection.  | |
+|`count`|  Integer   | Gets the number of content controls in the collection.  | The resulting collection is scoped to the calling object. |
 
 
 ## Relationships
@@ -18,10 +18,10 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getById(id: string)`](#getbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
+|[`getById(id: string)`](#getbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist| Content Control id's are  unique withing the document.  |
 |[`getByTitle(name: string)`](#getbytitle)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified title| Since there could be many Content Controls with the same name, this method returns a collection|  
 |[`getByTag(tag: string)`](#getbytag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
-|[`getItemAt(index: int )`](#getitemat)| [ContentControl](contentControl.md)  |Returns the content control on the specified location |
+|[`getItemAt(index: int )`](#getitemat)| [ContentControl](contentControl.md)  |Returns the content control on the specified position |  Zero based. |
 
 ### Methods 
 
@@ -133,7 +133,7 @@ var ccs = document.getByTag("TagForName");
 
 ### getItemAt
 
-Returns the content control on the specified location 
+Returns the content control on the specified position. 
 
 #### Syntax
 
@@ -157,7 +157,7 @@ Parameter      | Type   | Description
 ```js
 // Retrieves the first content control in the document and sets the title. 
 var ctx = new Word.WordClientContext();
-var myContentControl = ctx.document.contentControls.getItemAt(1);
+var myContentControl = ctx.document.contentControls.getItemAt(0);
 var myContentControl.Title = "This is the new title!";
 ctx.executeAsync().then(
     function() {
