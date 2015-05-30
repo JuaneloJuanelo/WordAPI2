@@ -17,6 +17,7 @@ The Worksheet resource has the following relationships defined:
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`sections`](#sections)| [Section](section.md) collection |Collection of sections in the current document |Document.Section  |       
+|[`contentControls`](#contentcontrols)| [ContentControl](contentControl.md) collection |Collection of content controls in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
 
 ## Methods
 
@@ -80,106 +81,29 @@ ctx.executeAsync().then(
 
 #### Examples
 
-### getContentControlById
+### save
 
-Gets the content control with the specified ID. 
+Saves the current document. 
 
 #### Syntax
 
 ```js
-var myContentContolId = myContentControl.id;
 
+ctx.document.save();
 ```
 
 #### Parameters 
 
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`id`          | string | Required. Id of the content control.
+None
 
 #### Returns
 
-[ContentControl](contentContol.md) object.
+Void
 
 #### Examples
 
 ```js
-// this is an example of inserting a content control then getting the content control by ID and changing its title. 
 var ctx = new Word.WordClientContext();
-var myContentControl = ctx.document.body.paragraphs.getItemAt(1).insertContentControl();
-var myContentContolId = myContentControl.id;
-ctx.executeAsync().then(
-    function() {
-    }
-);
-
-
-var myCC = ctx.document.getContentControlById(myContentContolId);
-ctx.load(myCC);
-ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-    	 myCC.title = "this is the new title";
-},  function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-
-);
-```
-[Back](#methods)
-
-
-### getContentControlByName
-
-Gets a collection of content controls with the same name/title.
-
-#### Syntax
-```js
-var ccs = document.getContentControlByName("Address");
-```
-#### Parameters
-
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`name`          | string | Required. Name/title of the content control(s) to retrieve.
-
-#### Returns
-
-[ContentControls](contentControls.md) collection.
-
-
-#### Examples
-
-```js
-var ccs = document.getContentControlByName("Address");
-```
-[Back](#methods)
-
-
-### getContentControlByTag
-
-Gets a collection of content controls with the same tag.
-
-#### Syntax
-```js
-var ccs = document.getContentControlByTag("TagForName");
-```
-#### Parameters
-
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`tag`          | string | Required. Tag of the content control(s) to retrieve.
-
-
-#### Returns
-
-[ContentControls](contentControls.md) collection.
-
-
-#### Examples
-
-```js
-var ccs = document.getContentControlByTag("TagForName");
+ctx.document.save();
 ```
 [Back](#methods)
