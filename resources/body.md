@@ -5,9 +5,9 @@
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Represents the body of the document, not includes the header/footer and other section metadata. | |
-|`font`|  [Font](font.md) | Entry point for formatting content.| The scope is the entire document. |
-|`style`| String |Name of the style been used. | The scope is the entire document|
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
+|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
+|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
 
 
 
@@ -27,16 +27,16 @@ The Worksheet resource has the following relationships defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. |  | 
+|[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
 |[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML  of the calling object. || 
-|[`getOoxml()`](#getooxml)| String  | Gets the OOXML  of the calling object. |  | 
-|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | Returns the inserted text as Range | 
-|[`InsertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | | 
-|[`InsertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | | 
-|[`InsertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. | | 
-|[`InsertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
+|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
