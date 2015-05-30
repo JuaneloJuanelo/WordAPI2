@@ -1,37 +1,37 @@
 # ContentControls 
- Represents a a colleciton of ContentControl object, on the specified scope.  
+ Represents a a collection of ContentControl objects, on the specified scope.  
 
 ## Properties
 
-none
+None
 
 ## Relationships
-The Worksheet resource has the following relationships defined:
 
-none
+None
+
 
 ## Methods
 
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getContentControlById(id: string)`](#getcontentcontrolbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
-|[`getContentControlByName(name: string)`](#getcontentcontrolbyname)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified name| Since there could be many Content Controls with the same name, this method returns a collection|  
-|[`getContentControlByTag(tag: string)`](#getcontentcontrolbytag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
+|[`getById(id: string)`](#getbyid)| [ContentControl](contentControl.md) object |Returns the content control with the specified Id, returns null if the content control does not exist|  |
+|[`getByName(name: string)`](#getbyname)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified name| Since there could be many Content Controls with the same name, this method returns a collection|  
+|[`getByTag(tag: string)`](#getbytag)| [ContentControls](contentControls.md) collection |Returns the collection of the content controls matching the specified tag| Since there could be many Content Controls with the same name, this method returns a collection |
 
 
 ### Methods 
 
 #### Examples
 
-### getContentControlById
+### getById
 
 Gets the content control with the specified ID. 
 
 #### Syntax
 
 ```js
-var myContentContolId = myContentControl.id;
+var myContentContol = ctx.document.getByID(ccid);
 
 ```
 
@@ -58,7 +58,7 @@ ctx.executeAsync().then(
 );
 
 
-var myCC = ctx.document.getContentControlById(myContentContolId);
+var myCC = ctx.document.contentControls.getById(myContentContolId);
 ctx.load(myCC);
 ctx.executeAsync().then(
     function () {
@@ -74,13 +74,13 @@ ctx.executeAsync().then(
 [Back](#methods)
 
 
-### getContentControlByName
+### getByName
 
 Gets a collection of content controls with the same name/title.
 
 #### Syntax
 ```js
-var ccs = document.getContentControlByName("Address");
+var ccs = document.getByName("Customer Address");
 ```
 #### Parameters
 
@@ -96,18 +96,18 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var ccs = document.getContentControlByName("Address");
+var ccs = document.getByName("Address");
 ```
 [Back](#methods)
 
 
-### getContentControlByTag
+### getByTag
 
 Gets a collection of content controls with the same tag.
 
 #### Syntax
 ```js
-var ccs = document.getContentControlByTag("TagForName");
+var ccs = document.getByTag("TagForName");
 ```
 #### Parameters
 
@@ -124,6 +124,6 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var ccs = document.getContentControlByTag("TagForName");
+var ccs = document.getByTag("TagForName");
 ```
 [Back](#methods)
