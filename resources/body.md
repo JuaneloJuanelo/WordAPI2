@@ -52,7 +52,7 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
 
 #### Examples
 
@@ -89,7 +89,7 @@ ctx.executeAsync().then(
 
 ### Paragraphs 
 
-The colection holds all the ccontent controls in the scope.
+The colection holds all the paragraphs in the scope.
 
 #### Syntax
 ```js
@@ -101,7 +101,7 @@ The colection holds all the ccontent controls in the scope.
 
 #### Returns
 
-[Paragraphs](paragraphs.md) collection.
+[Paragraphs](paragraphs.md) collection. See [Paragraph](paragrph.md) object.
 
 #### Examples
 
@@ -141,7 +141,7 @@ ctx.executeAsync().then(
 
 ### InlinePictures 
 
-The colection holds all the ccontent controls in the scope.
+The colection holds all the inline pictures contained in the scope.
 
 #### Syntax
 ```js
@@ -153,7 +153,7 @@ The colection holds all the ccontent controls in the scope.
 
 #### Returns
 
-[Paragraphs](paragraphs.md) collection.
+[InlinePictures](inlinePictures.md) collection. See [InlinePicture](inlinePicture.md) object.
 
 #### Examples
 
@@ -164,19 +164,19 @@ The colection holds all the ccontent controls in the scope.
 var ctx = new Word.WordClientContext();
 ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
-var paras = ctx.document.body.paragraphs;
-ctx.load(paras);
+var pics = ctx.document.body.inlinePictures;
+ctx.load(pics);
 
 ctx.executeAsync().then(
     function () {
         var results = new Array();
-        for (var i = 0; i < paras.count; i++) {
-            results.push(paras.getItemAt(i).getPlainText());
+        for (var i = 0; i < pics.count; i++) {
+            results.push(pics.getItemAt(i).base64);
         }
         ctx.executeAsync().then(
             function () {
                 for (var i = 0; i < results.length; i++) {
-                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
+                    console.log("pics[" + i + "].length = " + results[i].value.length + " " + results[i].value);
                 }
             }
         );
