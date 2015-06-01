@@ -159,10 +159,9 @@ The colection holds all the inline pictures contained in the scope.
 
 ```js
 
-// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
+// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
 
 var ctx = new Word.WordClientContext();
-ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
 var pics = ctx.document.body.inlinePictures;
 ctx.load(pics);
@@ -171,12 +170,12 @@ ctx.executeAsync().then(
     function () {
         var results = new Array();
         for (var i = 0; i < pics.count; i++) {
-            results.push(pics.getItemAt(i).base64);
+            results.push(pics.getItemAt(i).getBase64ImageSrc);
         }
         ctx.executeAsync().then(
             function () {
                 for (var i = 0; i < results.length; i++) {
-                    console.log("pics[" + i + "].length = " + results[i].value.length + " " + results[i].value);
+                    console.log("pics[" + i + "].length = " + results[i]);
                 }
             }
         );
@@ -194,29 +193,236 @@ ctx.executeAsync().then(
 
 #### Examples
 
-### save
+### clearContent
 
-Saves the current document. 
+Clears the content of the calling object.
 
 #### Syntax
-
 ```js
-
-ctx.document.save();
+var ccs = document.getByTitle("Customer Address");
 ```
+#### Parameters
 
-#### Parameters 
-
-None
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
 
 #### Returns
 
-Void
+[ContentControls](contentControls.md) collection.
+
 
 #### Examples
 
 ```js
-var ctx = new Word.WordClientContext();
-ctx.document.save();
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### getText
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### getHtml
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### getOoxml
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### insertText
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### insertHtml
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### insertOoxml
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### insertParagraph
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+[Back](#methods)
+
+### insertContentControl
+
+Gets a collection of content controls with the same name/title.
+
+#### Syntax
+```js
+var ccs = document.getByTitle("Customer Address");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`name`          | string | Required. Name/title of the content control(s) to retrieve.
+
+#### Returns
+
+[ContentControls](contentControls.md) collection.
+
+
+#### Examples
+
+```js
+var ccs = document.getByTitle("Customer Address");
 ```
 [Back](#methods)
