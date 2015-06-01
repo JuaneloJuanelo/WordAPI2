@@ -87,28 +87,32 @@ ctx.executeAsync().then(
 [Back](#relationships)
 
 
-### Sections 
+### Paragraphs 
 
-Contains each of the section objects composing the document.
+The colection holds all the ccontent controls in the scope.
 
 #### Syntax
 ```js
-  document.sections
+  document.body.paragraphs  // returns the paragraphs on the body of the document.
+  document.sections.getItemAt(0).paragraphs  //returns the paragraphs in the first section of the document.
+  document.selection.paragraphs   //returns the paragraphs contained in the selection.
 
 ```
 
 #### Returns
 
-[Section](section.md) collection.
+[Paragraphs](paragraphs.md) collection.
 
 #### Examples
 
 ```js
-// gets the paragprahs of the first section in the document. 
+
+// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
+
 var ctx = new Word.WordClientContext();
 ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
-var paras = Ctx.document.sections.getItemAt(0).body.paragraphs;
+var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 
 ctx.executeAsync().then(
@@ -120,7 +124,7 @@ ctx.executeAsync().then(
         ctx.executeAsync().then(
             function () {
                 for (var i = 0; i < results.length; i++) {
-                    console.log("paras[" + i + "].length = " + results[i].value.length);
+                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
                 }
             }
         );
@@ -130,6 +134,59 @@ ctx.executeAsync().then(
         console.log(result.traceMessages);
     }
 );
+
+```
+[Back](#relationships)
+
+
+### InlinePictures 
+
+The colection holds all the ccontent controls in the scope.
+
+#### Syntax
+```js
+  document.body.paragraphs  // returns the paragraphs on the body of the document.
+  document.sections.getItemAt(0).paragraphs  //returns the paragraphs in the first section of the document.
+  document.selection.paragraphs   //returns the paragraphs contained in the selection.
+
+```
+
+#### Returns
+
+[Paragraphs](paragraphs.md) collection.
+
+#### Examples
+
+```js
+
+// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
+
+var ctx = new Word.WordClientContext();
+ctx.customData = OfficeExtension.Constants.iterativeExecutor;
+
+var paras = ctx.document.body.paragraphs;
+ctx.load(paras);
+
+ctx.executeAsync().then(
+    function () {
+        var results = new Array();
+        for (var i = 0; i < paras.count; i++) {
+            results.push(paras.getItemAt(i).getPlainText());
+        }
+        ctx.executeAsync().then(
+            function () {
+                for (var i = 0; i < results.length; i++) {
+                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
+                }
+            }
+        );
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
+
 ```
 [Back](#relationships)
 
