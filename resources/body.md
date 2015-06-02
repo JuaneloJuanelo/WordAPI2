@@ -472,23 +472,25 @@ Inserts a paragraph on the specified location.
 
 #### Syntax
 ```js
-var ccs = document.getByTitle("Customer Address");
+var ccs = document.insertParagraph("Some initial text", "Start");
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`name`          | string | Required. Name/title of the content control(s) to retrieve.
+`text`          | string | Paragrph text. null for blank Paragraph.
+`location`          | string | Either "Start" "End"  the body of the document
+
 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[Paragraph](Paragraph.md).
 
 
 #### Examples
 
 ```js
-var ccs = document.getByTitle("Customer Address");
+var ccs = document.insertParagraph("Some initial text", "Start");
 ```
 [Back](#methods)
 
@@ -498,23 +500,22 @@ Wraps the calling object with a Rich Text content control.
 
 #### Syntax
 ```js
-var ccs = document.getByTitle("Customer Address");
+var ccs = document.body.insertContentControl();
 ```
 #### Parameters
 
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`name`          | string | Required. Name/title of the content control(s) to retrieve.
+None
 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[ContentControl](contentControl.md).
 
 
 #### Examples
 
 ```js
-var ccs = document.getByTitle("Customer Address");
+var ccs = document.body.insertContentControl();
+
 ```
 [Back](#methods)
 
@@ -524,22 +525,23 @@ Executes a search on the scope of the calling object.
 
 #### Syntax
 ```js
-var ccs = document.getByTitle("Customer Address");
+var searchResults = document.body.search("Sales Report");
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`name`          | string | Required. Name/title of the content control(s) to retrieve.
+`text`          | string | Required. Text to be searched.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[Ranges](ranges.md) collection.
 
 
 #### Examples
 
 ```js
-var ccs = document.getByTitle("Customer Address");
+var searchResults = document.body.search("Sales Report");
+
 ```
 [Back](#methods)
