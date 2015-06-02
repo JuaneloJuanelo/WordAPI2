@@ -32,34 +32,35 @@ The Worksheet resource has the following relationships defined:
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 |[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
-|[`insertBreak(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertBreak(paragraphText: string, insertLocation: string)`](#insertBreak)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureBase64(url: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details.| \
+|[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details.| \
 |[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|Paragraph Properties|
-|[`getFirstLineIndent()`](#getFirstLineIndent)| float  |Returns the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent. Read/write  | |
-|[`setFirstLineIndent(points: float)`](#setFirstLineIndent)| [Paragraph](paragraph.md)  |Sets the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.   | |
-|[`getLeftIndent()`](#getLeftIndent)| [Paragraph](paragraph.md)  |Returns a Single that represents the left indent value (in points) for the specified paragraph.  || 
-|[`setLeftIndent(points: float)`](#setLeftIndent)| [Paragraph](paragraph.md)  |Sets a Single that represents the left indent value (in points) for the specified paragraph. || 
-|[`getRightIndent()`](#getRightIndent)| [Paragraph](paragraph.md)  |  Returns a Single that represents the right indent value (in points) for the specified paragraph.    |||
-|[`setRightIndent(points: float)`](#setRightIndent)| [Paragraph](paragraph.md)    |   Sets a Single that represents the right indent value (in points) for the specified paragraph.   |||
-|[`getAlignment()`](#getAlignment)| [Paragraph](paragraph.md)   |  Returns or sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
-|[`setAlignment(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)   |  Sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
-|[`getLineSpacing()`](#insertparagraph)| [Paragraph](paragraph.md)  |Returns or sets the line spacing (in points) for the specified paragraphs.     |||
-|[`setLineSpacing(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |  Returns or sets the line spacing (in points) for the specified paragraphs.    |||
-|[`getOutlineLevel()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the outline level for the specified paragraph.    |||
-|[`setOutlineLevel(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |  Sets the outline level for the specified paragraph.    ||| 
-|[`getSpaceBefore()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the spacing (in points) before the specified paragraphs.    |||
-|[`setSpaceBefore(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)   | Sets the spacing (in points) before the specified paragraphs.    |||
-|[`getSpaceAfter()`](#insertparagraph)| [Paragraph](paragraph.md)  |    Returns the spacing (in points) before the specified paragraphs.   |||
-|[`setSpaceAfter(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |    Sets the spacing (in points) before the specified paragraphs.   ||| 
-|[`getLineUnitBefore()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the amount of spacing (in gridlines) before the specified paragraph.    ||
-|[`setLineUnitBefore(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  | Sets the amount of spacing (in gridlines) before the specified paragraph.    |||
 |[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-|[`select(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|Paragraph Properties|
+|[`getAlignment()`](#getAlignment)| float  |  Returns or sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
+|[`setAlignment(points: float)`](#insertparagraph)| void  |  Sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
+|[`getFirstLineIndent()`](#getFirstLineIndent)| float  |Returns the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent. Read/write  | |
+|[`setFirstLineIndent(points: float)`](#setFirstLineIndent)| void |Sets the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.   | |
+|[`getLeftIndent()`](#getLeftIndent)| float  |Returns a Single that represents the left indent value (in points) for the specified paragraph.  || 
+|[`setLeftIndent(points: float)`](#setLeftIndent)| void  |Sets a Single that represents the left indent value (in points) for the specified paragraph. || 
+|[`getLineUnitBefore()`](#getLineUnitBefore)| float  |  Returns the amount of spacing (in gridlines) before the specified paragraph.    ||
+|[`setLineUnitBefore(points: float)`](#setLineUnitBefore)| void  | Sets the amount of spacing (in gridlines) before the specified paragraph.    |||
+|[`getLineSpacing()`](#insertparagraph)| float  |Returns or sets the line spacing (in points) for the specified paragraphs.     |||
+|[`setLineSpacing(points: float)`](#insertparagraph)| void |  Returns or sets the line spacing (in points) for the specified paragraphs.    |||
+|[`getOutlineLevel()`](#insertparagraph)|float   |  Returns the outline level for the specified paragraph.    |||
+|[`setOutlineLevel(points: float)`](#insertparagraph)| void  |  Sets the outline level for the specified paragraph.    ||| 
+|[`getRightIndent()`](#getRightIndent)| float  |  Returns a Single that represents the right indent value (in points) for the specified paragraph.    |||
+|[`setRightIndent(points: float)`](#setRightIndent)|void  |   Sets a Single that represents the right indent value (in points) for the specified paragraph.   |||
+|[`getSpaceAfter()`](#insertparagraph)|float  |    Returns the spacing (in points) before the specified paragraphs.   |||
+|[`setSpaceAfter(points: float)`](#insertparagraph)|void  |    Sets the spacing (in points) before the specified paragraphs.   ||| 
+|[`getSpaceBefore()`](#insertparagraph)| float   |  Returns the spacing (in points) before the specified paragraphs.    |||
+|[`setSpaceBefore(points: float)`](#insertparagraph)| void  | Sets the spacing (in points) before the specified paragraphs.    |||
+
 
       
   
