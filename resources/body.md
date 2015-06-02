@@ -37,7 +37,7 @@ The Worksheet resource has the following relationships defined:
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 |[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-
+|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
 
 
 ### ContentControls 
@@ -542,6 +542,38 @@ Parameter      | Type   | Description
 
 ```js
 var searchResults = document.body.search("Sales Report");
+
+```
+[Back](#methods)
+
+
+### insertFile
+
+Inserts the specified file on the specified location.
+
+#### Syntax
+```js
+var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`location`          | string | Either "Start" "End"  the body of the document.
+
+
+#### Returns
+
+[Range](range.md) collection.
+
+
+#### Examples
+
+```js
+var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
 
 ```
 [Back](#methods)
