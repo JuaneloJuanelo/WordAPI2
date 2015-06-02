@@ -332,6 +332,7 @@ var myText = document.body.insertText("Hello World!", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `text`          | string | Required. Text to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -352,13 +353,14 @@ Inserts the specified HTML on the specified location.
 
 #### Syntax
 ```js
-var myText = document.body.Html("<b>This is some bold text</b>", "End");
+var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `html`          | string | Required. the HTML to be inserted in the document.
+`location`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -368,7 +370,7 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var myText = document.body.Html("<b>This is some bold text</b>", "End");
+var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 ```
 [Back](#methods)
@@ -379,24 +381,87 @@ Inserts the specified OOXML on the specified location.
 
 #### Syntax
 ```js
-var ccs = document.getByTitle("Customer Address");
+var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
+        <w:body>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
+            </w:r>
+            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
+            <w:bookmarkEnd w:id="0"/>
+          </w:p>
+          <w:p/>
+          <w:sectPr>
+            <w:pgSz w:w="12240" w:h="15840"/>
+            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+            <w:cols w:space="720"/>
+          </w:sectPr>
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>","End");
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`name`          | string | Required. Name/title of the content control(s) to retrieve.
-
+`ooxml`          | string | Required. OOXML to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document
+ 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[Range](range.md) collection.
 
 
 #### Examples
 
 ```js
-var ccs = document.getByTitle("Customer Address");
-```
+// this code inserts some formatted text into the document!
+var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
+        <w:body>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
+            </w:r>
+            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
+            <w:bookmarkEnd w:id="0"/>
+          </w:p>
+          <w:p/>
+          <w:sectPr>
+            <w:pgSz w:w="12240" w:h="15840"/>
+            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+            <w:cols w:space="720"/>
+          </w:sectPr>
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>","End");```
 [Back](#methods)
 
 ### insertParagraph
