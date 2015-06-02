@@ -1,11 +1,14 @@
 # Paragraph
-<description>
+Represents a single paragraph in a selection, range or document. Its a member of the paragraphs collection. The paragraphs collection includes all the paragrpahs ina selection range or document. The Paragraph object is a member of the Paragraphs collection.
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`index`|  Number |The zero-based index of the worksheet within the workbook|Worksheet.Index|
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
+|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
+|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
+
 
 
 
@@ -14,14 +17,53 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`charts`](#charts)| [Chart](chart.md) collection |Collection of charts in the worksheet|Worksheet.ChartObject  |       
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+
 
 ## Methods
 
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getCell(row: number, column: number)`](#getcell)| [Range](range.md) object |Returns a range containing the single cell specified by the zero-indexed row and column numbers| |          
+|[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
+|[`deleteElement(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`insertBreak(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureBase64(url: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details.| 
+
+
+|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|Paragraph Properties|
+|[`getFirstLineIndent()`](#getFirstLineIndent)| float  |Returns the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent. Read/write  | |
+|[`setFirstLineIndent(points: float)`](#setFirstLineIndent)| [Paragraph](paragraph.md)  |Sets the value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.   | |
+|[`getLeftIndent()`](#getLeftIndent)| [Paragraph](paragraph.md)  |Returns a Single that represents the left indent value (in points) for the specified paragraph.  || 
+|[`setLeftIndent(points: float)`](#setLeftIndent)| [Paragraph](paragraph.md)  |Sets a Single that represents the left indent value (in points) for the specified paragraph. || 
+|[`getRightIndent()`](#getRightIndent)| [Paragraph](paragraph.md)  |  Returns a Single that represents the right indent value (in points) for the specified paragraph.    |||
+|[`setRightIndent(points: float)`](#setRightIndent)| [Paragraph](paragraph.md)    |   Sets a Single that represents the right indent value (in points) for the specified paragraph.   |||
+|[`getAlignment()`](#getAlignment)| [Paragraph](paragraph.md)   |  Returns or sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
+|[`setAlignment(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)   |  Sets an Alignment constant that represents the alignment for the specified paragraphs.     |||
+|[`getLineSpacing()`](#insertparagraph)| [Paragraph](paragraph.md)  |Returns or sets the line spacing (in points) for the specified paragraphs.     |||
+|[`setLineSpacing(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |  Returns or sets the line spacing (in points) for the specified paragraphs.    |||
+|[`getOutlineLevel()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the outline level for the specified paragraph.    |||
+|[`setOutlineLevel(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |  Sets the outline level for the specified paragraph.    ||| 
+|[`getSpaceBefore()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the spacing (in points) before the specified paragraphs.    |||
+|[`setSpaceBefore(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)   | Sets the spacing (in points) before the specified paragraphs.    |||
+|[`getSpaceAfter()`](#insertparagraph)| [Paragraph](paragraph.md)  |    Returns the spacing (in points) before the specified paragraphs.   |||
+|[`setSpaceAfter(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  |    Sets the spacing (in points) before the specified paragraphs.   ||| 
+|[`getLineUnitBefore()`](#insertparagraph)| [Paragraph](paragraph.md)   |  Returns the amount of spacing (in gridlines) before the specified paragraph.    ||
+|[`setLineUnitBefore(points: float)`](#insertparagraph)| [Paragraph](paragraph.md)  | Sets the amount of spacing (in gridlines) before the specified paragraph.    |||
+|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
+|[`select(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+
+      
   
 
 

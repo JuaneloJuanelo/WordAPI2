@@ -19,10 +19,9 @@ This is the first release of JavaScript APIs for Word and we focused on the foll
 ## Main Objects  
 
 * [Document](resources/document.md): Represents a Word document. Main entry point to all interactions with the document. A document is composed of one or more sections(resources/section.md), and a body where the main content of the document resides.
-* [Section](resources/section.md):  Represents a single section in a document. Sections are commonly used to define the potentially different header and footers as well as different page layout configurations that a document can define. 
 * [Paragraph](resources/paragraph.md):  Represents a single paragraph in a selection, range or document. Its a member of the paragraphs collection. The paragraphs collection includes all the paragrpahs ina selection range or document. The Paragraph object is a member of the Paragraphs collection.
 * [ContentControl](resources/contentControl.md): Represents an individual content control. Content controls are bounded and potentially labeled regions in a document that serve as containers for specific types of content. Individual content controls may contain contents such as paragraphs of formatted text and other content controls. The ContentControl object is a member of the ContentControls collection.
-
+* [Section](resources/section.md):  Represents a single section in a document. Sections are commonly used to define the potentially different header and footers as well as different page layout configurations that a document can define. 
 * [Range](resources/range.md): Represents a contiguous area in a document. Range objects are independent of the selection. That is, you can define and manipulate a range without changing the selection.
 
 * [Picture](resources/picture.md): Represents a picture anchored to a Paragraph
