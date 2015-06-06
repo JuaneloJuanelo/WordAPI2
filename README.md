@@ -24,5 +24,5 @@ This is the first release of JavaScript APIs for Word and we focused on the foll
 * [Section](resources/section.md):  Represents a single section in a document. Sections are commonly used to define the potentially different header and footers as well as different page layout configurations that a document can define. 
 * [Range](resources/range.md): Represents a contiguous area in a document. Range objects are independent of the selection. That is, you can define and manipulate a range without changing the selection.
 
-* [Picture](resources/inlinepicture.md): Represents a picture anchored to a Paragraph
+* [Picture](resources/inlinePicture.md): Represents a picture anchored to a Paragraph
 * [Font](resources/font.md): Represents and object to provide text formatting to a given Range.
