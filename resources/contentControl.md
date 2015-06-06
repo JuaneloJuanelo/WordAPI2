@@ -5,7 +5,18 @@
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`index`|  Number |The zero-based index of the worksheet within the workbook|Worksheet.Index|
+|`id`|  string |Returns a String that represents the identification for a content control. |Read-only|
+|`title`|  string  |  Returns or sets a ContentControlType that represents the type for a content control.          | Only rich text content controls are supported|
+|`name`|  Number |           ||
+|`type`|  Number |           ||
+|`appearance`|  Number |           ||
+|`color`|  Number |           ||
+|removeWhenEdited`|  Number |           ||
+|`cannotDelete`|  Number |           ||
+|`cannotEdit`|  Number |           ||
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
+|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
+|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
 
 
 
