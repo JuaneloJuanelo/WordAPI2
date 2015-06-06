@@ -34,7 +34,7 @@ The Content Control resource has the following relationships defined:
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`deleteElement(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`deleteElement()`](#deleteelement)| Void  |Deletes the content control and its content from the document | | 
 |[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
