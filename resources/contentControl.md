@@ -11,7 +11,7 @@
 |`type`|  Number |           ||
 |`appearance`|  Number |           ||
 |`color`|  Number |           ||
-|'removeWhenEdited`|  Number |           ||
+|`removeWhenEdited`|  Number |  Removes the content control after edited.         ||
 |`cannotDelete`|  Number |           ||
 |`cannotEdit`|  Number |           ||
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
