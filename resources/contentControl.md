@@ -21,96 +21,101 @@
 
 
 ## Relationships
-The Worksheet resource has the following relationships defined:
+The Content Control resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`charts`](#charts)| [Chart](chart.md) collection |Collection of charts in the worksheet|Worksheet.ChartObject  |       
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+       
 
 ## Methods
 
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getCell(row: number, column: number)`](#getcell)| [Range](range.md) object |Returns a range containing the single cell specified by the zero-indexed row and column numbers| |          
+|[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
+|[`deleteElement(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`insertBreak(paragraphText: string, insertLocation: string)`](#insertBreak)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details.| \
+|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
+|[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
   
 
 
-### Charts 
+### InlinePictures 
 
-Get Charts collection that contains each of the chart objects contained in the worksheet. Each item contains the following properties. 
+The colection holds all the inline pictures contained in the scope.
 
 #### Syntax
 ```js
-worksheetObject.charts;
+  document.body.paragraphs  // returns the paragraphs on the body of the document.
+  document.sections.getItemAt(0).paragraphs  //returns the paragraphs in the first section of the document.
+  document.selection.paragraphs   //returns the paragraphs contained in the selection.
+
 ```
 
 #### Returns
 
-[Chart](resources/chart.md) collection.
+[InlinePictures](inlinePictures.md) collection. See [InlinePicture](inlinePicture.md) object.
 
 #### Examples
 
 ```js
-var wSheetName = 'Sheet1';
-var ctx = new Excel.ExcelClientContext();
-var charts = ctx.workbook.worksheets.getItem(wSheetName).charts;
-ctx.load(charts);
-ctx.executeAsync().then(function () {
-	for (var i = 0; i < charts.items.length; i++)
-	{
-		Console.log(charts.items[i].name);
-	}
-});
+
+
+// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
+
+var ctx = new Word.WordClientContext();
+
+var pics = ctx.document.body.inlinePictures;
+ctx.load(pics);
+
+ctx.executeAsync().then(
+    function () {
+        var results = new Array();
+        for (var i = 0; i < pics.count; i++) {
+            results.push(pics.getItemAt(i).getBase64ImageSrc());
+        }
+        ctx.executeAsync().then(
+            function () {
+                for (var i = 0; i < results.length; i++) {
+                    console.log("pics[" + i + "].base64 = " + results[i].value);
+                }
+            }
+        );
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
+
 ```
 [Back](#relationships)
 
 
-
-### getCell
-
-Get the Cell (as a Range object) object based on row and column address relative to a top of worksheet. 
-
-#### Syntax
-
-```js
-worksheetObject.getCell(row, column);
-```
-
-#### Parameters 
-
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`row`          | Number | Required. Row number of the cell to be retrieved. Zero indexed. 
-`col`          | Number | Required. Column number of the cell to be retrieved. Zero indexed.
-
-#### Returns
-
-[Range](resources/range.md) object.
+### Methods 
 
 #### Examples
 
-```js
-var sheetName = "Sheet1";
-var rangeAddress = "D5:F8";
-var ctx = new Excel.ExcelClientContext();
-var worksheet = ctx.workbook.worksheets.getItem(sheetName);
-var cell = worksheet.cell(0,0);
-ctx.load(cell);
-ctx.executeAsync().then(function() {
-	Console.log(cell.address);
-});
-```
-[Back](#methods)
+### clearContent
 
-
-### getUsedRange
-
-Get the used-range of a worksheet. 
+Clears the content of the calling object.
 
 #### Syntax
 ```js
-worksheetObject.getUsedRange();
+ctx.document.body.clearContent();
+
 ```
 #### Parameters
 
@@ -118,19 +123,371 @@ None
 
 #### Returns
 
-[Range](resources/r.md) object.
+Void.
 
 
 #### Examples
 
 ```js
-var ctx = new Excel.ExcelClientContext();
-var wSheetName = 'Sheet1';
-var worksheet = ctx.workbook.worksheets.getItem(wSheetName);
-var usedRange = worksheet.getUsedRange();
-ctx.load(usedRange);
-ctx.executeAsync().then(function () {
-		Console.log(usedRange.address);
-});
+
+//the follwoing snippet clears the content of the document's body.
+var ctx = new Word.WordClientContext();
+
+ctx.document.body.clearContent();
+
+ctx.executeAsync().then(
+    function () {
+     console.log("Success");
+     
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
+```
+[Back](#methods)
+
+### getText
+
+Gets the plain text value  of the calling object.
+
+#### Syntax
+```js
+var myText  = document.body.getText();
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[Range](range.md).
+
+
+#### Examples
+
+```js
+var ctx = new Word.WordClientContext();
+var text = ctx.document.body.getText();
+ctx.load(text);
+
+ctx.executeAsync().then(
+    function () {
+        console.log("Document Text:" + text);
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
+
+```
+[Back](#methods)
+
+### getHtml
+
+Gets the HTML representation  of the calling object.
+
+#### Syntax
+```js
+var myTHTML  = document.body.Html();
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[Range](range.md).
+
+
+#### Examples
+
+```js
+var myHTML  = document.body.getHtml();
+```
+[Back](#methods)
+
+### getOoxml
+
+Gets the Office Open XML (OOXML) representation  of the calling object.
+
+#### Syntax
+```js
+var myOOXML  = document.body.getOoxml();
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[Range](range.md).
+
+
+#### Examples
+
+```js
+var myOOXML  = document.body.getOoxml();
+```
+[Back](#methods)
+
+### insertText
+
+Inserts the specified text on the specified location.
+
+#### Syntax
+```js
+var myText = document.body.insertText("Hello World!", "End");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`text`          | string | Required. Text to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document.
+
+#### Returns
+
+[Range](range.md).
+
+
+#### Examples
+
+```js
+var myText = document.body.insertText("Hello World!", "End");
+
+```
+[Back](#methods)
+
+### insertHtml
+
+Inserts the specified HTML on the specified location.
+
+#### Syntax
+```js
+var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`html`          | string | Required. the HTML to be inserted in the document.
+`location`          | string | Either "Start" "End"  the body of the document
+
+#### Returns
+
+[Range](range.md) .
+
+
+#### Examples
+
+```js
+var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
+
+```
+[Back](#methods)
+
+### insertOoxml
+
+Inserts the specified OOXML on the specified location.
+
+#### Syntax
+```js
+var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
+        <w:body>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
+            </w:r>
+            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
+            <w:bookmarkEnd w:id="0"/>
+          </w:p>
+          <w:p/>
+          <w:sectPr>
+            <w:pgSz w:w="12240" w:h="15840"/>
+            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+            <w:cols w:space="720"/>
+          </w:sectPr>
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>","End");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`ooxml`          | string | Required. OOXML to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document
+ 
+#### Returns
+
+[Range](range.md) collection.
+
+
+#### Examples
+
+```js
+// this code inserts some formatted text into the document!
+var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
+        <w:body>
+          <w:p>
+            <w:pPr>
+              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:color w:val="70AD47" w:themeColor="accent6"/>
+                <w:sz w:val="28"/>
+              </w:rPr>
+              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
+            </w:r>
+            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
+            <w:bookmarkEnd w:id="0"/>
+          </w:p>
+          <w:p/>
+          <w:sectPr>
+            <w:pgSz w:w="12240" w:h="15840"/>
+            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+            <w:cols w:space="720"/>
+          </w:sectPr>
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>","End");
+
+  ```
+[Back](#methods)
+
+### insertParagraph
+
+Inserts a paragraph on the specified location.
+
+#### Syntax
+```js
+var ccs = document.insertParagraph("Some initial text", "Start");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`text`          | string | Paragrph text. null for blank Paragraph.
+`location`          | string | Either "Start" "End"  the body of the document
+
+
+#### Returns
+
+[Paragraph](Paragraph.md).
+
+
+#### Examples
+
+```js
+var ccs = document.insertParagraph("Some initial text", "Start");
+```
+[Back](#methods)
+
+### insertContentControl
+
+Wraps the calling object with a Rich Text content control.
+
+#### Syntax
+```js
+var ccs = document.body.insertContentControl();
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[ContentControl](contentControl.md).
+
+
+#### Examples
+
+```js
+var ccs = document.body.insertContentControl();
+
+```
+[Back](#methods)
+
+### search
+
+Executes a search on the scope of the calling object.
+
+#### Syntax
+```js
+var searchResults = document.body.search("Sales Report");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`text`          | string | Required. Text to be searched.
+
+#### Returns
+
+[Ranges](ranges.md) collection.
+
+
+#### Examples
+
+```js
+var searchResults = document.body.search("Sales Report");
+
+```
+[Back](#methods)
+
+
+### insertFile
+
+Inserts the specified file on the specified location.
+
+#### Syntax
+```js
+var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`location`          | string | Either "Start" "End"  the body of the document.
+
+
+#### Returns
+
+[Range](range.md) collection.
+
+
+#### Examples
+
+```js
+var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
+
 ```
 [Back](#methods)
