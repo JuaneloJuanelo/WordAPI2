@@ -7,7 +7,7 @@
 |:-----------------|:--------|:----------|:-----|
 |`body`|  [Body](body.md)   |Represents the body of the document, not including the header, footer, and other section metadata | |
 |`saved`|  Bool |Indicates if the document is dirty and needs to be saved | |
-|`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can span multiple paragraphs it's considered to be a Range Object. | Multiple selection is not supported|
+|`selection`| [Range](range.md) |Represents the continous current selection of the document. It can span multiple paragraphs. | Discontinuous selections are not supported.|
 
 
 
@@ -16,7 +16,7 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls in the header, footer, and body of the document.  | 
 |[`sections`](#sections)| [Sections](sections.md) collection |Collection of [section](#sections.md) in the  document |Document.Section  |       
 
 
@@ -25,12 +25,12 @@ The Worksheet resource has the following relationships defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`save()`](#save)| Void |Saves the Document | If document has not saved before it will use Word default names (i.e. Document1.docx, etc.) |     
+|[`save()`](#save)| Void |Saves the Document | If document has never been saved it will use Word's default names (eg. Document1.docx). |     
 
 
 ### ContentControls 
 
-The colection holds all the content controls in the document.
+This colection holds all the content controls in the document.
 
 #### Syntax
 ```js
