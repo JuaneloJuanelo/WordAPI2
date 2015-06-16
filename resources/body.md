@@ -24,6 +24,7 @@ The Worksheet resource has the following relationships defined:
 
 ## Methods
 
+#### <Shouldn't we say that it inherits methods from Range, or something? Most of these don't seem Body-specific, and we don't want repetition in our docs.>
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
