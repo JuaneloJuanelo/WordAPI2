@@ -1,13 +1,13 @@
 # Document 
- Represents a Word document. Main entry point to all interactions with the document. A document is composed of one or more sections(resources/section.md), and a body where the main content of the document resides.
+ Represents a Word document. It's the entrypoint to all interactions with the document. A document is composed of one or more sections(resources/section.md) and a body where the main content of the document resides.
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`body`|  [Body](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
-|`saved`|  Bool |Indicates if the document is dirty, and requires to be saved | |
-|`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
+|`body`|  [Body](body.md)   |Represents the body of the document, not including the header, footer, and other section metadata | |
+|`saved`|  Bool |Indicates if the document is dirty and needs to be saved | |
+|`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can span multiple paragraphs it's considered to be a Range Object. | Multiple selection is not supported|
 
 
 

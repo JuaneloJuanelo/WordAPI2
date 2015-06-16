@@ -1,5 +1,5 @@
 # Body 
- Represents the body of document or section. If used in a document context represents the entire document body. If used in a section context is limited to the section boundaries.
+ Represents the body of document or section. If used in a document context, represents the entire document body. If used in a section context, is limited to the section boundaries.
 
 ## Properties
 
