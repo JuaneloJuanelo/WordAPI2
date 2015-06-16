@@ -44,6 +44,8 @@ This colection holds all the content controls in the document.
 
 #### Examples
 
+##### <We should find an example that does not need two executeAsync() calls, which makes it confusing. It's not necessary to get the length of each one, for instance.>
+
 ```js
 // enumerates all the content controls in the document
 var ctx = new Word.WordClientContext();
@@ -90,6 +92,8 @@ Contains each of the section objects composing the document.
 [Section](section.md) collection.
 
 #### Examples
+
+##### <Same problem with this example; let's find something simpler.>
 
 ```js
 // gets the paragprahs of the first section in the document. 
