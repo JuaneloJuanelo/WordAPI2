@@ -26,3 +26,11 @@ For this release of the JavaScript APIs for Word we focused on the following fun
 
 * [Picture](resources/inlinePicture.md): Represents a picture anchored to a Paragraph.
 * [Font](resources/font.md): Represents an object to provide text formatting to a Range.
+
+## Additional Content Needed
+
+* Explanation of the new pipeline, including the Ctx, local objects, and properties vs relations.
+o   ExecuteAsync is the only place where there’s a “cross-boundary” call to the Office application.
+o	The purpose of load() is to tell Office what properties are being requested so that the application doesn’t waste time/space returning stuff that’s unnecessary.
+o	What’s a “relation”? Is it different than a method? Is it different than a “relationship”? What does it mean to say that relations are not “loaded” by default? I don’t think I understand this part. If entireRow is a relation for Range, then it should be included in the Range object page, right? (maybe that one’s just in progress now)
+
