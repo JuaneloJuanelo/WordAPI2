@@ -5,9 +5,9 @@
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
-|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if there is no wrapping content control|
+|`font`|  [Font](font.md) | Contains the content format and appearance.|  Exposes font name, size, color, and other properties. |
+|`style`| String |Name of the style being used. | This is the name of a pre-installed or custom style.|
 
 
 
@@ -17,7 +17,7 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls in the headers, footer, and body of the document.  | 
 |[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](#paragraph.md) objects within the body. |  |      
 |[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinepictures.md) collection |Collection of [inlinePicture](#picture.md) objects within the body. |Does not include floating images.  |       
 
@@ -27,22 +27,22 @@ The Worksheet resource has the following relationships defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
-|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`clearContent()`](#clearcontent)| Void | Deletes the contents. | The user can undo this operation. | 
+|[`getText()`](#gettext)| String |Gets the plain text representation of the contents. | | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the contents. | | 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the contents. |  | 
+|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text at the specified location. | See method details for cases when the text cannot be inserted. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified HTML at the specified location. | See method details for cases where the content cannot be inserted.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified OOXML at the specified location.  | See method details for cases where the content cannot be inserted.| 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. |See method details for cases where the paragraph cannot be inserted. | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a collection of Ranges. | 
+|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document at the specified location. | | 
 
 
 ### ContentControls 
 
-The colection holds all the content controls in the document.
+The collection holds all the content controls in the document.
 
 #### Syntax
 ```js
@@ -55,6 +55,8 @@ The colection holds all the content controls in the document.
 [ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
 
 #### Examples
+
+##### <Same problem with this example; let's find something simpler.>
 
 ```js
 // enumerates all the content controls in the document
@@ -89,7 +91,7 @@ ctx.executeAsync().then(
 
 ### Paragraphs 
 
-The colection holds all the paragraphs in the scope.
+The collection holds all the paragraphs in the scope.
 
 #### Syntax
 ```js
@@ -105,9 +107,11 @@ The colection holds all the paragraphs in the scope.
 
 #### Examples
 
+##### <Same problem with this example; let's find something simpler.>
+
 ```js
 
-// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
+// this example iterates all the paragraphs in the documents and reports back the length and text of each paragraph in the document
 
 var ctx = new Word.WordClientContext();
 ctx.customData = OfficeExtension.Constants.iterativeExecutor;
@@ -141,7 +145,7 @@ ctx.executeAsync().then(
 
 ### InlinePictures 
 
-The colection holds all the inline pictures contained in the scope.
+The collection holds all the inline pictures contained in the scope.
 
 #### Syntax
 ```js
@@ -160,7 +164,7 @@ The colection holds all the inline pictures contained in the scope.
 ```js
 
 
-// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
+// This example iterates through all the inline pictures in the body of the document and reports back the base64 representation of each image.
 
 var ctx = new Word.WordClientContext();
 
