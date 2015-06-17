@@ -26,6 +26,8 @@ The Content Control resource has the following relationships defined:
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](#paragraph.md) objects within the content control. |  |      
+
        
 
 ## Methods
@@ -52,9 +54,56 @@ The Content Control resource has the following relationships defined:
   
 
 
-### InlinePictures 
+### ContentControls 
 
-The colection holds all the inline pictures contained in the scope.
+The colection holds all the content controls in the document.
+
+#### Syntax
+```js
+  document.contentControls
+
+```
+
+#### Returns
+
+[ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
+
+#### Examples
+
+```js
+// enumerates all the content controls in the document
+var ctx = new Word.WordClientContext();
+var cCtrls = ctx.document.body.contentControls;
+ctx.load(cCtrls);
+
+ctx.executeAsync().then(
+	function () {
+		var results = new Array();
+		for (var i = 0; i < cCtrls.count; i++) {
+			results.push(cCtrls.getItemAt(i));
+		}
+		ctx.executeAsync().then(
+			function () {
+				for (var i = 0; i < results.length; i++) {
+					console.log("contentControl[" + i + "].length = " + results[i].text.length);
+				}
+			}
+		);
+	},
+	function (result) {
+		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+		console.log(result.traceMessages);
+	}
+);
+
+
+```
+[Back](#relationships)
+
+
+### Paragraphs 
+
+The colection holds all the paragraphs in the scope.
 
 #### Syntax
 ```js
@@ -66,30 +115,30 @@ The colection holds all the inline pictures contained in the scope.
 
 #### Returns
 
-[InlinePictures](inlinePictures.md) collection. See [InlinePicture](inlinePicture.md) object.
+[Paragraphs](paragraphs.md) collection. See [Paragraph](paragrph.md) object.
 
 #### Examples
 
 ```js
 
-
-// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
+// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
 
 var ctx = new Word.WordClientContext();
+ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
-var pics = ctx.document.body.inlinePictures;
-ctx.load(pics);
+var paras = ctx.document.body.paragraphs;
+ctx.load(paras);
 
 ctx.executeAsync().then(
     function () {
         var results = new Array();
-        for (var i = 0; i < pics.count; i++) {
-            results.push(pics.getItemAt(i).getBase64ImageSrc());
+        for (var i = 0; i < paras.count; i++) {
+            results.push(paras.getItemAt(i).getPlainText());
         }
         ctx.executeAsync().then(
             function () {
                 for (var i = 0; i < results.length; i++) {
-                    console.log("pics[" + i + "].base64 = " + results[i].value);
+                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
                 }
             }
         );
@@ -102,6 +151,7 @@ ctx.executeAsync().then(
 
 ```
 [Back](#relationships)
+
 
 
 ### Methods 
