@@ -1,4 +1,4 @@
-# Word JavaScript APIs  Test  2
+# Word JavaScript APIs
 Welcome to the new Word Javascript API! We hope you enjoy it an find it useful. Send feedback to juanbl@microsoft.com
 
 
