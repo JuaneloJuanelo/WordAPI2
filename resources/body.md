@@ -5,21 +5,22 @@
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
+|`html`| String |Retrieves the html representation of the body of the document . |Read-Only. to insert text use [insertText](inserttext) method.|
+|`ooxml`| String |Retrieves the Office Open XML (ooxml) representation of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method.|
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the body, if any. | Returns null if no content control|
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
-
-
-
+|`text`| String |Retrieves the plain text of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method. |
 
 ## Relationships
 The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls in the body of the document.|
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](#picture.md) objects within the body. |Does not include floating images.  | 
 |[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](#paragraph.md) objects within the body. |  |      
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinepictures.md) collection |Collection of [inlinePicture](#picture.md) objects within the body. |Does not include floating images.  |       
+    
 
 
 ## Methods
@@ -28,16 +29,18 @@ The Worksheet resource has the following relationships defined:
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`clearContent()`](#clearcontent)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
+|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
+|[`insertBreak(breakType: string, insertLocation: string)`](#insertbreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
 |[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 |[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+
 
 
 ### ContentControls 
