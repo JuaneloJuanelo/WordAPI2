@@ -18,7 +18,7 @@ Represents an inline picture anchored to a paragraph.
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getBase64ImageSrc()`](#getbase64imagesrc)| [contentControl](contentControl.md) | Gets the base64 encoded string of the image | | 
+|[`getBase64ImageSrc()`](#getbase64imagesrc)| String | Gets the base64 encoded string of the image | | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 
 
@@ -31,6 +31,7 @@ Gets the base64 encoded string of the image
 
 #### Syntax
 ```js
+pics.items[i].getBase64ImageSrc();
 
 ```
 #### Parameters
