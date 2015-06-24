@@ -1,30 +1,56 @@
-# Content Controls
-Content to be added, here is a relevant sample!
+# ContentControls
+
+A collection of ContentControl objects. Content controls are bounded and potentially labeled regions in a document that serve as containers for specific types of content. Individual content controls may contain content such as dates, lists, or paragraphs of formatted text.
+
+
+## Properties
+
+| Property         | Type    |Description|Notes |
+|:-----------------|:--------|:----------|:-----|
+|`items`|  array |Array containing the content controls in the given scope. ||
+|`count`|  integer |Number of content controls in the scope |Read-Only|
+
+## Relationships
+None  
+
+## Methods
+
+
+| Method     | Return Type    |Description|Notes  |
+|:-----------------|:--------|:----------|:------|
+|[`getById()`](#clear)| [contentControl](contentControl.md) | Gets a content control by its id. | | 
+|[`getByTag(tag:string )`](#getbytag)| contentControls(contentControls.md)  |Gets the content controls that have the specified tag. | | 
+|[`getByTitle(title:string)`](#getbytitle)| contentControls(contentControls.md) |Gets the content controls that have the specified tag. |  | 
+|[`getItemAt(index:integer)`](#getitemat)| [contentControl](contentControl.md)   | Gets a content control by its index in the collection. || 
+
+
+  
+
+
 
 #### Syntax
 ```js
+// gets Content control by tags and prints its value.
 var ctx = new Word.WordClientContext();
-var cCtrls = ctx.document.body.contentControls;
-ctx.load(cCtrls);
-
+var ccs = ctx.document.contentControls.getByTag("Customer-Address");
+ctx.load(ccs);
+ccs.getItemAt(0).font.italic = true;
+ 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-        for (var i = 0; i < cCtrls.count; i++) {
-            results.push(cCtrls.getItemAt(i));
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("contentControl[" + i + "].length = " + results[i].text.length);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
+     function () {
+         var ccText =   ccs.getItemAt(0).getText();
+         ctx.executeAsync().then(
+             function(){
+                  console.log("Content Control Text: " + ccText.value);
+
+             }
+         )  ;
+        
+     },
+     function (result) {
+         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+         console.log(result.traceMessages);
+     }
 );
 
 
