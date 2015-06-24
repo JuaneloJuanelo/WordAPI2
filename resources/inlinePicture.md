@@ -10,7 +10,6 @@ Represents an inline picture anchored to a paragraph.
 |`altTextTitle`| string  | Returns or sets a String that contains a title for the specified inline shape. |Read/write. |
 |`height`| number  |  Returns or sets the height of an inline shape. | Read/write.|
 |`hyperlink`| string  |sets/gets the hyperlink associated with the specified inline shape.  |Read/write. |
-|`id`| number  | A session-wise identifier of the image |Read/write.  |
 |`lockAspectRatio`| bool  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | Read/write.|
 |`width`| number  | Returns or sets the width of an inline shape.  | Read/write.|
 
@@ -27,6 +26,60 @@ Represents an inline picture anchored to a paragraph.
 
 
 #### Examples
+### getBase64ImageSrc
+Gets the base64 encoded string of the image
+
+#### Syntax
+```js
+
+```
+#### Parameters
+
+None
+
+#### Returns
+
+String.
+
+
+#### Examples
+
+```js
+//gets all the images in the body of the document and then gets the base64 for each.
+var ctx = new Word.WordClientContext();
+
+
+var pics = ctx.document.body.inlinePictures;
+ctx.load(pics);
+ctx.references.add(pics);
+
+ctx.executeAsync().then(
+	function () {
+		var results = new Array();
+	
+		for (var i = 0; i < pics.items.length; i++) {
+			results.push(pics.items[i].getBase64ImageSrc());
+		}
+		ctx.executeAsync().then(
+			function () {
+				for (var i = 0; i < results.length; i++) {
+					console.log("pics[" + i + "].base64 = " + results[i].value);
+				}
+			}
+		);
+	},
+	function (result) {
+		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+		console.log(result.traceMessages);
+	}
+);
+
+
+```
+[Back](#methods)
+
+
+
 
 ### insertContentControl
 
