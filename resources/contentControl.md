@@ -28,7 +28,7 @@ The Content Control resource has the following relationships defined:
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](#inlinePicture.md) objects within the body. |Does not include floating images.  | 
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
 |[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](#paragraph.md) objects within the content control. |  |      
 
        
