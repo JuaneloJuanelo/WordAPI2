@@ -535,6 +535,7 @@ var searchResults = document.body.search("Sales Report");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `text`          | string | Required. Text to be searched.
+`searchOptions` | [SearchOptions](searchOptions.md) | Required. Options for the search.
 
 #### Returns
 
@@ -544,7 +545,36 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var searchResults = document.body.search("Sales Report");
+///Search example! 
+
+var ctx = new Word.WordClientContext();
+
+var options = Word.SearchOptions.newObject(ctx);
+options.matchCase = false
+
+var results = ctx.document.body.search("Hello", options);  //searches for hello in the document
+ctx.load(results);
+ctx.references.add(results);
+
+ctx.executeAsync().then(
+    function () {
+        console.log("found count = " + results.items.length);
+        for (var i = 0; i < results.items.length; i++) {
+            results.items[i].font.color = "#FF0000"    // Change color to Red
+            results.items[i].font.highlightColor = "#FFFF00";
+            results.items[i].font.bold = true;
+            if(i==3)
+                results.items[i].select();
+        }
+        ctx.references.remove(results);
+        ctx.executeAsync().then(
+            function () {
+                console.log("deleted");
+            }
+        );
+    }
+);
+
 
 ```
 [Back](#methods)
