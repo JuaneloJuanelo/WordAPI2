@@ -24,24 +24,27 @@ Contains font attributes (such as font name, font size and color) usally applica
 
 #### Syntax
 ```js
-var ctx = new Word.WordClientContext();
-var para = ctx.document.body.paragraphs.getItemAt(0);
-var font = para.font;
+// insert a paragrpahs and use the font object to change font properties
 
-font.size = 32;
-font.bold = true;
-font.color = "#0000ff";
-font.highlightColor = "#ffff00";
+var ctx = new Word.WordClientContext();
+
+var myPar = ctx.document.body.insertParagraph("Here is some text!","end");
+myPar.font.bold = true;
+myPar.font.italic = true;
+myPar.font.color = "#00FF00";  // lime green!
+myPar.font.doubleStrikeThrough = true;
+
 
 ctx.executeAsync().then(
-    function () {
-        console.log("Success");
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
+	 function () {
+		 console.log("Success!!");
+	 },
+	 function (result) {
+		 console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+		// console.log(result.traceMessages);
+	 }
 );
+
 ```
 
 
