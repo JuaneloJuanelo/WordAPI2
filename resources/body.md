@@ -517,7 +517,32 @@ None
 #### Examples
 
 ```js
-var ccs = document.body.insertContentControl();
+var ctx = new Word.WordClientContext();
+var range = ctx.document.getSelection();
+
+var myContentControl = range.insertContentControl();
+myContentControl.tag = "Customer-Address";
+myContentControl.title = "Enter Customer Address Here:";
+myContentControl.style = "Heading 1";
+myContentControl.insertText("One Microsoft Way,Redmond,WA,98052",'replace');
+myContentControl.cannotEdit = true;
+myContentControl.appearance = "tags";
+
+
+
+ctx.load(myContentControl);
+
+ctx.executeAsync().then(
+     function () {
+         console.log("Content control Id: " + myContentControl.id);
+     },
+     function (result) {
+         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+         console.log(result.traceMessages);
+     }
+);
+
+
 
 ```
 [Back](#methods)
@@ -528,13 +553,13 @@ Executes a search on the scope of the calling object.
 
 #### Syntax
 ```js
-var searchResults = document.body.search("Sales Report");
-```
+
+var results = ctx.document.body.search("Hello", options);  //searches for hello in the document```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be searched.
+`text`          | String | Required. Text to be searched.
 `searchOptions` | [SearchOptions](searchOptions.md) | Required. Options for the search.
 
 #### Returns
