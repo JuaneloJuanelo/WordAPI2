@@ -54,7 +54,8 @@ var ctx = new Word.WordClientContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 
-var myImage = paras.getItem(0).insertInlinePictureFromUrl("http://dev.office.com/Media/Default/App%20Awards/AppAwards.png", Word.InsertLocation.end, false, true);
+var myImage = paras.getItem(0).insertInlinePictureFromBase64("iVBORw0KGgoAAAANSUhEUgAAAIAAAACABAMAAAAxEHz4AAAAJFBMVEX///9GRkZGRkZGRkZGRkZGRkZGRkZGRkYBpO9/ugDyUCL/uQGm4PjWAAAACHRSTlMBCQ0RFRknMx7uViEAAAB3SURBVGje7dcxCYBQGEXhi6izYBHB0RIiiAXkzW5iAMEKFnCwguVscJd/ecM5Ab79SNHK5FqlZXeNql/XIx23awMAAAAAAAAAAAAAAAAAyBwIvzNJxeyapLZ3Naou1ykNn6sDAAAAAAAAAAAAAAAAAMgcCL9ztB/UhshWs1l/WAAAAABJRU5ErkJggg==", Word.InsertLocation.end);
+
 
 myImage.width = 100;
 myImage.height = 100;
@@ -76,8 +77,6 @@ ctx.executeAsync().then(
 		console.log(result.traceMessages);
 	}
 );
-
-
 ```
 [Back](#methods)
 
