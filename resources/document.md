@@ -94,22 +94,28 @@ Contains each of the section objects composing the document.
 
 ```js
 // gets the paragprahs of the first section in the document. 
+//traversing paragraphs...
 var ctx = new Word.WordClientContext();
-ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
-var paras = Ctx.document.sections.getItemAt(0).body.paragraphs;
+
+var mySections = ctx.document.sections;
+ctx.load(mySections);
+
+var paras = mySections.getItem(0).body.paragraphs;
 ctx.load(paras);
+ctx.references.add(paras);
+
 
 ctx.executeAsync().then(
     function () {
         var results = new Array();
-        for (var i = 0; i < paras.count; i++) {
-            results.push(paras.getItemAt(i).getPlainText());
+        for (var i = 0; i < paras.items.length; i++) {
+            results.push(paras.getItem(i).getText());
         }
         ctx.executeAsync().then(
             function () {
                 for (var i = 0; i < results.length; i++) {
-                    console.log("paras[" + i + "].length = " + results[i].value.length);
+                    console.log("paras[" + i + "].content  = " + results[i].value);
                 }
             }
         );
@@ -119,6 +125,8 @@ ctx.executeAsync().then(
         console.log(result.traceMessages);
     }
 );
+
+
 ```
 [Back](#relationships)
 
