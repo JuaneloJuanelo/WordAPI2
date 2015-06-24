@@ -28,7 +28,7 @@ None
 
 
 
-#### Syntax
+#### Example
 ```js
 // gets Content control by tags and prints its value.
 var ctx = new Word.WordClientContext();
