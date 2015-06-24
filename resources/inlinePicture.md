@@ -8,11 +8,13 @@ Represents an inline picture anchored to a paragraph.
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
 |`altTextDescription`| string  | Returns or sets a String that represents the alternative text associated with a shape in a Web page. Read/write. | Read/write. |
 |`altTextTitle`| string  | Returns or sets a String that contains a title for the specified inline shape. |Read/write. |
-|`height`| string  | number |  Returns or sets the height of an inline shape.|
+|`height`| number  |  Returns or sets the height of an inline shape. | |
 |`hyperlink`| string  |sets/gets the hyperlink associated with the specified inline shape.  | |
-|`id`| string  | number| |
-|`lockAspectRatio`| bool  | | |
+|`id`| number  | | A session-wise identifier of the image |
+|`lockAspectRatio`| bool  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | R/W |
 |`width`| number  | Returns or sets the width of an inline shape.  | |
+
+
 
 #### Examples
 
