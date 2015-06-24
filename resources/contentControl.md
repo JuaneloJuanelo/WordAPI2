@@ -14,7 +14,7 @@ An individual content control. Content controls are bounded and potentially labe
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
 |`id`|  string |Returns a String that represents the identification for a content control. |Read-only|\
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
-|`removeWhenEdited`|  Number |  Removes the content control after edited.         ||
+|`removeWhenEdited`|  boolean |  Removes the content control after edited.         ||
 |`title`|  string  |  Returns or sets a String that represents the title for a content control.   | |
 |`type`|  string  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
