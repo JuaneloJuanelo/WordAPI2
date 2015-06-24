@@ -163,32 +163,33 @@ The colection holds all the inline pictures contained in the scope.
 
 ```js
 
-
-// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
-
+//gets all the images in the body of the document and then gets the base64 for each.
 var ctx = new Word.WordClientContext();
+
 
 var pics = ctx.document.body.inlinePictures;
 ctx.load(pics);
+ctx.references.add(pics);
 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-        for (var i = 0; i < pics.count; i++) {
-            results.push(pics.getItemAt(i).getBase64ImageSrc());
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("pics[" + i + "].base64 = " + results[i].value);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
+  function () {
+    var results = new Array();
+  
+    for (var i = 0; i < pics.items.length; i++) {
+      results.push(pics.items[i].getBase64ImageSrc());
     }
+    ctx.executeAsync().then(
+      function () {
+        for (var i = 0; i < results.length; i++) {
+          console.log("pics[" + i + "].base64 = " + results[i].value);
+        }
+      }
+    );
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
 );
 
 ```
