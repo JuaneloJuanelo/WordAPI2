@@ -8,20 +8,48 @@ Represents an inline picture anchored to a paragraph.
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
 |`altTextDescription`| string  | Returns or sets a String that represents the alternative text associated with a shape in a Web page. Read/write. | Read/write. |
 |`altTextTitle`| string  | Returns or sets a String that contains a title for the specified inline shape. |Read/write. |
-|`height`| number  |  Returns or sets the height of an inline shape. | |
-|`hyperlink`| string  |sets/gets the hyperlink associated with the specified inline shape.  | |
-|`id`| number  | | A session-wise identifier of the image |
-|`lockAspectRatio`| bool  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | R/W |
-|`width`| number  | Returns or sets the width of an inline shape.  | |
+|`height`| number  |  Returns or sets the height of an inline shape. | Read/write.|
+|`hyperlink`| string  |sets/gets the hyperlink associated with the specified inline shape.  |Read/write. |
+|`id`| number  | A session-wise identifier of the image |Read/write.  |
+|`lockAspectRatio`| bool  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | Read/write.|
+|`width`| number  | Returns or sets the width of an inline shape.  | Read/write.|
 
+## Methods
+
+
+| Method     | Return Type    |Description|Notes  |
+|:-----------------|:--------|:----------|:------|
+|[`getBase64ImageSrc()`](#getbase64imagesrc)| [contentControl](contentControl.md) | Gets the base64 encoded string of the image | | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+
+
+  
 
 
 #### Examples
 
+### insertContentControl
+
+Wraps the calling object with a Rich Text content control.
+
 #### Syntax
 ```js
+var ccs = document.body.insertContentControl();
+```
+#### Parameters
+
+None
+
+#### Returns
+
+[ContentControl](contentControl.md).
+
+
+#### Examples
+
+```js
 // grabs the first paragraph in the document and inserts an image at the end of it, then sets a
-// few props.
+// few props, then wraps it inside a content control to finally adjust a few properties of the content control.
 var ctx = new Word.WordClientContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
@@ -32,12 +60,15 @@ myImage.width = 100;
 myImage.height = 100;
 myImage.lockAspectRatio = true;
 myImage.hyperlink = "http://dev.office.com";
+var myCC = myImage.insertContentControl();
+myCC.title = "My Image";
+myCC.appearance = "tags";
 
-
+ctx.references.add(myImage);
 
 ctx.executeAsync().then(
 	function () {
-		
+		console.log("*" + myImage.id);
 		console.log("Success");
 	},
 	function (result) {
@@ -47,8 +78,7 @@ ctx.executeAsync().then(
 );
 
 
-
 ```
-
+[Back](#methods)
 
 
