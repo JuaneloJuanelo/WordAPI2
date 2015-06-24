@@ -554,7 +554,9 @@ Executes a search on the scope of the calling object.
 #### Syntax
 ```js
 
-var results = ctx.document.body.search("Hello", options);  //searches for hello in the document```
+var results = ctx.document.body.search("Hello", options);  //searches for hello in the document
+```
+
 #### Parameters
 
 Parameter      | Type   | Description
