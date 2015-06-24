@@ -517,6 +517,8 @@ None
 #### Examples
 
 ```js
+
+// wraps the current selection with a content control, then sets a few properties.
 var ctx = new Word.WordClientContext();
 var range = ctx.document.getSelection();
 
@@ -527,8 +529,6 @@ myContentControl.style = "Heading 1";
 myContentControl.insertText("One Microsoft Way,Redmond,WA,98052",'replace');
 myContentControl.cannotEdit = true;
 myContentControl.appearance = "tags";
-
-
 
 ctx.load(myContentControl);
 
