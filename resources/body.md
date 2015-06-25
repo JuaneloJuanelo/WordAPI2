@@ -205,7 +205,7 @@ Clears the content of the calling object.
 
 #### Syntax
 ```js
-ctx.document.body.clearContent();
+ctx.document.body.clear();
 
 ```
 #### Parameters
@@ -221,21 +221,21 @@ Void.
 
 ```js
 
-//the follwoing snippet clears the content of the document's body.
+//Clear content of the body of the document...
+
 var ctx = new Word.WordClientContext();
 
-ctx.document.body.clearContent();
-
+ctx.document.body.clear();
 ctx.executeAsync().then(
-    function () {
-     console.log("Success");
-     
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
+   function () {
+     console.log("Success!!");
+   },
+   function (result) {
+     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+     console.log(result.traceMessages);
+   }
 );
+
 ```
 [Back](#methods)
 
