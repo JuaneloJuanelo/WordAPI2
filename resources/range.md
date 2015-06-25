@@ -1,6 +1,6 @@
 # Range  
 Represents a contiguous area in a document. You can get a range by getting a selection (document.getSelection()) or as a collection of ranges after calling document.body.search().
-Most of the main objects (Paragrpahs, ContentControl) contain a Range.
+Most of the main objects (Paragraphs, ContentControl) contain a Range.
 
 ## Properties
 

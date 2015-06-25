@@ -39,7 +39,7 @@ The Worksheet resource has the following relationships defined:
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](ranges.md) |Executes a search with the specified options on the scope of the calling object | Search results are a ranges collection. | 
+|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](ranges.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
