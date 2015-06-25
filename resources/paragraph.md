@@ -10,7 +10,7 @@ Represents a single paragraph in a selection, range or document. Its a member of
 |`alignment`| String |Returns or sets an Alignment constant that represents the alignment for the specified paragraphs. | Can be "left", "centered", "right", "justified" |
 |`firstLineIndent`| Number |Gets or sets he value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.  | Read/Write|
 |`leftIndent`| Number |Gets or sets the left indent value (in points) for the specified paragraph.   |  Read/Write|
-|`lineSpacing`| Number |Gets or sets the line spacing (in points) for the specified paragraphs.  |  Read/Write|
+|`lineSpacing`| Number |Gets or sets the line spacing (in points) for the specified paragraphs.  |  Read/Write. (in the Word UI this value is divided by 12 )|
 |`lineUnitAfter`| Number |Gets or sets the amount of spacing (in gridlines) after the specified paragraph.  |  Read/Write|
 |`lineUnitBefore`| Number |Gets or sets the amount of spacing (in gridlines) before the specified paragraph.  | Read/Write |
 |`outlineLevel`| Number |Gets or sets the outline level for the specified paragraph.  | Read/Write|
@@ -25,6 +25,7 @@ The Worksheet resource has the following relationships defined:
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
 
 
 ## Methods
@@ -48,8 +49,42 @@ The Worksheet resource has the following relationships defined:
 |[`search(text: string)`](#search)| [Ranges](ranges.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
 |[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
 
-      
-  
+
+### Setting Paragraph Properties 
+```js
+  // playing with a few parapgraph properties, check out how it modifies your first paragrpahs settings!
+  var ctx = new Word.WordClientContext();
+var paras = ctx.document.body.paragraphs;
+ctx.load(paras);
+
+var par = paras.getItem(0);
+par.lineSpacing = 10;
+par.alignment = "justified";
+par.spaceAfter = 45;
+par.firstLineIndent = 40;
+par.leftIndent = 40;
+par.lineUnitAfter = 2;
+
+par.lineUnitBefore = 5;
+
+par.outlineLevel = 10;
+
+ctx.load(par);
+var val = par.lineSpacing;
+
+ctx.executeAsync().then(
+  function () {
+    console.log("Success! Setting paragraph line spacing to " + val);
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
+);
+
+
+```
+
 ### ContentControls 
 
 The colection holds all the content controls in the document.
@@ -73,23 +108,24 @@ var cCtrls = ctx.document.body.contentControls;
 ctx.load(cCtrls);
 
 ctx.executeAsync().then(
-	function () {
-		var results = new Array();
-		for (var i = 0; i < cCtrls.count; i++) {
-			results.push(cCtrls.getItemAt(i));
-		}
-		ctx.executeAsync().then(
-			function () {
-				for (var i = 0; i < results.length; i++) {
-					console.log("contentControl[" + i + "].length = " + results[i].text.length);
-				}
-			}
-		);
-	},
-	function (result) {
-		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-		console.log(result.traceMessages);
-	}
+    function () {
+        var results = new Array();
+    
+        for (var i = 0; i < cCtrls.items.length; i++) {
+            results.push(cCtrls.getItemAt(i).getText());
+        }
+        ctx.executeAsync().then(
+            function () {
+                for (var i = 0; i < results.length; i++) {
+                    console.log("contentControl[" + i + "].length = " + results[i].value);
+                }
+            }
+        );
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
 );
 
 
@@ -118,32 +154,32 @@ The colection holds all the paragraphs in the scope.
 ```js
 
 // this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
-
 var ctx = new Word.WordClientContext();
-ctx.customData = OfficeExtension.Constants.iterativeExecutor;
-
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
+ctx.references.add(paras);
 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-        for (var i = 0; i < paras.count; i++) {
-            results.push(paras.getItemAt(i).getPlainText());
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
+  function () {
+    var results = new Array();
+    for (var i = 0; i < paras.items.length; i++) {
+      results.push(paras.getItem(i).getText());
     }
+    ctx.executeAsync().then(
+      function () {
+        for (var i = 0; i < results.length; i++) {
+          console.log("paras[" + i + "].content  = " + results[i].value);
+        }
+      }
+    );
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
 );
+
+
 
 ```
 [Back](#relationships)
@@ -169,32 +205,33 @@ The colection holds all the inline pictures contained in the scope.
 
 ```js
 
-
-// this example iterates all the inline pictures in the body of the document and reports back the base64 equivalent of each image.
-
+//gets all the images in the body of the document and then gets the base64 for each.
 var ctx = new Word.WordClientContext();
+
 
 var pics = ctx.document.body.inlinePictures;
 ctx.load(pics);
+ctx.references.add(pics);
 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-        for (var i = 0; i < pics.count; i++) {
-            results.push(pics.getItemAt(i).getBase64ImageSrc());
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("pics[" + i + "].base64 = " + results[i].value);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
+  function () {
+    var results = new Array();
+  
+    for (var i = 0; i < pics.items.length; i++) {
+      results.push(pics.items[i].getBase64ImageSrc());
     }
+    ctx.executeAsync().then(
+      function () {
+        for (var i = 0; i < results.length; i++) {
+          console.log("pics[" + i + "].base64 = " + results[i].value);
+        }
+      }
+    );
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
 );
 
 ```

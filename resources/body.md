@@ -199,7 +199,7 @@ ctx.executeAsync().then(
 
 #### Examples
 
-### clearContent
+### clear
 
 Clears the content of the calling object.
 
