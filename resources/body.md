@@ -34,12 +34,12 @@ The Worksheet resource has the following relationships defined:
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertBreak(breakType: string, insertLocation: string)`](#insertbreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
+|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
 |[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
+|[`search(searchText : string, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 

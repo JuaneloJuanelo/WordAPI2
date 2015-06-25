@@ -44,7 +44,7 @@ The Content Control resource has the following relationships defined:
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
 |[`insertBreak(breakType: string, insertLocation: string)`](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
 |[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
