@@ -19,8 +19,8 @@ None
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`getById()`](#clear)| [contentControl](contentControl.md) | Gets a content control by its id. | | 
-|[`getByTag(tag:string )`](#getbytag)| contentControls(contentControls.md)  |Gets the content controls that have the specified tag. | | 
-|[`getByTitle(title:string)`](#getbytitle)| contentControls(contentControls.md) |Gets the content controls that have the specified tag. |  | 
+|[`getByTag(tag:string )`](#getbytag)| contentControls(contentControlCollection.md)  |Gets the content controls that have the specified tag. | | 
+|[`getByTitle(title:string)`](#getbytitle)| contentControls(contentControlCollection.md) |Gets the content controls that have the specified tag. |  | 
 |[`getItemAt(index:integer)`](#getitemat)| [contentControl](contentControl.md)   | Gets a content control by its index in the collection. || 
 
 

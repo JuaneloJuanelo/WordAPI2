@@ -17,9 +17,9 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls in the body of the document.|
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |  |      
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls in the body of the document.|
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
+|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |  |      
     
 
 
@@ -39,7 +39,7 @@ The Worksheet resource has the following relationships defined:
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](ranges.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
+|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
@@ -55,7 +55,7 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
+[ContentControls](contentControlCollection.md) collection. See ContentControl(contentControl.md) object.
 
 #### Examples
 
@@ -105,7 +105,7 @@ The colection holds all the paragraphs in the scope.
 
 #### Returns
 
-[Paragraphs](paragraphs.md) collection. See [Paragraph](paragrph.md) object.
+[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragrph.md) object.
 
 #### Examples
 
@@ -157,7 +157,7 @@ The colection holds all the inline pictures contained in the scope.
 
 #### Returns
 
-[InlinePictures](inlinePictures.md) collection. See [InlinePicture](inlinePicture.md) object.
+[InlinePictures](inlinePictureCollection.md) collection. See [InlinePicture](inlinePicture.md) object.
 
 #### Examples
 
@@ -600,7 +600,7 @@ Parameter      | Type   | Description
 
 #### Returns
 
-[Ranges](ranges.md) collection.
+[Ranges](searchResultCollection.md) collection.
 
 
 #### Examples
