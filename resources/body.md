@@ -245,7 +245,7 @@ Gets the plain text value  of the calling object.
 
 #### Syntax
 ```js
-var myText  = document.body.getText();
+myBody.getText();
 ```
 #### Parameters
 
@@ -259,13 +259,22 @@ None
 #### Examples
 
 ```js
+//gets the text of the entire body.
 var ctx = new Word.WordClientContext();
-var text = ctx.document.body.getText();
-ctx.load(text);
+var myBody = ctx.document.body
+ctx.load(myBody);
 
 ctx.executeAsync().then(
     function () {
-        console.log("Document Text:" + text);
+    
+    var txtBody = myBody.getText();
+    
+    ctx.executeAsync().then(
+      function () {
+        console.log("Hello" + txtBody.value);
+      }
+    );
+        
     },
     function (result) {
         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
