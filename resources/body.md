@@ -492,7 +492,7 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Paragrph text. null for blank Paragraph.
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.
 `location`          | string | Either "Start" "End"  the body of the document
 
 
@@ -595,7 +595,7 @@ var results = ctx.document.body.search("Hello", options);  //searches for hello 
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be searched.
+`searchText`          | String | Required. Text to be searched.
 `searchOptions` | [SearchOptions](searchOptions.md) | Required. Options for the search.
 
 #### Returns
