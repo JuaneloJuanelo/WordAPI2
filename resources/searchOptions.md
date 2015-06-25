@@ -18,7 +18,7 @@ Specifies the options to be included in a search operation.
 
 ## Wildcard Guidance 
 
-| To find:         | Wildcard   Sample |
+| To find:         | Wildcard |  Sample |
 |:-----------------|:--------|:----------|
 | Any single character| ? |s?t finds sat and set. |
 |Any string of characters| * |s*d finds sad and started.|
