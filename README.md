@@ -41,7 +41,8 @@ different page layout configurations of a document. You can access sections from
 * [Font](resources/font.md): The Font object provides text formatting to a body, content control, paragraph, or range.
 
 **Figure 1.  Word API object model**
-![](resources/images/wordAPIObjects.png)
+
+![A simple diagram of the Word API object model. The Word object is at the top level. The next object is the Document object. Under the Document objects you can access the collection of section objects.](resources\images\wordAPIObjects.png)
 
 ## Programming notes
 
