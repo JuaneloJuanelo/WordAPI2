@@ -1,23 +1,23 @@
-# Document 
- Represents a Word document. Main entry point to all interactions with the document. A document is composed of one or more sections(resources/section.md), and a body where the main content of the document resides.
+﻿# Document 
+The Document object is the top level object. A Document object contains one or more 
+sections, content controls, and the body that contains the contents of the document.
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`body`|  [Body](body.md)   |Represents the body of the document, not includes the header/footer and other section metadata | |
-|`saved`|  Bool |Indicates if the document is dirty, and requires to be saved | |
-|`selection`| [Range](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
+|`body`|  [Body](body.md)   |Gets the body of the document. | |
+|`saved`|  Bool | Indicates whether the document has been changed. | |
 
 
 
 ## Relationships
-The Worksheet resource has the following relationships defined:
+The Document object has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`sections`](#sections)| [Sections](sectionCollection.md) collection |Collection of [section](sectionCollection.md) objects in the  document |Document.Section  |       
+|[`contentControls`](#contentcontrols)| [ContentControlCollection](contentControlCollection.md)  |Collection of [contentControl](contentcontrol.md) objects  in the  document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`sections`](#sections)| [SectionCollection](sectionCollection.md) |Collection of [section](sectionCollection.md) objects in the  document |  |       
 
 
 ## Methods
@@ -25,30 +25,32 @@ The Worksheet resource has the following relationships defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`save()`](#save)| Void |Saves the Document | If document has not saved before it will use Word default names (i.e. Document1.docx, etc.) |     
-|[`getSelection()`](#getselection)| [Range](range.md) |Represents the continous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
+|[`getSelection()`](#getselection)| [Range](range.md) |Represents the continuous current selection of the document. Since it can expand multiple paragraphs its considered to be a Range Object. | Multiple selection is not supported|
+|load()| Document | Loads the Document |  |
+|[`save()`](#save)| Void |Saves the Document | If document has not been saved before it will use the Word default file naming convention. |     
 
+## API Specification
 
 ### ContentControls 
 
-The colection holds all the content controls in the document.
+Get the content control collection of the document.
 
 #### Syntax
 ```js
-  document.contentControls
+  document.contentControls;
 
 ```
 
 #### Returns
 
-[ContentControls](contentControlCollection.md) collection.
+[ContentControlCollection](contentControlCollection.md)
 
-#### Examples
+#### Example
 
 ```js
-// enumerates all the content controls in the document
+// Get all of the content controls in the document
 var ctx = new Word.WordClientContext();
-var cCtrls = ctx.document.body.contentControls;
+var cCtrls = ctx.document.contentControls;
 ctx.load(cCtrls);
 
 ctx.executeAsync().then(
@@ -78,7 +80,7 @@ ctx.executeAsync().then(
 
 ### Sections 
 
-Contains each of the section objects composing the document.
+Gets all of the section objects in the document.
 
 #### Syntax
 ```js

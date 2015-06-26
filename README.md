@@ -21,7 +21,7 @@ This is the first release of JavaScript APIs for Word and we focused on the foll
 
 ## Main Objects  
 
-* [Document](resources/document.md): The Document object is the top level object. A Document objects contains one or more 
+* [Document](resources/document.md): The Document object is the top level object. A Document object contains one or more 
 [sections](resources/section.md), a body that contains the content of the document, and header/footer information.
 * [Paragraph](resources/paragraph.md): A Paragraph object represents a single paragraph in a selection, range or document. 
 You can access a paragraph through the paragraphs collection in a selection, range, or document. 
