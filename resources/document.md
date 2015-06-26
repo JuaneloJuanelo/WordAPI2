@@ -16,8 +16,8 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`sections`](#sections)| [Sections](sections.md) collection |Collection of [section](#sections.md) in the  document |Document.Section  |       
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`sections`](#sections)| [Sections](sectionCollection.md) collection |Collection of [section](sectionCollection.md) objects in the  document |Document.Section  |       
 
 
 ## Methods
@@ -41,7 +41,7 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection.
+[ContentControls](contentControlCollection.md) collection.
 
 #### Examples
 

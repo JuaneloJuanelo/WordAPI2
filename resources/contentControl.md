@@ -27,9 +27,9 @@ The Content Control resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](paragraph.md) objects within the content control. |  |      
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
+|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the content control. |  |      
 
        
 
@@ -44,10 +44,10 @@ The Content Control resource has the following relationships defined:
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
-|[`insertBreak(paragraphText: string, insertLocation: string)`](#insertBreak)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`insertBreak(breakType: string, insertLocation: string)`](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
 |[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
@@ -67,7 +67,7 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
+[ContentControls](contentControlCollection.md) collection. See ContentControl(contentControl.md) object.
 
 #### Examples
 
@@ -116,7 +116,7 @@ The colection holds all the paragraphs in the scope.
 
 #### Returns
 
-[Paragraphs](paragraphs.md) collection. See [Paragraph](paragrph.md) object.
+[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragrph.md) object.
 
 #### Examples
 
@@ -500,7 +500,7 @@ Parameter      | Type   | Description
 
 #### Returns
 
-[Ranges](ranges.md) collection.
+[Ranges](searchResultCollection.md) collection.
 
 
 #### Examples

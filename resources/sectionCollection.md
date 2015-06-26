@@ -1,4 +1,4 @@
-# Paragraphs
+# Sections
 A collection of [Section](section.md) objects in a document
 
 ## Properties

@@ -17,9 +17,9 @@ The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControls.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls in the body of the document.|
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictures.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphs.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |  |      
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls in the body of the document.|
+|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
+|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |  |      
     
 
 
@@ -34,12 +34,12 @@ The Worksheet resource has the following relationships defined:
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertBreak(breakType: string, insertLocation: string)`](#insertbreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, location:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
+|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
 |[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
 |[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
 |[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
 |[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`search(text: string, searchOptions: searchOptions)`](#search)| [Ranges](ranges.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
+|[`search(searchText : string, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
@@ -55,7 +55,7 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControls.md) collection. See ContentControl(contentControl.md) object.
+[ContentControls](contentControlCollection.md) collection. See ContentControl(contentControl.md) object.
 
 #### Examples
 
@@ -105,7 +105,7 @@ The colection holds all the paragraphs in the scope.
 
 #### Returns
 
-[Paragraphs](paragraphs.md) collection. See [Paragraph](paragrph.md) object.
+[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragrph.md) object.
 
 #### Examples
 
@@ -157,7 +157,7 @@ The colection holds all the inline pictures contained in the scope.
 
 #### Returns
 
-[InlinePictures](inlinePictures.md) collection. See [InlinePicture](inlinePicture.md) object.
+[InlinePictures](inlinePictureCollection.md) collection. See [InlinePicture](inlinePicture.md) object.
 
 #### Examples
 
@@ -492,7 +492,7 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Paragrph text. null for blank Paragraph.
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.
 `location`          | string | Either "Start" "End"  the body of the document
 
 
@@ -595,12 +595,12 @@ var results = ctx.document.body.search("Hello", options);  //searches for hello 
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be searched.
+`searchText`          | String | Required. Text to be searched.
 `searchOptions` | [SearchOptions](searchOptions.md) | Required. Options for the search.
 
 #### Returns
 
-[Ranges](ranges.md) collection.
+[Ranges](searchResultCollection.md) collection.
 
 
 #### Examples
