@@ -49,7 +49,7 @@ Get the content control collection of the document.
 
 ```js
 // Get all of the content controls in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.contentControls;
 ctx.load(cCtrls);
 
@@ -97,7 +97,7 @@ Gets all of the section objects in the document.
 ```js
 // gets the paragprahs of the first section in the document. 
 //traversing paragraphs...
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var mySections = ctx.document.sections;
@@ -158,7 +158,7 @@ Void
 #### Examples
 
 ```js
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 ctx.document.save();
 ```
 [Back](#methods)

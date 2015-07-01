@@ -65,7 +65,7 @@ The colection holds all the content controls in the document.
 
 ```js
 // enumerates all the content controls in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.body.contentControls;
 ctx.load(cCtrls);
 
@@ -116,7 +116,7 @@ The colection holds all the paragraphs in the scope.
 ```js
 
 // this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 ctx.references.add(paras);
@@ -168,7 +168,7 @@ The colection holds all the inline pictures contained in the scope.
 ```js
 
 //gets all the images in the body of the document and then gets the base64 for each.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var pics = ctx.document.body.inlinePictures;
@@ -227,7 +227,7 @@ Void.
 
 //Clear content of the body of the document...
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 ctx.document.body.clear();
 ctx.executeAsync().then(
@@ -264,7 +264,7 @@ None
 
 ```js
 //gets the text of the entire body.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var myBody = ctx.document.body
 ctx.load(myBody);
 
@@ -511,7 +511,7 @@ Parameter      | Type   | Description
 
 //Inserting paragraphs at the end of the document.
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var myPar = ctx.document.body.insertParagraph("Bibliography","end");
 myPar.style = "Heading 1";
@@ -557,7 +557,7 @@ None
 ```js
 
 // wraps the current selection with a content control, then sets a few properties.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var range = ctx.document.getSelection();
 
 var myContentControl = range.insertContentControl();
@@ -612,7 +612,7 @@ Parameter      | Type   | Description
 ```js
 ///Search example! 
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var options = Word.SearchOptions.newObject(ctx);
 options.matchCase = false

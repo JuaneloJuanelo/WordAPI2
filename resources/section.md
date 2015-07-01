@@ -57,7 +57,7 @@ Parameter      | Type   | Description
 ```js
 //Inserting text in the footer  of the document, also adds a content control :)
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var mySections  = ctx.document.sections;
 ctx.load(mySections);
@@ -106,7 +106,7 @@ Parameter      | Type   | Description
 ```js
 //Inserting text in the footer  of the document, also adds a content control :)
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var mySections  = ctx.document.sections;
 ctx.load(mySections);

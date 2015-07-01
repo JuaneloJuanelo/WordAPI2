@@ -30,7 +30,7 @@ None
 #### Example
 ```js
 //gets all the images in the body of the document and then gets the base64 for each.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var pics = ctx.document.body.inlinePictures;

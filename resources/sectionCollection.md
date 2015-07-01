@@ -22,7 +22,7 @@ None
 ```js
 //gets access to seciton headers
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var mySections  = ctx.document.sections;
 ctx.load(mySections);

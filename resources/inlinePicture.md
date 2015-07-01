@@ -47,7 +47,7 @@ String.
 
 ```js
 //gets all the images in the body of the document and then gets the base64 for each.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var pics = ctx.document.body.inlinePictures;
@@ -104,7 +104,7 @@ None
 ```js
 // grabs the first paragraph in the document and inserts an image at the end of it, then sets a
 // few props, then wraps it inside a content control to finally adjust a few properties of the content control.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 

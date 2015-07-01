@@ -46,8 +46,8 @@ different page layout configurations of a document. You can access sections from
 
 ## Programming notes
 
- The Word.WordClientContext() method returns the context for working with the Word object model. All actions that target a Word 
+ The Word.RequestContext() method returns the context for working with the Word object model. All actions that target a Word 
  document start by getting this context. 
 
-		var ctx = new Word.WordClientContext();
+		var ctx = new Word.RequestContext();
 

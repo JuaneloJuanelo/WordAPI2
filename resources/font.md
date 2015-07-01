@@ -26,7 +26,7 @@ Contains font attributes (such as font name, font size and color) usally applica
 ```js
 // insert a paragrpahs and use the font object to change font properties
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var myPar = ctx.document.body.insertParagraph("Here is some text!","end");
 myPar.font.bold = true;

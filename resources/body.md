@@ -61,7 +61,7 @@ The colection holds all the content controls in the document.
 
 ```js
 // enumerates all the content controls in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.body.contentControls;
 ctx.load(cCtrls);
 
@@ -112,24 +112,17 @@ The colection holds all the paragraphs in the scope.
 ```js
 
 // this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
-ctx.load(paras);
+ctx.load(paras,{select:"text"},null);
+
 ctx.references.add(paras);
 
 ctx.executeAsync().then(
   function () {
-    var results = new Array();
     for (var i = 0; i < paras.items.length; i++) {
-      results.push(paras.getItem(i).getText());
+      console.log("paras[" + i + "].content  = " + paras.items[i].text);
     }
-    ctx.executeAsync().then(
-      function () {
-        for (var i = 0; i < results.length; i++) {
-          console.log("paras[" + i + "].content  = " + results[i].value);
-        }
-      }
-    );
   },
   function (result) {
     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
@@ -164,7 +157,7 @@ The colection holds all the inline pictures contained in the scope.
 ```js
 
 //gets all the images in the body of the document and then gets the base64 for each.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var pics = ctx.document.body.inlinePictures;
@@ -191,6 +184,7 @@ ctx.executeAsync().then(
     console.log(result.traceMessages);
   }
 );
+
 
 ```
 [Back](#relationships)
@@ -223,7 +217,7 @@ Void.
 
 //Clear content of the body of the document...
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 ctx.document.body.clear();
 ctx.executeAsync().then(
@@ -260,7 +254,7 @@ None
 
 ```js
 //gets the text of the entire body.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var myBody = ctx.document.body
 ctx.load(myBody);
 
@@ -333,7 +327,7 @@ var myOOXML  = document.body.getOoxml();
 ```
 [Back](#methods)
 
-### insertText
+### insertText()
 
 Inserts the specified text on the specified location.
 
@@ -346,7 +340,7 @@ var myText = document.body.insertText("Hello World!", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `text`          | string | Required. Text to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -361,7 +355,7 @@ var myText = document.body.insertText("Hello World!", "End");
 ```
 [Back](#methods)
 
-### insertHtml
+### insertHtml()
 
 Inserts the specified HTML on the specified location.
 
@@ -374,7 +368,7 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `html`          | string | Required. the HTML to be inserted in the document.
-`location`          | string | Either "Start" "End"  the body of the document
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -389,7 +383,7 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 ```
 [Back](#methods)
 
-### insertOoxml
+### insertOoxml()
 
 Inserts the specified OOXML on the specified location.
 
@@ -433,7 +427,7 @@ var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml"
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `ooxml`          | string | Required. OOXML to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document
+`insertLocation`          | string | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -480,7 +474,7 @@ var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml"
   ```
 [Back](#methods)
 
-### insertParagraph
+### insertParagraph()
 
 Inserts a paragraph on the specified location.
 
@@ -493,7 +487,7 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `paragraphText`          | string | Paragrph text. null for blank Paragraph.
-`location`          | string | Either "Start" "End"  the body of the document
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -507,7 +501,7 @@ Parameter      | Type   | Description
 
 //Inserting paragraphs at the end of the document.
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var myPar = ctx.document.body.insertParagraph("Bibliography","end");
 myPar.style = "Heading 1";
@@ -553,7 +547,7 @@ None
 ```js
 
 // wraps the current selection with a content control, then sets a few properties.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var range = ctx.document.getSelection();
 
 var myContentControl = range.insertContentControl();
@@ -581,7 +575,7 @@ ctx.executeAsync().then(
 ```
 [Back](#methods)
 
-### search
+### search()
 
 Executes a search on the scope of the calling object.
 
@@ -608,7 +602,7 @@ Parameter      | Type   | Description
 ```js
 ///Search example! 
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 var options = Word.SearchOptions.newObject(ctx);
 options.matchCase = false
@@ -641,7 +635,7 @@ ctx.executeAsync().then(
 [Back](#methods)
 
 
-### insertFile
+### insertFile()
 
 Inserts the specified file on the specified location.
 
@@ -655,7 +649,7 @@ var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`location`          | string | Either "Start" "End"  the body of the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -667,6 +661,108 @@ Parameter      | Type   | Description
 
 ```js
 var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
+
+```
+[Back](#methods)
+
+### insertBreak()
+
+Inserts the specified [type of break](breakType.md) on the specified location.
+
+#### Syntax
+```js
+ctx.document.body.insertBreak("page", "End");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`breakType`          | string | Required.  [Type of break](breakType.md)
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
+
+
+#### Returns
+
+[Range](range.md) collection.
+
+
+#### Examples
+
+```js
+//inserts a page break and then adds a paragraph!
+
+var ctx = new Word.RequestContext();
+
+ctx.document.body.insertBreak("page", "End");
+ctx.document.body.insertParagraph("Hello after break!","End");
+
+ctx.executeAsync().then(
+  function () {
+    console.log("Success");
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
+);
+
+
+```
+[Back](#methods)
+
+
+
+### select()
+
+Selects the specified Range. Scrolls to the selection. 
+
+#### Syntax
+```js
+results.items[i].select();
+```
+#### Parameters
+
+No Parameters.
+
+#### Returns
+
+Void
+
+
+#### Examples
+
+```js
+///Search and selects the first occurrence! 
+
+var ctx = new Word.RequestContext();
+
+var options = Word.SearchOptions.newObject(ctx);
+options.matchCase = false
+
+var results = ctx.document.body.search("juan", options);
+ctx.load(results);
+ctx.references.add(results);
+
+ctx.executeAsync().then(
+    function () {
+        console.log("found count = " + results.items.length);
+        for (var i = 0; i < results.items.length; i++) {
+            results.items[i].font.color = "#FF0000"    // Change color to Red
+      results.items[i].font.highlightColor = "#FFFF00";
+            results.items[i].font.bold = true;
+      if(i==0)
+        results.items[i].select();
+        }
+        ctx.references.remove(results);
+        ctx.executeAsync().then(
+            function () {
+                console.log("deleted");
+            }
+        );
+    }
+);
+
 
 
 ```

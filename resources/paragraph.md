@@ -53,7 +53,7 @@ The Worksheet resource has the following relationships defined:
 ### Setting Paragraph Properties 
 ```js
   // playing with a few parapgraph properties, check out how it modifies your first paragrpahs settings!
-  var ctx = new Word.WordClientContext();
+  var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 
@@ -103,7 +103,7 @@ The colection holds all the content controls in the document.
 
 ```js
 // enumerates all the content controls in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.body.contentControls;
 ctx.load(cCtrls);
 
@@ -154,7 +154,7 @@ The colection holds all the paragraphs in the scope.
 ```js
 
 // this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
 ctx.load(paras);
 ctx.references.add(paras);
@@ -206,7 +206,7 @@ The colection holds all the inline pictures contained in the scope.
 ```js
 
 //gets all the images in the body of the document and then gets the base64 for each.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 
 var pics = ctx.document.body.inlinePictures;
@@ -264,7 +264,7 @@ Void.
 ```js
 
 //the follwoing snippet clears the content of the document's body.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 ctx.document.body.clearContent();
 
@@ -301,7 +301,7 @@ None
 #### Examples
 
 ```js
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var text = ctx.document.body.getText();
 ctx.load(text);
 

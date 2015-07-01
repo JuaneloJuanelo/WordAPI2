@@ -16,6 +16,7 @@ An individual content control. Content controls are bounded and potentially labe
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
 |`removeWhenEdited`|  boolean |  Removes the content control after edited.         ||
 |`title`|  string  |  Returns or sets a String that represents the title for a content control.   | |
+|`text`|  string  |  Returns or sets the text of the Content Control  | |
 |`type`|  string  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
 |`tag`| String |Returns or sets a String that represents a value to identify a content control. | RW and might be duplicated|
@@ -40,7 +41,6 @@ The Content Control resource has the following relationships defined:
 |:-----------------|:--------|:----------|:------|
 |[`clear()`](#clear)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
 |[`delete(keepContent:boolean )`](#deleteelement)| Void  |Deletes the content control and its content from the document, users may keep the content if send true as parameter. | | 
-|[`getText()`](#gettext)| String |Gets the plain text of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
@@ -73,7 +73,7 @@ The colection holds all the content controls in the document.
 
 ```js
 // enumerates all the content controls in the document
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.body.contentControls;
 ctx.load(cCtrls);
 
@@ -124,7 +124,7 @@ The colection holds all the paragraphs in the scope.
 
 // this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 ctx.customData = OfficeExtension.Constants.iterativeExecutor;
 
 var paras = ctx.document.body.paragraphs;
@@ -159,7 +159,7 @@ ctx.executeAsync().then(
 
 #### Examples
 
-### clearContent
+### clear
 
 Clears the content of the calling object.
 
@@ -182,7 +182,7 @@ Void.
 ```js
 
 //the follwoing snippet clears the content of the document's body.
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 
 ctx.document.body.clearContent();
 
@@ -199,42 +199,6 @@ ctx.executeAsync().then(
 ```
 [Back](#methods)
 
-### getText
-
-Gets the plain text value  of the calling object.
-
-#### Syntax
-```js
-var myText  = document.body.getText();
-```
-#### Parameters
-
-None
-
-#### Returns
-
-[Range](range.md).
-
-
-#### Examples
-
-```js
-var ctx = new Word.WordClientContext();
-var text = ctx.document.body.getText();
-ctx.load(text);
-
-ctx.executeAsync().then(
-    function () {
-        console.log("Document Text:" + text);
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-);
-
-```
-[Back](#methods)
 
 ### getHtml
 
@@ -284,7 +248,7 @@ var myOOXML  = document.body.getOoxml();
 ```
 [Back](#methods)
 
-### insertText
+### insertText()
 
 Inserts the specified text on the specified location.
 
@@ -297,7 +261,7 @@ var myText = document.body.insertText("Hello World!", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `text`          | string | Required. Text to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -312,7 +276,7 @@ var myText = document.body.insertText("Hello World!", "End");
 ```
 [Back](#methods)
 
-### insertHtml
+### insertHtml()
 
 Inserts the specified HTML on the specified location.
 
@@ -325,7 +289,7 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `html`          | string | Required. the HTML to be inserted in the document.
-`location`          | string | Either "Start" "End"  the body of the document
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -340,7 +304,7 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 ```
 [Back](#methods)
 
-### insertOoxml
+### insertOoxml()
 
 Inserts the specified OOXML on the specified location.
 
@@ -384,7 +348,7 @@ var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml"
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `ooxml`          | string | Required. OOXML to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document
+`insertLocation`          | string | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -431,7 +395,7 @@ var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml"
   ```
 [Back](#methods)
 
-### insertParagraph
+### insertParagraph()
 
 Inserts a paragraph on the specified location.
 
@@ -443,8 +407,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Paragrph text. null for blank Paragraph.
-`location`          | string | Either "Start" "End"  the body of the document
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -459,7 +423,7 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 ```
 [Back](#methods)
 
-### insertContentControl
+### insertContentControl()
 
 Wraps the calling object with a Rich Text content control.
 
@@ -481,7 +445,7 @@ None
 ```js
 //Insert a Content Control (on user's selection)  and changing the properties by using the selection
 
-var ctx = new Word.WordClientContext();
+var ctx = new Word.RequestContext();
 var range = ctx.document.getSelection();
 
 var myContentControl = range.insertContentControl();
@@ -539,7 +503,7 @@ var searchResults = document.body.search("Sales Report");
 [Back](#methods)
 
 
-### insertFile
+### insertFile()
 
 Inserts the specified file on the specified location.
 
@@ -553,7 +517,7 @@ var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
 Parameter      | Type   | Description
 -------------- | ------ | ------------
 `fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`location`          | string | Either "Start" "End"  the body of the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -565,6 +529,51 @@ Parameter      | Type   | Description
 
 ```js
 var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
+
+
+```
+[Back](#methods)
+
+### insertBreak()
+
+Inserts the specified [type of break](breakType.md) on the specified location.
+
+#### Syntax
+```js
+ctx.document.body.insertBreak("page", "End");
+```
+#### Parameters
+
+Parameter      | Type   | Description
+-------------- | ------ | ------------
+`breakType`          | string | Required.  [Type of break](breakType.md)
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
+
+
+#### Returns
+
+[Range](range.md) collection.
+
+
+#### Examples
+
+```js
+//inserts a page break and then adds a paragraph!
+
+var ctx = new Word.RequestContext();
+
+ctx.document.body.insertBreak("page", "End");
+ctx.document.body.insertParagraph("Hello after break!","End");
+
+ctx.executeAsync().then(
+  function () {
+    console.log("Success");
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
+);
 
 
 ```
