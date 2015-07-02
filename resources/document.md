@@ -43,36 +43,29 @@ Get the content control collection of the document.
 
 #### Returns
 
-[ContentControlCollection](contentControlCollection.md)
+[ContentControls Collection](contentControlCollection.md)
 
 #### Example
 
 ```js
-// Get all of the content controls in the document
+// gets Content control by tags and prints its content.
 var ctx = new Word.RequestContext();
-var cCtrls = ctx.document.contentControls;
-ctx.load(cCtrls);
-
+var ccs = ctx.document.contentControls;
+ctx.load(ccs,{select:'text'});
+ 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
+     function () {
+         for(var i=0; i< ccs.items.length;i++)
+        console.log( ccs.items[i].text);
+         
         
-        for (var i = 0; i < cCtrls.items.length; i++) {
-            results.push(cCtrls.getItemAt(i).getText());
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("contentControl[" + i + "].length = " + results[i].value);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
+     },
+     function (result) {
+         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+         console.log(result.traceMessages);
+     }
 );
+
 
 ```
 [Back](#relationships)

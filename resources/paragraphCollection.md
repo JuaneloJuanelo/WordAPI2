@@ -20,31 +20,21 @@ None
 
 #### Example
 ```js
-//gets all the paragrpahs in the document...
-
+// this example iterates all the paragraphs in the documents and reports back the length and text of each paragraph in the document
 var ctx = new Word.RequestContext();
 var paras = ctx.document.body.paragraphs;
-ctx.load(paras);
-ctx.references.add(paras);
+ctx.load(paras,{select:"text"});
 
 ctx.executeAsync().then(
-	function () {
-		var results = new Array();
-		for (var i = 0; i < paras.items.length; i++) {
-			results.push(paras.getItem(i).getText());
-		}
-		ctx.executeAsync().then(
-			function () {
-				for (var i = 0; i < results.length; i++) {
-					console.log("paras[" + i + "].content  = " + results[i].value);
-				}
-			}
-		);
-	},
-	function (result) {
-		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-		console.log(result.traceMessages);
-	}
+  function () {
+    for (var i = 0; i < paras.items.length; i++) {
+      console.log("paras[" + i + "].content  = " + paras.items[i].text);
+    }
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
 );
 
 

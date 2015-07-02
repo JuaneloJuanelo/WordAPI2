@@ -30,21 +30,16 @@ None
 
 #### Example
 ```js
-// gets Content control by tags and prints its value.
+// gets Content control by tags and prints its content.
 var ctx = new Word.RequestContext();
 var ccs = ctx.document.contentControls.getByTag("Customer-Address");
-ctx.load(ccs);
-ccs.getItemAt(0).font.italic = true;
+ctx.load(ccs,{select:'text'});
  
 ctx.executeAsync().then(
      function () {
-         var ccText =   ccs.getItemAt(0).getText();
-         ctx.executeAsync().then(
-             function(){
-                  console.log("Content Control Text: " + ccText.value);
-
-             }
-         )  ;
+         for(var i=0; i< ccs.items.length;i++)
+        console.log( ccs.items[i].text);
+         
         
      },
      function (result) {

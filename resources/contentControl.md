@@ -75,26 +75,25 @@ The colection holds all the content controls in the document.
 // enumerates all the content controls in the document
 var ctx = new Word.RequestContext();
 var cCtrls = ctx.document.body.contentControls;
-ctx.load(cCtrls);
+ctx.load(cCtrls,{select:'appearance,text'});  // just need these properties!
 
 ctx.executeAsync().then(
-	function () {
-		var results = new Array();
-		for (var i = 0; i < cCtrls.count; i++) {
-			results.push(cCtrls.getItemAt(i));
-		}
-		ctx.executeAsync().then(
-			function () {
-				for (var i = 0; i < results.length; i++) {
-					console.log("contentControl[" + i + "].length = " + results[i].text.length);
-				}
-			}
-		);
-	},
-	function (result) {
-		console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-		console.log(result.traceMessages);
-	}
+    function () {
+        var results = new Array();
+     
+        for (var i = 0; i < cCtrls.items.length; i++) {
+           console.log("contentControl[" + i + "].text = " + cCtrls.items[i].text + " Appearance:" +cCtrls.items[i].appearance );
+      }
+        ctx.executeAsync().then(
+            function () {
+               console.log("Success!!");
+            }
+        );
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
 );
 
 
@@ -122,33 +121,24 @@ The colection holds all the paragraphs in the scope.
 
 ```js
 
-// this example iterates all the paragraphs in the documents and reports back the lenght and text of each paragraph in the document
-
+// this example iterates all the paragraphs in the documents and reports back the text of each paragraph in the document
 var ctx = new Word.RequestContext();
-ctx.customData = OfficeExtension.Constants.iterativeExecutor;
-
 var paras = ctx.document.body.paragraphs;
-ctx.load(paras);
+ctx.load(paras,{select:"text"});
 
 ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-        for (var i = 0; i < paras.count; i++) {
-            results.push(paras.getItemAt(i).getPlainText());
-        }
-        ctx.executeAsync().then(
-            function () {
-                for (var i = 0; i < results.length; i++) {
-                    console.log("paras[" + i + "].length = " + results[i].value.length + " " + results[i].value);
-                }
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
+  function () {
+    for (var i = 0; i < paras.items.length; i++) {
+      console.log("paras[" + i + "].content  = " + paras.items[i].text);
     }
+  },
+  function (result) {
+    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+    console.log(result.traceMessages);
+  }
 );
+
+
 
 ```
 [Back](#relationships)
@@ -181,26 +171,25 @@ Void.
 
 ```js
 
-//the follwoing snippet clears the content of the document's body.
+//Clear content of the body of the document...
+
 var ctx = new Word.RequestContext();
 
-ctx.document.body.clearContent();
-
+ctx.document.body.clear();
 ctx.executeAsync().then(
-    function () {
-     console.log("Success");
-     
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
+   function () {
+     console.log("Success!!");
+   },
+   function (result) {
+     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+     console.log(result.traceMessages);
+   }
 );
 ```
 [Back](#methods)
 
 
-### getHtml
+### getHtml()
 
 Gets the HTML representation  of the calling object.
 
@@ -271,8 +260,19 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var myText = document.body.insertText("Hello World!", "End");
 
+//inserts some text at the end of the document.
+var ctx = new Word.RequestContext();
+ctx.document.body.insertText("new text", "end");
+ctx.executeAsync().then(
+    function () {
+    console.log("Success!!");    
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
 ```
 [Back](#methods)
 
@@ -299,8 +299,18 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
-
+//inserts some html at the end of the doc :) 
+var ctx = new Word.RequestContext();
+ctx.document.body.insertHtml("<b>This is some bold text</b>", "End");
+ctx.executeAsync().then(
+    function () {
+    console.log("Success!!");    
+    },
+    function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+    }
+);
 ```
 [Back](#methods)
 
@@ -310,38 +320,8 @@ Inserts the specified OOXML on the specified location.
 
 #### Syntax
 ```js
-var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
-    <pkg:xmlData>
-      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
-        <w:body>
-          <w:p>
-            <w:pPr>
-              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
-              <w:rPr>
-                <w:color w:val="70AD47" w:themeColor="accent6"/>
-                <w:sz w:val="28"/>
-              </w:rPr>
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:color w:val="70AD47" w:themeColor="accent6"/>
-                <w:sz w:val="28"/>
-              </w:rPr>
-              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
-            </w:r>
-            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
-            <w:bookmarkEnd w:id="0"/>
-          </w:p>
-          <w:p/>
-          <w:sectPr>
-            <w:pgSz w:w="12240" w:h="15840"/>
-            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
-            <w:cols w:space="720"/>
-          </w:sectPr>
-        </w:body>
-      </w:document>
-    </pkg:xmlData>
-  </pkg:part>","End");
+range.insertOoxml(ooxmlText, Word.InsertLocation.end);
+
 ```
 #### Parameters
 
@@ -359,38 +339,23 @@ Parameter      | Type   | Description
 
 ```js
 // this code inserts some formatted text into the document!
-var myRange = document.body.insertOoxml("<pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
-    <pkg:xmlData>
-      <w:document mc:Ignorable="w14 w15 wp14" xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape">
-        <w:body>
-          <w:p>
-            <w:pPr>
-              <w:spacing w:before="360" w:after="0" w:line="480" w:lineRule="auto"/>
-              <w:rPr>
-                <w:color w:val="70AD47" w:themeColor="accent6"/>
-                <w:sz w:val="28"/>
-              </w:rPr>
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:color w:val="70AD47" w:themeColor="accent6"/>
-                <w:sz w:val="28"/>
-              </w:rPr>
-              <w:t>This text has formatting directly applied to achieve its font size, color, line spacing, and paragraph spacing.</w:t>
-            </w:r>
-            <w:bookmarkStart w:id="0" w:name="_GoBack"/>
-            <w:bookmarkEnd w:id="0"/>
-          </w:p>
-          <w:p/>
-          <w:sectPr>
-            <w:pgSz w:w="12240" w:h="15840"/>
-            <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
-            <w:cols w:space="720"/>
-          </w:sectPr>
-        </w:body>
-      </w:document>
-    </pkg:xmlData>
-  </pkg:part>","End");
+var ctx = new Word.RequestContext();
+var range = ctx.document.getSelection();
+
+var ooxmlText =
+  "<w:p xmlns:w='http://schemas.microsoft.com/office/word/2003/wordml'><w:r><w:rPr><w:b/><w:b-cs/><w:color w:val='FF0000'/><w:sz w:val='28'/><w:sz-cs w:val='28'/></w:rPr><w:t>Hello world (this should be bold, red, size 14).</w:t></w:r></w:p>";
+
+range.insertOoxml(ooxmlText, Word.InsertLocation.end);
+
+ctx.executeAsync().then(
+   function () {
+     console.log("Success");
+   },
+   function (result) {
+     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+     console.log(result.traceMessages);
+   }
+);
 
   ```
 [Back](#methods)
@@ -419,7 +384,27 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var ccs = document.insertParagraph("Some initial text", "Start");
+//Inserting paragraphs at the end of the document.
+
+var ctx = new Word.RequestContext();
+
+var myPar = ctx.document.body.insertParagraph("Bibliography","end");
+myPar.style = "Heading 1";
+
+var myPar2 = ctx.document.body.insertParagraph("this is my first book","end");
+myPar2.style = "Normal"
+
+
+
+ctx.executeAsync().then(
+     function () {
+         console.log("Success!!");
+     },
+     function (result) {
+         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        // console.log(result.traceMessages);
+     }
+);
 ```
 [Back](#methods)
 
@@ -497,8 +482,35 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var searchResults = document.body.search("Sales Report");
+///Search example! 
 
+var ctx = new Word.RequestContext();
+var options = Word.SearchOptions.newObject(ctx);
+
+options.matchCase = false
+
+var results = ctx.document.body.search("Video", options);
+ctx.load(results, {select:"text, font/color", expand:"font"});
+ctx.references.add(results);
+
+ctx.executeAsync().then(
+  function () {
+    console.log("Found count: " + results.items.length + " " + results.items[0].font.color );
+    for (var i = 0; i < results.items.length; i++) {
+      results.items[i].font.color = "#FF0000"    // Change color to Red
+      results.items[i].font.highlightColor = "#FFFF00";
+      results.items[i].font.bold = true;
+      if (i == 3)
+        results.items[i].select();
+    }
+    ctx.references.remove(results);
+    ctx.executeAsync().then(
+      function () {
+        console.log("Deleted");
+      }
+    );
+  }
+);
 ```
 [Back](#methods)
 
@@ -509,8 +521,7 @@ Inserts the specified file on the specified location.
 
 #### Syntax
 ```js
-var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
-
+TBD
 ```
 #### Parameters
 
@@ -528,8 +539,7 @@ Parameter      | Type   | Description
 #### Examples
 
 ```js
-var myDoc = document.body.insertFile("http://mylibrary/myDoc.docx", "End");
-
+TBD
 
 ```
 [Back](#methods)

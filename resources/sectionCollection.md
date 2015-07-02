@@ -28,7 +28,7 @@ var mySections  = ctx.document.sections;
 ctx.load(mySections);
 
 var myFooter = mySections.getItem(0).getFooter("primary");
-myFooter.insertText("this is a header!!","end");
+myFooter.insertText("this is a footer!!","end");
 myFooter.insertContentControl();
 
 ctx.executeAsync().then(
