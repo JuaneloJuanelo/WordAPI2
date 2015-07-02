@@ -7,17 +7,17 @@ An individual content control. Content controls are bounded and potentially labe
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`appearance`|  string |Returns or sets the appearance of the content control. |RW. Can be 'boundingBox', 'tags' or 'hidden' |
+|`appearance`|  String |Returns or sets the appearance of the content control. |RW. Can be 'boundingBox', 'tags' or 'hidden' |
 |`cannotDelete`|  boolean |Returns or sets a Boolean that represents whether the user can delete a content control from the active document |RW. |
 |`cannotEdit`|  boolean | Returns or sets a Boolean that represents whether the user can edit the contents of a content control. |RW. |
 |`color`|  Number |   Returns or sets the color of the content control.        | Color is set in "#FFFFFF" format or color name|
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`id`|  string |Returns a String that represents the identification for a content control. |Read-only|\
+|`id`|  String |Returns a String that represents the identification for a content control. |Read-only|\
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
 |`removeWhenEdited`|  boolean |  Removes the content control after edited.         ||
-|`title`|  string  |  Returns or sets a String that represents the title for a content control.   | |
-|`text`|  string  |  Returns or sets the text of the Content Control  | |
-|`type`|  string  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
+|`title`|  String  |  Returns or sets a String that represents the title for a content control.   | |
+|`text`|  String  |  Returns or sets the text of the Content Control  | |
+|`type`|  String  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
 |`tag`| String |Returns or sets a String that represents a value to identify a content control. | RW and might be duplicated|
 
@@ -44,14 +44,14 @@ The Content Control resource has the following relationships defined:
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
-|[`insertBreak(breakType: string, insertLocation: string)`](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
-|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureBase64(url: string, insertLocation: string)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
-|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
+|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
+|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureBase64(url: String, insertLocation: String)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
+|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[`select(paragraphText: String, insertLocation: String)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
   
 
 
@@ -249,8 +249,8 @@ var myText = document.body.insertText("Hello World!", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be inserted.
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
+`text`          | String | Required. Text to be inserted.
+`insertLocation`          | String | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -288,8 +288,8 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | string | Required. the HTML to be inserted in the document.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`html`          | String | Required. the HTML to be inserted in the document.
+`insertLocation`          | String | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -327,8 +327,8 @@ range.insertOoxml(ooxmlText, Word.InsertLocation.end);
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | string | Required. OOXML to be inserted.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`ooxml`          | String | Required. OOXML to be inserted.
+`insertLocation`          | String | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -372,8 +372,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`paragraphText`          | string | Paragrph text. null for blank Paragraph.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`paragraphText`          | String | Paragrph text. null for blank Paragraph.
+`insertLocation`          | String | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -472,7 +472,7 @@ var searchResults = document.body.search("Sales Report");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be searched.
+`text`          | String | Required. Text to be searched.
 
 #### Returns
 
@@ -527,8 +527,8 @@ TBD
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
+`fileLocation`          | String | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`insertLocation`          | String | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -556,8 +556,8 @@ ctx.document.body.insertBreak("page", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`breakType`          | string | Required.  [Type of break](breakType.md)
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
+`breakType`          | String | Required.  [Type of break](breakType.md)
+`insertLocation`          | String | Either "Start" "End"  the body of the document.
 
 
 #### Returns

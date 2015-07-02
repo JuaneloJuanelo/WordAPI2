@@ -38,15 +38,15 @@ The Worksheet resource has the following relationships defined:
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| String |Inserts the complete specified document intopaoar the specified location. | | 
-|[`insertBreak(breakType: string, insertLocation: string)`](#insertBreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
-|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a picture  on the specified location. |All locations may not apply. See method details.| \
-|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`search(text: string)`](#search)| [Ranges](searchResultCollection.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-|[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document intopaoar the specified location. | | 
+|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
+|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureUrl(base64: String, insertLocation: String)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a picture  on the specified location. |All locations may not apply. See method details.| \
+|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[`search(text: String)`](#search)| [Ranges](searchResultCollection.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
+|[`select(paragraphText: String, insertLocation: String)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
 
 
 ### Setting Paragraph Properties 
@@ -333,8 +333,8 @@ var myText = document.body.insertText("Hello World!", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document.
+`text`          | String | Required. Text to be inserted.
+`location`          | String | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -361,8 +361,8 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | string | Required. the HTML to be inserted in the document.
-`location`          | string | Either "Start" "End"  the body of the document
+`html`          | String | Required. the HTML to be inserted in the document.
+`location`          | String | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -415,8 +415,8 @@ ctx.executeAsync().then(
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | string | Required. OOXML to be inserted.
-`location`          | string | Either "Start" "End"  the body of the document
+`ooxml`          | String | Required. OOXML to be inserted.
+`location`          | String | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -460,8 +460,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Paragrph text. null for blank Paragraph.
-`location`          | string | Either "Start" "End"  the body of the document
+`text`          | String | Paragrph text. null for blank Paragraph.
+`location`          | String | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -552,7 +552,7 @@ var searchResults = document.body.search("Sales Report");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be searched.
+`text`          | String | Required. Text to be searched.
 
 #### Returns
 
@@ -607,8 +607,8 @@ TBD
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`location`          | string | Either "Start" "End"  the body of the document.
+`fileLocation`          | String | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`location`          | String | Either "Start" "End"  the body of the document.
 
 
 #### Returns

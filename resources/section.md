@@ -20,8 +20,8 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getFooter(type:string)`](#getfooter)| [Body](body.md) |Gets the footer of the specified type for the referred section | Type can be: "primary", "firstPage" or  "evenPages" |     
-|[`getHeader(type:string)`](#getheader)| [Body](body.md) |Gets the header of the specified type for the referred section | Type can be: "primary", "firstPage" or  "evenPages"|
+|[`getFooter(type:String)`](#getfooter)| [Body](body.md) |Gets the footer of the specified type for the referred section | Type can be: "primary", "firstPage" or  "evenPages" |     
+|[`getHeader(type:String)`](#getheader)| [Body](body.md) |Gets the header of the specified type for the referred section | Type can be: "primary", "firstPage" or  "evenPages"|
 
 
 
@@ -44,7 +44,7 @@ var myFooter = mySections.getItem(0).getFooter("primary");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`type`          | string | Required. Type of header  "primary", "firstPage" or  "evenPages"
+`type`          | String | Required. Type of header  "primary", "firstPage" or  "evenPages"
 
 
 #### Returns
@@ -93,7 +93,7 @@ var myHeader = mySections.getItem(0).getHeader("primary");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`type`          | string | Required. Type of header  "primary", "firstPage" or  "evenPages"
+`type`          | String | Required. Type of header  "primary", "firstPage" or  "evenPages"
 
 
 #### Returns

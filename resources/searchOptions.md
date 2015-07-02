@@ -8,9 +8,9 @@ Specifies the options to be included in a search operation.
 |`ignorePunct`| bool | True ignores all punctuation characters between words. Corresponds to the Ignore punctuation check box in the Find and Replace dialog box.|  |
 |`ignoreSpace`| bool |True ignores all white space between words. Corresponds to the Ignore white-space characters check box in the Find and Replace dialog box.||
 |`matchCase`| bool |True to specify that the find text be case sensitive. Corresponds to the Match case check box in the Find and Replace dialog box (Edit menu).| |
-|`matchPrefix`| bool  |True to match words beginning with the search string. Corresponds to the Match prefix check box in the Find and Replace dialog box. ||
+|`matchPrefix`| bool  |True to match words beginning with the search String. Corresponds to the Match prefix check box in the Find and Replace dialog box. ||
 |`matchSoundsLike`| bool |True to have the find operation locate words that sound similar to the find text. Corresponds to the Sounds like check box in the Find and Replace dialog box | |
-|`matchSuffix`| bool |True to match words ending with the search string. Corresponds to the Match suffix check box in the Find and Replace dialog box. | |
+|`matchSuffix`| bool |True to match words ending with the search String. Corresponds to the Match suffix check box in the Find and Replace dialog box. | |
 |`matchWholeWord`| bool |True to have the find operation locate only entire words, not text that is part of a larger word. Corresponds to the Find whole words only check box in the Find and Replace dialog box. | |
 |`matchWildcards`| bool |True to have the find text be a special search operator. Corresponds to the Use wildcards check box in the Find and Replace dialog box. |  |
 
@@ -21,7 +21,7 @@ Specifies the options to be included in a search operation.
 | To find:         | Wildcard |  Sample |
 |:-----------------|:--------|:----------|
 | Any single character| ? |s?t finds sat and set. |
-|Any string of characters| * |s*d finds sad and started.|
+|Any String of characters| * |s*d finds sad and started.|
 |The beginning of a word|< |<(inter) finds interesting and intercept, but not splintered.|
 |The end of a word |> |(in)> finds in and within, but not interesting.|
 |One of the specified characters|[ ] |w[io]n finds win and won.|
