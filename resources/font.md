@@ -8,7 +8,7 @@ Contains font attributes (such as font name, font size and color) usally applica
 |:-----------------|:--------|:----------|:-----|
 |`bold`| Boolean  | True if the font is formatted as bold. Read/write Long.| |
 |`color`| String  | Returns or sets the color for the specified font. Read/write . |  Read/write .  Like "#FF00FF" or color name |
-|`doubleStrikeThrough`| Booleanean  |True if the specified font is formatted as double strikethrough text.| |
+|`doubleStrikeThrough`| Boolean  |True if the specified font is formatted as double strikethrough text.| |
 |`highlightColor`| String  | Returns or sets the highlight color for the specified font. | Read/write .  Like "#FF00FF" or color name  |
 |`italic`| Boolean  | True if the font or range is formatted as italic.  | Read/write |
 |`name`| String  | Returns or sets the name of the specified object.  |Read/write |

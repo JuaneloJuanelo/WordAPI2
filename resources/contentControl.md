@@ -8,13 +8,13 @@ An individual content control. Content controls are bounded and potentially labe
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
 |`appearance`|  String |Returns or sets the appearance of the content control. |RW. Can be 'boundingBox', 'tags' or 'hidden' |
-|`cannotDelete`|  Booleanean |Returns or sets a Boolean that represents whether the user can delete a content control from the active document |RW. |
-|`cannotEdit`|  Booleanean | Returns or sets a Boolean that represents whether the user can edit the contents of a content control. |RW. |
+|`cannotDelete`|  Boolean |Returns or sets a Boolean that represents whether the user can delete a content control from the active document |RW. |
+|`cannotEdit`|  Boolean | Returns or sets a Boolean that represents whether the user can edit the contents of a content control. |RW. |
 |`color`|  Number |   Returns or sets the color of the content control.        | Color is set in "#FFFFFF" format or color name|
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
 |`id`|  String |Returns a String that represents the identification for a content control. |Read-only|\
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
-|`removeWhenEdited`|  Booleanean |  Removes the content control after edited.         ||
+|`removeWhenEdited`|  Boolean |  Removes the content control after edited.         ||
 |`title`|  String  |  Returns or sets a String that represents the title for a content control.   | |
 |`text`|  String  |  Returns or sets the text of the Content Control  | |
 |`type`|  String  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
@@ -40,7 +40,7 @@ The Content Control resource has the following relationships defined:
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
 |[`clear()`](#clear)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`delete(keepContent:Booleanean )`](#deleteelement)| Void  |Deletes the content control and its content from the document, users may keep the content if send true as parameter. | | 
+|[`delete(keepContent:Boolean )`](#deleteelement)| Void  |Deletes the content control and its content from the document, users may keep the content if send true as parameter. | | 
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
