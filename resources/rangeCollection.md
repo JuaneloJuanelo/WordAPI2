@@ -7,8 +7,8 @@ A collection of [Range](range.md) objects. Usually a result of a document.search
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`items`|  array |Array containing the [Range](range.md) objects in the given scope. ||
-|`count`|  integer |Number of [Range](range.md) objects  in the scope |Read-Only|
+|`items`|  Array |Array containing the [Range](range.md) objects in the given scope. ||
+|`count`|  Number |Number of [Range](range.md) objects  in the scope |Read-Only|
 
 
 
@@ -20,7 +20,7 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getItem(index:integer)`](#getitem)| [Range](range.md)   | Gets a[Range](range.md) by its index in the collection. || 
+|[`getItem(index:Number)`](#getitem)| [Range](range.md)   | Gets a[Range](range.md) by its index in the collection. || 
 
 
   

@@ -39,7 +39,7 @@ The Worksheet resource has the following relationships defined:
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 |[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document intopaoar the specified location. | | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
+|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)| Void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
 |[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
 |[`insertPictureUrl(base64: String, insertLocation: String)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a picture  on the specified location. |All locations may not apply. See method details.| \
 |[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 

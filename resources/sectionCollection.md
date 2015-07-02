@@ -5,7 +5,7 @@ A collection of [Section](section.md) objects in a document
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`items`|  array |Array containing the [Section](section.md) objects in the given scope. ||
+|`items`|  Array |Array containing the [Section](section.md) objects in the given scope. ||
 
 
 ## Relationships
@@ -16,7 +16,7 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getItem(index:integer)`](#getitem)|[Section](section.md)   | Gets a [Section](section.md)  by its index in the collection. || 
+|[`getItem(index:Number)`](#getitem)|[Section](section.md)   | Gets a [Section](section.md)  by its index in the collection. || 
 
 #### Example
 ```js

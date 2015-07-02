@@ -33,7 +33,7 @@ The Worksheet resource has the following relationships defined:
 |[`delete()`](#delete)| Void  |Deletes the range  from the document | | 
 |[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
 |[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertbreak)| void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
+|[`insertBreak(breakType: String, insertLocation: String)`](#insertbreak)| Void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
 |[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
 |[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 

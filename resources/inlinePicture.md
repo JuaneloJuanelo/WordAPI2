@@ -10,7 +10,7 @@ Represents an inline picture anchored to a paragraph.
 |`altTextTitle`| String  | Returns or sets a String that contains a title for the specified inline shape. |Read/write. |
 |`height`| number  |  Returns or sets the height of an inline shape. | Read/write.|
 |`hyperlink`| String  |sets/gets the hyperlink associated with the specified inline shape.  |Read/write. |
-|`lockAspectRatio`| bool  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | Read/write.|
+|`lockAspectRatio`| Boolean  | True if the specified image retains its original proportions when you resize it. False if you can change the height and width of the shape independently of one another when you resize it. | Read/write.|
 |`width`| number  | Returns or sets the width of an inline shape.  | Read/write.|
 
 ## Methods

@@ -5,7 +5,7 @@ A collection of Paragraph objects in a selection, range, or document
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`items`|  array |Array containing the [Paragraph](paragraph.md) objects in the given scope. ||
+|`items`|  Array |Array containing the [Paragraph](paragraph.md) objects in the given scope. ||
 
 
 ## Relationships
@@ -16,7 +16,7 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getItem(index:integer)`](#getitem)|[Paragraph](paragraph.md)    | Gets a [Paragraph](paragraph.md)  by its index in the collection. || 
+|[`getItem(index:Number)`](#getitem)|[Paragraph](paragraph.md)    | Gets a [Paragraph](paragraph.md)  by its index in the collection. || 
 
 #### Example
 ```js

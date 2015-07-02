@@ -6,17 +6,17 @@ Contains font attributes (such as font name, font size and color) usally applica
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`bold`| bool  | True if the font is formatted as bold. Read/write Long.| |
+|`bold`| Boolean  | True if the font is formatted as bold. Read/write Long.| |
 |`color`| String  | Returns or sets the color for the specified font. Read/write . |  Read/write .  Like "#FF00FF" or color name |
-|`doubleStrikeThrough`| boolean  |True if the specified font is formatted as double strikethrough text.| |
+|`doubleStrikeThrough`| Booleanean  |True if the specified font is formatted as double strikethrough text.| |
 |`highlightColor`| String  | Returns or sets the highlight color for the specified font. | Read/write .  Like "#FF00FF" or color name  |
-|`italic`| bool  | True if the font or range is formatted as italic.  | Read/write |
+|`italic`| Boolean  | True if the font or range is formatted as italic.  | Read/write |
 |`name`| String  | Returns or sets the name of the specified object.  |Read/write |
 |`size`| number  | Returns or sets the font size, in points.| Read/write|
-|`strikeThrough`| bool  | True if the font is formatted as strikethrough text.|Read/write |
-|`subscript`| bool  |True if the font is formatted as subscript. | Read/write |
-|`superscript`| bool  | True if the font is formatted as superscript. | Read/write|
-|`underline`|  bool  | Returns or sets the type of underline applied to the font. |Read/write |
+|`strikeThrough`| Boolean  | True if the font is formatted as strikethrough text.|Read/write |
+|`subscript`| Boolean  |True if the font is formatted as subscript. | Read/write |
+|`superscript`| Boolean  | True if the font is formatted as superscript. | Read/write|
+|`underline`|  Boolean  | Returns or sets the type of underline applied to the font. |Read/write |
 
 
 

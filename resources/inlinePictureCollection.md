@@ -7,8 +7,8 @@ A collection of [InlinePicture](inlinePicture.md) objects.
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`items`|  array |Array containing the [InlinePicture](inlinePicture.md) objects in the given scope. ||
-|`count`|  integer |Number of [InlinePicture](inlinePicture.md) objects  in the scope |Read-Only|
+|`items`|  Array |Array containing the [InlinePicture](inlinePicture.md) objects in the given scope. ||
+|`count`|  Number |Number of [InlinePicture](inlinePicture.md) objects  in the scope |Read-Only|
 
 
 
@@ -20,7 +20,7 @@ None
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`getItem(index:integer)`](#getitem)| [InlinePicture](inlinePicture.md)   | Gets a [InlinePicture](inlinePicture.md) by its index in the collection. || 
+|[`getItem(index:Number)`](#getitem)| [InlinePicture](inlinePicture.md)   | Gets a [InlinePicture](inlinePicture.md) by its index in the collection. || 
 
 
   

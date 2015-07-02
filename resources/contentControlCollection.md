@@ -7,8 +7,8 @@ A collection of ContentControl objects. Content controls are bounded and potenti
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`items`|  array |Array containing the content controls in the given scope. ||
-|`count`|  integer |Number of content controls in the scope |Read-Only|
+|`items`|  Array |Array containing the content controls in the given scope. ||
+|`count`|  Number |Number of content controls in the scope |Read-Only|
 
 ## Relationships
 None  
@@ -21,7 +21,7 @@ None
 |[`getById()`](#clear)| [contentControl](contentControl.md) | Gets a content control by its id. | | 
 |[`getByTag(tag:String )`](#getbytag)| contentControls(contentControlCollection.md)  |Gets the content controls that have the specified tag. | | 
 |[`getByTitle(title:String)`](#getbytitle)| contentControls(contentControlCollection.md) |Gets the content controls that have the specified tag. |  | 
-|[`getItemAt(index:integer)`](#getitemat)| [contentControl](contentControl.md)   | Gets a content control by its index in the collection. || 
+|[`getItemAt(index:Number)`](#getitemat)| [contentControl](contentControl.md)   | Gets a content control by its index in the collection. || 
 
 
   
