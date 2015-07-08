@@ -17,6 +17,7 @@ Represents a single paragraph in a selection, range or document. Its a member of
 |`rightIndent`| Number |Gets or sets the right indent value (in points) for the specified paragraph.  |  Read/Write|
 |`spaceAfter`| Number |Gets or sets the spacing (in points) after the specified paragraphs. |  Read/Write|
 |`spaceBefore`| Number |Gets or sets the spacing (in points) before the specified paragraphs. |  Read/Write|
+|`text`|  String  |  Returns or sets the text of the Paragraph  | |
 
 
 ## Relationships

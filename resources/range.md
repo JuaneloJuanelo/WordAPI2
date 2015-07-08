@@ -11,7 +11,7 @@ Most of the main objects (Paragraphs, ContentControl) contain a Range.
 |`ooxml`| String |Retrieves the Office Open XML (ooxml) representation of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method.|
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the body, if any. | Returns null if no content control|
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
-|`text`| String |Retrieves the plain text of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method. |
+|`text`| String |Retrieves the plain text of the body of the range . | Read-Only. to insert text use [insertText](inserttext) method. |
 
 ## Relationships
 The Worksheet resource has the following relationships defined:
