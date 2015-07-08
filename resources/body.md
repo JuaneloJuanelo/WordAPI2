@@ -6,8 +6,6 @@
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`html`| String |Retrieves the html representation of the body of the document . |Read-Only. to insert text use [insertText](inserttext) method.|
-|`ooxml`| String |Retrieves the Office Open XML (ooxml) representation of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method.|
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the body, if any. | Returns null if no content control|
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
 |`text`| String |Retrieves the plain text of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method. [See sample](#gettext) |
