@@ -16,7 +16,7 @@ The Document object has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControlCollection](contentControlCollection.md)  |Collection of [contentControl](contentcontrol.md) objects  in the  document | Includes content controls on the headers/footer and in the body of the document.  | 
+|[`contentControls`](#contentcontrols)| [ContentControlCollection](contentControlCollection.md)  |Collection of [contentControl](contentControl.md) objects  in the  document | Includes content controls on the headers/footer and in the body of the document.  | 
 |[`sections`](#sections)| [SectionCollection](sectionCollection.md) |Collection of [section](sectionCollection.md) objects in the  document |  |       
 
 
