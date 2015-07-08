@@ -2,7 +2,7 @@
 Welcome to the new Word Javascript API! We hope you enjoy it and find it useful. Please open [issues](https://github.com/JuaneloJuanelo/WordAPI2/issues) if you find errors in the documentation or if you have suggested content or examples that we should add to this documentation. We're open to community contributions if you early adopters have found some useful information.
 
 
-## Release Notes for build 4220
+## Release Notes for build 4229.1002
 
 This is the first release of JavaScript APIs for Word and we focused on the following functional areas:
  1. **Document navigation:** You can traverse the document by accessing the [paragraphs](resources/paragraph.md) and [content control](resources/contentControl.md) collections. You can also access the user's
