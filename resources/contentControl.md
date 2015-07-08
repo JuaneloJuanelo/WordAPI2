@@ -14,6 +14,7 @@ An individual content control. Content controls are bounded and potentially labe
 |`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
 |`id`|  String |Returns a String that represents the identification for a content control. |Read-only|\
 |`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
+|`placeholderText`|  String   |Sets the placeholder text of the content control. | Dimmed text will show up when content control is empty|
 |`removeWhenEdited`|  Boolean |  Removes the content control after edited.         ||
 |`title`|  String  |  Returns or sets a String that represents the title for a content control.   | |
 |`text`|  String  |  Returns or sets the text of the Content Control  | |
