@@ -1,6 +1,7 @@
 # Word JavaScript APIs
 Welcome to the new Word Javascript API! We hope you enjoy it and find it useful. Please open [issues](https://github.com/JuaneloJuanelo/WordAPI2/issues) if you find errors in the documentation or if you have suggested content or examples that we should add to this documentation. We're open to community contributions if you early adopters have found some useful information.
 
+[Get started with build 4429.1002](#Get-started-with-build-4429.1002)
 
 ## Release Notes for build 4229.1002
 
@@ -47,8 +48,8 @@ different page layout configurations of a document. You can access sections from
 This section introduces key concepts that you need to understand to work with the Word API. 
 
 #### RequestContext()
-The Word.RequestContext method returns the client request context for working with the Word object model. All actions that target a Word document start by getting this context. The client request context serves two major roles:
-* Contains the queue of actions that will be performed on the contents of a Word document.
+All actions that target a Word document start by using the client request context returned by the Word.RequestContext method. The client request context serves two major roles:
+* Contains the queue of commands that will be performed on the contents of a Word document.
 * Provide the bridge between the Office add-in and the Word application since they run in two different processes. The JavaScript runs in the user's browser within the task pane. Word runs in a different process, and in the case of Word Online, on a remote server cluster.  
 
 Here's how you get the request context:  
@@ -57,7 +58,7 @@ Here's how you get the request context:
     var ctx = new Word.RequestContext();
 ```
 
-You can now create a queue of actions that will target the contents of a Word document.  For example, let's create a set of actions that will get the current selection and add some text to the selection. The selection will be contained in a [range](resources/range.md) object returned by document.getSelection(). We are going to add some text at
+You can now create a queue of commands that will target the contents of a Word document.  For example, let's create a set of commands that will get the current selection and add some text to the selection. The selection will be contained in a [range](resources/range.md) object returned by document.getSelection(). We are going to add some text at
 the end of the selection. We'll use the context you saw in the previous line of code.
 
 ```javascript
@@ -65,10 +66,10 @@ the end of the selection. We'll use the context you saw in the previous line of 
     range.insertText("Hello World!", Word.InsertLocation.end);
 ```
 
-At this point, no changes have occurred. You have specified a set of actions that will occur in the future. Let's expand on this by looking at the load method.
+At this point, no changes have occurred. You have specified a set of commands that will run in the future. Let's expand on this by looking at the load method.
 
 #### executeAsync()
-The Word JavaScript objects created in the add-ins are local proxy objects. Invoking methods and setting properties queues the set of commands in JavaScript, but does not submit them until executeAsync() is called. executeAsync submits the request queue to Word and returns a promise object, which can be used for chaining further actions. 
+The Word JavaScript objects created in the add-ins are local proxy objects. Invoking methods and setting properties queues the set of commands in JavaScript, but does not submit them until executeAsync() is called. executeAsync submits the request queue to Word and returns a promise object, which can be used for chaining further commands. executeAsync runs each command in the order in which they were added to the queue. A best practice is to group related commands into a single executeAsync call.
 
 ##### executeAsync() example
 This example shows how to insert text at the end of a selection. The queue is filled with two commands: getting the user's selection and inserting text at the end of the user's selection. These commands are ran when ctx.executeAsync() is called. executeAsync() returns a promise which can be used to chain it with other operations.
@@ -81,8 +82,8 @@ This example shows how to insert text at the end of a selection. The queue is fi
     var range = ctx.document.getSelection();
     range.insertText("Hello World!", Word.InsertLocation.end);
 
-    // Run the set of actions in the queue. In this case, we are inserting text
-    // at the end of range. 
+    // Run the set of commands in the queue. In this case, we are inserting text
+    // at the end of the range. 
     ctx.executeAsync()
         .then(function () {
             console.log("Done");
@@ -213,7 +214,7 @@ Let's put it all together by taking a look at a simple example that shows how yo
     // range object after executeAsync() by inserting a paragraph in to it.
     ctx.references.add(range);
 
-    // Run the set of actions in the queue. In this case, we are inserting text
+    // Run the set of commands in the queue. In this case, we are inserting text
     // at the end of range and loading font and paragraph collection properties. 
     ctx.executeAsync()
         .then(function () {
@@ -236,9 +237,12 @@ Let's put it all together by taking a look at a simple example that shows how yo
             // Queue: remove the reference to the range since we are done writing to it.
             ctx.references.remove(range);
 
-            // Run the set of actions in the queue. In this case, we are adding a page break
+            // Run the set of commands in the queue. In this case, we are adding a page break
             // and removing the reference to the range object. 
             ctx.executeAsync()
+                .then(function(){
+                    console.log("Success");
+                };
         })
         .catch(function(error){
             console.log("ERROR: " + JSON.stringify(error));
@@ -254,8 +258,8 @@ Use these steps to get you started with WordJS. Please open an issue if you enco
 3. Close all Word, Excel, PowerPoint, and Outlook sessions.
 4. Start Word.
 5. Select the *Insert* tab, and then the *My Add-ins* drop down box. Select the *Word APIs (4229-1002)* add-in. This will load the add-in.
-![Select the add-in from the Insert tab](images/insertAddIn.png)
-6. Select the target build (in red), and the target object and sample (in green). ![Select the sample to run](images/chooseSample.png)
+![Select the add-in from the Insert tab](/resources/images/insertAddIn.png)
+6. Select the target build (in red), and the target object and sample (in green). ![Select the sample to run](/resources/images/chooseSample.png)
 7. Select *Run!* to see the results of running the sample.
 
 The code for this sample is found in this [sample library](https://github.com/trmini/robmhoward.github.io/tree/Word-APIs/word/samples/4229.1002). A great feature of this sample is that you can alter and run the code from within the sample. Contributions to this sample library are encouraged. Please provide feedback on this API, the experience of using it, blocking issues, and the documentation. Your input is appreciated! 
