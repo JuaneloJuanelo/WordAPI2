@@ -1,23 +1,23 @@
 # Body 
- Represents the body of document or section. If used in a document context represents the entire document body. If used in a section context is limited to the section boundaries.
+Represents the body of a [document](document.md) or a [section](section.md).
 
 ## Properties
 
 | Property         | Type    |Description|Notes |
 |:-----------------|:--------|:----------|:-----|
-|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the body, if any. | Returns null if no content control|
+|`font`|  [Font](font.md) | Contains the text format of the body.| Use this to get and set font name, size, color, and other properties. |
+|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control that contains the body.| Returns null if there isn't a parent content control.|
 |`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
-|`text`| String |Retrieves the plain text of the body of the document . | Read-Only. to insert text use [insertText](inserttext) method. [See sample](#gettext) |
+|`text`| String |Retrieves the document body as plain text. | Read-Only.  Use the [insertText](inserttext) method to insert text. [Go to the sample](#gettext). |
 
 ## Relationships
 The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls in the body of the document.|
+|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document. | Includes content controls in the body of the document.|
 |[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |  |      
+|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |   |      
     
 
 
@@ -26,23 +26,23 @@ The Worksheet resource has the following relationships defined:
 
 | Method     | Return Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`clear()`](#clear)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertbreak)| Void | Inserts the specified [type of break](breakType.md) on the specified location. | All locations may not apply. See method details. | 
-|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document into the specified location. | This methood may get deprecated for security resons.| 
-|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`search(searchText : String, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Executes a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
+|[`clear()`](#clear)| Void | Clears the contents of the body object. | Undo operation by the user is supported. | 
+|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the body object. | IMPORTANT: we are deprecating this method in favor of the property.| 
+|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the body object. | IMPORTANT: we are deprecating this method in favor of the property. | 
+|[`insertBreak(breakType: String, insertLocation: String)`](#insertbreak)| Void | Inserts the specified [break type](breakType.md) at the specified location. | All locations may not apply. See method details. | 
+|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |  | 
+|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the a document into the specified location. | This methood may get deprecated for security resons.| 
+|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts text at the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts html at the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts ooxml at the specified location.  | All locations may not apply.See method details.| 
+|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. |All locations may not apply. See method details. | 
+|[`search(searchText : String, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Performs a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
 ### ContentControls 
 
-The colection holds all the content controls in the document.
+The collection holds all the content controls in the document.
 
 #### Syntax
 ```js
@@ -52,35 +52,36 @@ The colection holds all the content controls in the document.
 
 #### Returns
 
-[ContentControls](contentControlCollection.md) collection. See ContentControl(contentControl.md) object.
+[ContentControls](contentControlCollection.md) collection. See the [ContentControl](contentControl.md) object for more information.
 
 #### Examples
 
-```js
+```javascript
 
-// enumerates all the content controls in the document
-var ctx = new Word.RequestContext();
-var cCtrls = ctx.document.body.contentControls;
-ctx.load(cCtrls,{select:'appearance,text'});  // just need these properties!
+    // enumerates all the content controls in the document
+    var ctx = new Word.RequestContext();
+    var cCtrls = ctx.document.body.contentControls;
+    ctx.load(cCtrls,{select:'appearance,text'});  // just need these properties!
 
-ctx.executeAsync().then(
+    ctx.executeAsync().then(
     function () {
-        var results = new Array();
-     
-        for (var i = 0; i < cCtrls.items.length; i++) {
-           console.log("contentControl[" + i + "].text = " + cCtrls.items[i].text + " Appearance:" +cCtrls.items[i].appearance );
-      }
-        ctx.executeAsync().then(
-            function () {
-               console.log("Success!!");
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-);
+            var results = new Array();
+
+            for (var i = 0; i < cCtrls.items.length; i++) {
+               console.log("contentControl[" + i + "].text = " + cCtrls.items[i].text + " Appearance:" +
+                            cCtrls.items[i].appearance );
+          }
+            ctx.executeAsync().then(
+                function () {
+                   console.log("Success!!");
+                }
+            );
+        },
+        function (result) {
+            console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+            console.log(result.traceMessages);
+        }
+    );
 
 
 ```
@@ -89,50 +90,53 @@ ctx.executeAsync().then(
 
 ### Paragraphs 
 
-The colection holds all the paragraphs in the scope.
+The collection holds all the paragraphs in the scope.
 
 #### Syntax
 ```js
-  document.body.paragraphs  // returns the paragraphs on the body of the document.
-  document.sections.getItemAt(0).paragraphs  //returns the paragraphs in the first section of the document.
-  document.selection.paragraphs   //returns the paragraphs contained in the selection.
+    // returns the paragraphs in the document body.
+    document.body.paragraphs  
+    
+    //returns the paragraphs in the first section of the document.
+    document.sections.getItemAt(0).paragraphs  
+    
+    //returns the paragraphs contained in the selection.
+    document.selection.paragraphs   
 
 ```
 
 #### Returns
 
-[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragrph.md) object.
+[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragraph.md) object.
 
 #### Examples
 
 ```js
 
-// this example iterates all the paragraphs in the documents and reports back the length and text of each paragraph in the document
-var ctx = new Word.RequestContext();
-var paras = ctx.document.body.paragraphs;
-ctx.load(paras,{select:"text"});
+    // this example iterates all the paragraphs in the documents and reports back the 
+    // length and text of each paragraph in the document
+    var ctx = new Word.RequestContext();
+    var paras = ctx.document.body.paragraphs;
+    ctx.load(paras,{select:"text"});
 
-ctx.executeAsync().then(
-  function () {
-    for (var i = 0; i < paras.items.length; i++) {
-      console.log("paras[" + i + "].content  = " + paras.items[i].text);
-    }
-  },
-  function (result) {
-    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-    console.log(result.traceMessages);
-  }
-);
-
-
-
+    ctx.executeAsync().then(
+      function () {
+        for (var i = 0; i < paras.items.length; i++) {
+          console.log("paras[" + i + "].content  = " + paras.items[i].text);
+        }
+      },
+      function (result) {
+        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+        console.log(result.traceMessages);
+      }
+    );
 ```
 [Back](#relationships)
 
 
 ### InlinePictures 
 
-The colection holds all the inline pictures contained in the scope.
+The collection contains all of the inline pictures contained in the body.
 
 #### Syntax
 ```js
@@ -185,7 +189,7 @@ ctx.executeAsync().then(
 
 ### Methods 
 
-#### Examples
+
 
 ### clear
 
