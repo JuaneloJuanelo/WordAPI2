@@ -1,42 +1,40 @@
 # Body 
-Represents the body of a [document](document.md) or a [section](section.md).
+Represents the body of a document or a section.
 
 ## Properties
 
-| Property         | Type    |Description|Notes |
-|:-----------------|:--------|:----------|:-----|
-|`font`|  [Font](font.md) | Contains the text format of the body.| Use this to get and set font name, size, color, and other properties. |
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control that contains the body.| Returns null if there isn't a parent content control.|
-|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
-|`text`| String |Retrieves the document body as plain text. | Read-Only.  Use the [insertText](inserttext) method to insert text. [Go to the sample](#gettext). |
+| Property         | Type    |Description|
+|:-----------------|:--------|:----------|
+|`font`|  [Font](font.md) | Contains the text format of the body. Use this to get and set font name, size, color, and other properties. |
+|`parentContentControl`|  [ContentControl](contentControl.md) | Returns the content control that contains the body. Returns null if there isn't a parent content control.|
+|`style`| string | Name of the style been used. This is the name of an pre-installed or custom style.|
+|`text`| string | Retrieves the document body as plain text.  Use the insertText method to insert text.  Read-Only. |
 
 ## Relationships
-The Worksheet resource has the following relationships defined:
 
-| Relationship     | Type    |Description|Notes  |
-|:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document. | Includes content controls in the body of the document.|
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the body. |   |      
+| Relationship     | Type    |Description|
+|:-----------------|:--------|:----------|
+|contentControls| [contentControlCollection](contentControlCollection.md)  | Represents a collection of content control objects in the current document which includes content controls in the document body.|
+|inlinepictures| [inlinePictureCollection](inlinePictureCollection.md)  |Represents a collection of inlinePicture objects that are within the document body. The collection does not include floating images.  | 
+|paragraphs| [paragraphCollection](paragraphCollection.md)  | Represents a collection of paragraph objects that within the docuemnt body. |      
     
 
 
 ## Methods
 
-
-| Method     | Return Type    |Description|Notes  |
-|:-----------------|:--------|:----------|:------|
-|[`clear()`](#clear)| Void | Clears the contents of the body object. | Undo operation by the user is supported. | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the body object. | IMPORTANT: we are deprecating this method in favor of the property.| 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the body object. | IMPORTANT: we are deprecating this method in favor of the property. | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertbreak)| Void | Inserts the specified [break type](breakType.md) at the specified location. | All locations may not apply. See method details. | 
-|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the a document into the specified location. | This methood may get deprecated for security resons.| 
-|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts text at the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts html at the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts ooxml at the specified location.  | All locations may not apply.See method details.| 
-|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. |All locations may not apply. See method details. | 
-|[`search(searchText : String, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Performs a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
+| Method     | Return Type    |Description|
+|:-----------------|:--------|:----------|
+|[clear()](#clear)| void | Clears the contents of the body object. The user can still perform the undo operation on the cleared content. | 
+|[getHtml()](#gethtml)| string  | Gets the HTML representation  of the body object.| 
+|[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation of the body object. | 
+|[insertBreak(breakType: string, insertLocation: string)](#insertbreak)| void | Inserts a break at the specified location. See the method details as all insert locations may not apply. | 
+|[insertContentControl()](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |
+|[insertFileFromBase64(base64File:string, insertLocation:string)](#insertfile)| string |Inserts a document into the current document at the specified location.| 
+|[insertText(text: string, insertLocation: string)](#inserttext)| [Range](range.md) | Inserts text into the current document at the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts html at the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts ooxml at the specified location.  | All locations may not apply.See method details.| 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. |All locations may not apply. See method details. | 
+|[`search(searchText : string, searchOptions: searchOptions)`](#search)| [Ranges](searchResultCollection.md) |Performs a search with the specified [searchOptions](searchOptions.m) on the scope of the calling object | Search results are a ranges collection. | 
 
 
 
@@ -206,7 +204,7 @@ None
 
 #### Returns
 
-Void.
+void.
 
 
 #### Examples
@@ -328,8 +326,8 @@ var myText = document.body.insertText("Hello World!", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be inserted.
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`text`          | string | Required. Text to be inserted.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -366,8 +364,8 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | String | Required. the HTML to be inserted in the document.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`html`          | string | Required. the HTML to be inserted in the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -421,8 +419,8 @@ ctx.executeAsync().then(
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | String | Required. OOXML to be inserted.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`ooxml`          | string | Required. OOXML to be inserted.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -467,8 +465,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`paragraphText`          | String | Paragrph text. null for blank Paragraph.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -568,7 +566,7 @@ var results = ctx.document.body.search("Hello", options);  //searches for hello 
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`searchText`          | String | Required. Text to be searched.
+`searchText`          | string | Required. Text to be searched.
 `searchOptions` | [SearchOptions](searchOptions.md) | Required. Options for the search.
 
 #### Returns
@@ -626,8 +624,8 @@ TBD
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | String | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -656,8 +654,8 @@ ctx.document.body.insertBreak("page", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`breakType`          | String | Required.  [Type of break](breakType.md)
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`breakType`          | string | Required.  [Type of break](breakType.md)
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -705,7 +703,7 @@ No Parameters.
 
 #### Returns
 
-Void
+void
 
 
 #### Examples
