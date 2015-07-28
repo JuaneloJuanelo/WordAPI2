@@ -25,10 +25,10 @@ Represents the body of a document or a section.
 | Method     | Return Type    |Description|
 |:-----------------|:--------|:----------|
 |[clear()](#clear)| void | Clears the contents of the body object. The user can still perform the undo operation on the cleared content. | 
-|[getHtml()](#getHtml)| string  | Gets the HTML representation  of the body object.| 
-|[getOoxml()](#getOoxml)| string  | Gets the Office Open XML (OOXML) representation of the body object. | 
+|[getHtml()](#gethtml)| string  | Gets the HTML representation  of the body object.| 
+|[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation of the body object. | 
 |[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[insertContentControl()](#insertContentControl)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |
+|[insertContentControl()](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |
 |[insertFileFromBase64(base64File: string, insertLocation: string)](#insertfilefrombase64base64file-string-insertlocation-string)| string |Inserts a document into the current document at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
 |[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the document body at the specified location. The insertLocation value can be 'Start' or 'End'. | 
 |[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Range', 'Start' or 'End'. | 
@@ -366,8 +366,8 @@ None
 
 ```
 [Back](#methods)
-
-### search(searchText : string, searchOptions: searchOptions)
+    
+### search(searchText: string, searchOptions: searchOptions)
 
 Performs a search with the specified searchOptions on the scope of the body object.
 
