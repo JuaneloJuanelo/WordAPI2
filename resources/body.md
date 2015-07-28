@@ -5,10 +5,10 @@ Represents the body of a document or a section.
 
 | Property         | Type    |Description|
 |:-----------------|:--------|:----------|
-|`font`|  [Font](font.md) | Contains the text format of the body. Use this to get and set font name, size, color, and other properties. |
-|`parentContentControl`|  [ContentControl](contentControl.md) | Returns the content control that contains the body. Returns null if there isn't a parent content control.|
-|`style`| string | Name of the style been used. This is the name of an pre-installed or custom style.|
-|`text`| string | Retrieves the document body as plain text.  Use the insertText method to insert text.  Read-Only. |
+|font|  [Font](font.md) | Contains the text format of the body. Use this to get and set font name, size, color, and other properties. |
+|parentContentControl|  [ContentControl](contentControl.md) | Returns the content control that contains the body. Returns null if there isn't a parent content control.|
+|style| string | Name of the style been used. This is the name of an pre-installed or custom style.|
+|text| string | Retrieves the document body as plain text.  Use the insertText method to insert text.  Read-Only. |
 
 ## Relationships
 
@@ -27,14 +27,14 @@ Represents the body of a document or a section.
 |[clear()](#clear)| void | Clears the contents of the body object. The user can still perform the undo operation on the cleared content. | 
 |[getHtml()](#getHtml)| string  | Gets the HTML representation  of the body object.| 
 |[getOoxml()](#getOoxml)| string  | Gets the Office Open XML (OOXML) representation of the body object. | 
-|[insertBreak(breakType: string, insertLocation: string)](#insertBreakbreakType-string-insertLocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
 |[insertContentControl()](#insertContentControl)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |
-|[insertFileFromBase64(base64File: string, insertLocation: string)](#insertFileFromBase64base64File-string-insertLocation-string)| string |Inserts a document into the current document at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
-|[insertText(text: string, insertLocation: string)](#insertTexttext-string-insertLocation-string)| [Range](range.md) | Inserts text into the document body at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[insertHtml(html: string, insertLocation: string)](#insertHtmlhtml-string-insertLocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Range', 'Start' or 'End'. | 
-|[insertOoxml(ooxml: string, insertLocation: string)](#insertOoxmlooxml-string-insertLocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Range', 'Start' or 'End'. | 
-|[insertParagraph(paragraphText: string, insertLocation: string)](#insertParagraphparagraphText-string-insertLocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[search(searchText : string, searchOptions: searchOptions)](#searchsearchText-string-searchOptions-searchOptions)| [Ranges](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a ranges collection. | 
+|[insertFileFromBase64(base64File: string, insertLocation: string)](#insertfilefrombase64base64file-string-insertlocation-string)| string |Inserts a document into the current document at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
+|[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the document body at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Range', 'Start' or 'End'. | 
+|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Range', 'Start' or 'End'. | 
+|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [Ranges](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a ranges collection. | 
 |[select()](#select)| void |Selects the body. This causes Word to scroll to the selection.  | 
 
 ## API Specification
@@ -163,6 +163,8 @@ None
     var myOOXML  = document.body.getOoxml();
 ```
 [Back](#methods)
+
+
 
 ### insertText(text: string, insertLocation: string)
 
@@ -445,6 +447,8 @@ Parameter      | Type   | Description|
 
 
 [Back](#methods)
+
+
 
 ### insertBreak(breakType: string, insertLocation: string)
 
