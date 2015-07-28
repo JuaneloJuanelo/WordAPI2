@@ -1,60 +1,59 @@
 # ContentControl
 
-An individual content control. Content controls are bounded and potentially labeled regions in a document that serve as containers for specific types of content. Individual content controls may contain contents such as dates, lists, or paragraphs of formatted text. On this release, only rich text content controls are supported. The ContentControl object is a member of the ContentControls collection.
+Represents a content control. Content controls are bounded and potentially labeled regions in a document that serve as containers for specific types of content. Individual content controls may contain contents such as dates, lists, or paragraphs of formatted text. Currently, only rich text content controls are supported. 
 
 
 ## Properties
 
-| Property         | Type    |Description|Notes |
-|:-----------------|:--------|:----------|:-----|
-|`appearance`|  String |Returns or sets the appearance of the content control. |RW. Can be 'boundingBox', 'tags' or 'hidden' |
-|`cannotDelete`|  Boolean |Returns or sets a Boolean that represents whether the user can delete a content control from the active document |RW. |
-|`cannotEdit`|  Boolean | Returns or sets a Boolean that represents whether the user can edit the contents of a content control. |RW. |
-|`color`|  Number |   Returns or sets the color of the content control.        | Color is set in "#FFFFFF" format or color name|
-|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`id`|  String |Returns a String that represents the identification for a content control. |Read-only|\
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
-|`placeholderText`|  String   |Sets the placeholder text of the content control. | Dimmed text will show up when content control is empty|
-|`removeWhenEdited`|  Boolean |  Removes the content control after edited.         ||
-|`title`|  String  |  Returns or sets a String that represents the title for a content control.   | |
-|`text`|  String  |  Returns or sets the text of the Content Control  | |
-|`type`|  String  | Returns or sets  the type for a content control.          |Only rich text content controls are supported|\
-|`style`| String |Name of the style been used. | This is the name of an pre-installed or custom style.|
-|`tag`| String |Returns or sets a String that represents a value to identify a content control. | RW and might be duplicated|
+| Property         | Type    |Description|
+|:-----------------|:--------|:----------|
+|appearance|  string |Gets or sets the appearance of the content control. The value can be 'boundingBox', 'tags' or 'hidden'. |
+|cannotDelete|  bool |Gets or sets a value that indicates whether the user can delete a content control from the active document.|
+|cannotEdit|  bool | Gets or sets a value that indicates whether the user can edit the contents of a content control.|
+|color|  string |   Gets or sets the color of the content control. Color is set in "#FFFFFF" format or by using the color name.|
+|font|  [Font](font.md) | Gets the text format of the content control. Use this to get and set font name, size, color, and other properties. |
+|id|  string |Gets a string that represents the content control identifier. |
+|parentContentControl|  [ContentControl](contentControl.md)   |Gets the content control that contains the content control. Returns null if there isn't a parent content control.|
+|placeholderText|  string   | Gets or sets the placeholder text of the content control. Dimmed text will be displayed when the  content control is empty.|
+|removeWhenEdited|  bool | Gets or sets a value that indicates whether the content control is removed after it is edited.|
+|title|  string  |  Gets or sets the title for a content control.   | 
+|text|  string  |  Gets or sets the text of the content control. |
+|type|  string  | Gets or sets the content control type. Only rich text content controls are supported|
+|style| string |Gets or sets the style used for the content control. This is the name of the pre-installed or custom style.|
+|tag| string |Gets or sets a value to identify a content control. |
 
 
 
 ## Relationships
-The Content Control resource has the following relationships defined:
 
-| Relationship     | Type    |Description|Notes  |
-|:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](contentControl.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
-|[`paragraphs`](#paragraphs)| [Paragraphs](paragraphCollection.md) collection |Collection of [paragraph](paragraph.md) objects within the content control. |  |      
+| Relationship     | Type    |Description|
+|:-----------------|:--------|:----------|
+|contentControls | [contentControlCollection](contentControlCollection.md)  | Gets the collection of content control objects in the current content control. | 
+|inlinePictures | [inlinePictureCollection](inlinePictureCollection.md)  | Gets the collection of inlinePicture objects in the current content control. The collection does not include floating images.  | 
+|paragraphs| [paragraphCollection](paragraphCollection.md)  | Get the collection of paragraph objects in the content control. |      
 
        
 
 ## Methods
 
 
-| Method     | Return Type    |Description|Notes  |
-|:-----------------|:--------|:----------|:------|
-|[`clear()`](#clear)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
-|[`delete(keepContent:Boolean )`](#deleteelement)| Void  |Deletes the content control and its content from the document, users may keep the content if send true as parameter. | | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
-|[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document into the specified location. | | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)|Void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
-|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureBase64(url: String, insertLocation: String)`](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
-|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`select(paragraphText: String, insertLocation: String)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+| Method     | Return Type    |Description|
+|:-----------------|:--------|:----------|
+|[clear()](#clear)| void | Clears the contents of the content control. The user can perform the undo operation on the cleared content. |
+|[delete(keepContent: bool)](#deletekeepcontent-bool)| void  | Deletes the content control and its content from the document. If keepContent is set to true, the content is not deleted. | 
+|[getHtml()](#gethtml)| string  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
+|[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
+|[insertContentControl()](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
+|[insertFile(fileLocation:string, insertLocation:string)](#insertfile)| string |Inserts the complete specified document into the specified location. | | 
+|[insertBreak(breakType: string, insertLocation: string)](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
+|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[insertPictureBase64(url: string, insertLocation: string)](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
+|[insertText(text: string, insertLocation: string)](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[insertHtml(html: string, insertLocation: string)](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[select(paragraphText: string, insertLocation: string)](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
   
-
+## API Specification
 
 ### ContentControls 
 
@@ -165,7 +164,7 @@ None
 
 #### Returns
 
-Void.
+void.
 
 
 #### Examples
@@ -250,8 +249,8 @@ var myText = document.body.insertText("Hello World!", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be inserted.
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`text`          | string | Required. Text to be inserted.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -289,8 +288,8 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | String | Required. the HTML to be inserted in the document.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`html`          | string | Required. the HTML to be inserted in the document.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -328,8 +327,8 @@ range.insertOoxml(ooxmlText, Word.InsertLocation.end);
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | String | Required. OOXML to be inserted.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`ooxml`          | string | Required. OOXML to be inserted.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -373,8 +372,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`paragraphText`          | String | Paragrph text. null for blank Paragraph.
-`insertLocation`          | String | Either "Start" "End"  the body of the document
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.
+`insertLocation`          | string | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -473,7 +472,7 @@ var searchResults = document.body.search("Sales Report");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be searched.
+`text`          | string | Required. Text to be searched.
 
 #### Returns
 
@@ -528,8 +527,8 @@ TBD
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | String | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
@@ -557,8 +556,8 @@ ctx.document.body.insertBreak("page", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`breakType`          | String | Required.  [Type of break](breakType.md)
-`insertLocation`          | String | Either "Start" "End"  the body of the document.
+`breakType`          | string | Required.  [Type of break](breakType.md)
+`insertLocation`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns

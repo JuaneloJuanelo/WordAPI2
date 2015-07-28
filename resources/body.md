@@ -5,18 +5,18 @@ Represents the body of a document or a section.
 
 | Property         | Type    |Description|
 |:-----------------|:--------|:----------|
-|font|  [Font](font.md) | Contains the text format of the body. Use this to get and set font name, size, color, and other properties. |
-|parentContentControl|  [ContentControl](contentControl.md) | Returns the content control that contains the body. Returns null if there isn't a parent content control.|
-|style| string | Name of the style been used. This is the name of an pre-installed or custom style.|
-|text| string | Retrieves the document body as plain text.  Use the insertText method to insert text.  Read-Only. |
+|font|  [Font](font.md) | Gets the text format of the body. Use this to get and set font name, size, color, and other properties. |
+|parentContentControl|  [ContentControl](contentControl.md) | Gets the content control that contains the body. Returns null if there isn't a parent content control.|
+|style| string | Gets or sets the style used for the content control. This is the name of the pre-installed or custom style. |
+|text| string | Gets the text of the content control.  Use the insertText method to insert text.  Read-Only. |
 
 ## Relationships
 
 | Relationship     | Type    |Description|
 |:-----------------|:--------|:----------|
-|contentControls| [contentControlCollection](contentControlCollection.md)  | Represents a collection of content control objects in the current document which includes content controls in the document body.|
-|inlinepictures| [inlinePictureCollection](inlinePictureCollection.md)  |Represents a collection of inlinePicture objects that are within the document body. The collection does not include floating images.  | 
-|paragraphs| [paragraphCollection](paragraphCollection.md)  | Represents a collection of paragraph objects that within the docuemnt body. |      
+|contentControls| [contentControlCollection](contentControlCollection.md)  | Gets the collection of content control objects that are in the current document body.|
+|inlinepictures| [inlinePictureCollection](inlinePictureCollection.md)  |Gets the collection of inlinePicture objects that are in the document body. The collection does not include floating images.  | 
+|paragraphs| [paragraphCollection](paragraphCollection.md)  | Gets the collection of paragraph objects that are in the docuemnt body. |      
     
 
 
