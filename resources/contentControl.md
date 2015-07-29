@@ -44,26 +44,25 @@ Represents a content control. Content controls are bounded and potentially label
 |[getHtml()](#gethtml)| string  | Gets the HTML representation  of the content control object. | 
 |[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation  of the content control object. | 
 |[insertFileFromBase64(base64File: string, insertLocation: string)](#insertfilefrombase64base64file-string-insertlocation-string)| string |Inserts a document into the current content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
-|[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Before', 'After', 'Start' or 'End'. | 
+|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Before', 'After', 'Start' or 'End'. | 
 |[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML into the content control at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[load(param: object)](#loadparam-object)|void|Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.|
-
 |[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the content control object. The search results are a collection of range objects. | 
 |[select()](#select)| void |Selects the content control. This causes Word to scroll to the selection.  | 
   
 ## API Specification
 
 
-### clear
+### clear()
 
 Clears the content of the calling object.
 
 #### Syntax
 ```js
-ctx.document.body.clearContent();
+    contentControl.clear();
 
 ```
 #### Parameters
@@ -72,38 +71,31 @@ None
 
 #### Returns
 
-void.
+void
 
-
-#### Examples
-
-```js
-
-//Clear content of the body of the document...
-
-var ctx = new Word.RequestContext();
-
-ctx.document.body.clear();
-ctx.executeAsync().then(
-   function () {
-     console.log("Success!!");
-   },
-   function (result) {
-     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-     console.log(result.traceMessages);
-   }
-);
-```
 [Back](#methods)
 
 
-### getHtml()
-
-Gets the HTML representation  of the calling object.
+### delete(keepContent: bool)
+Deletes the content control and its content from the document. If keepContent is set to true, the content is not deleted.
 
 #### Syntax
 ```js
-var myTHTML  = document.body.Html();
+    contentControl.Delete(keepContent: bool);
+```
+
+#### Parameters
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|keepContent|bool|Inidcates whether the content should be deleted with the content control. If keepContent is set to true, the content is not deleted. |
+
+### getHtml()
+
+If keepContent is set to true, the content is not deleted.
+
+#### Syntax
+```js
+    contentControl.getHtml();
 ```
 #### Parameters
 
@@ -114,20 +106,15 @@ None
 [Range](range.md).
 
 
-#### Examples
-
-```js
-var myHTML  = document.body.getHtml();
-```
 [Back](#methods)
 
 ### getOoxml
 
-Gets the Office Open XML (OOXML) representation  of the calling object.
+Gets the Office Open XML (OOXML) representation  of the content control object. | 
 
 #### Syntax
 ```js
-var myOOXML  = document.body.getOoxml();
+    contentControl.getOoxml();
 ```
 #### Parameters
 
@@ -137,151 +124,88 @@ None
 
 [Range](range.md).
 
-
-#### Examples
-
-```js
-var myOOXML  = document.body.getOoxml();
-```
 [Back](#methods)
 
-### insertText()
+### insertText(text: string, insertLocation: string)
 
-Inserts the specified text on the specified location.
+Inserts text into the content control at the specified location.
 
 #### Syntax
 ```js
-var myText = document.body.insertText("Hello World!", "End");
+    contentControl.insertText(text, insertLocation);
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be inserted.
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
+`text`          | string | Required. The text to be inserted in to the content control.
+`insertLocation`          | string | The value can be 'Replace', 'Start' or 'End'. 
 
 #### Returns
 
 [Range](range.md).
 
-
-#### Examples
-
-```js
-
-//inserts some text at the end of the document.
-var ctx = new Word.RequestContext();
-ctx.document.body.insertText("new text", "end");
-ctx.executeAsync().then(
-    function () {
-    console.log("Success!!");    
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-);
-```
 [Back](#methods)
 
-### insertHtml()
+### insertHtml(html: string, insertLocation: string)
 
-Inserts the specified HTML on the specified location.
+Inserts HTML into the content control at the specified location.
 
 #### Syntax
 ```js
-var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
+    contentControl.insertHtml(html, insertLocation);
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | string | Required. the HTML to be inserted in the document.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`html`          | string | Required. The HTML to be inserted in to the content control.
+`insertLocation`          | string | The value can be 'Replace', 'Start' or 'End'. 
 
 #### Returns
 
-[Range](range.md) .
+[Range](range.md)
 
 
-#### Examples
 
-```js
-//inserts some html at the end of the doc :) 
-var ctx = new Word.RequestContext();
-ctx.document.body.insertHtml("<b>This is some bold text</b>", "End");
-ctx.executeAsync().then(
-    function () {
-    console.log("Success!!");    
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-);
-```
 [Back](#methods)
 
-### insertOoxml()
+### insertOoxml(ooxml: string, insertLocation: string)
 
-Inserts the specified OOXML on the specified location.
+Inserts OOXML into the content control at the specified location. 
 
 #### Syntax
 ```js
-range.insertOoxml(ooxmlText, Word.InsertLocation.end);
-
+    contentControl.insertOoxml(ooxml, insertLocation);
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | string | Required. OOXML to be inserted.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`ooxml`          | string | Required. The OOXML to be inserted in to the content control. |
+`insertLocation`          | string | The value can be 'Replace', 'Start' or 'End'. |
  
 #### Returns
 
-[Range](range.md) collection.
+[Range](range.md)
 
 
-#### Examples
-
-```js
-// this code inserts some formatted text into the document!
-var ctx = new Word.RequestContext();
-var range = ctx.document.getSelection();
-
-var ooxmlText =
-  "<w:p xmlns:w='http://schemas.microsoft.com/office/word/2003/wordml'><w:r><w:rPr><w:b/><w:b-cs/><w:color w:val='FF0000'/><w:sz w:val='28'/><w:sz-cs w:val='28'/></w:rPr><w:t>Hello world (this should be bold, red, size 14).</w:t></w:r></w:p>";
-
-range.insertOoxml(ooxmlText, Word.InsertLocation.end);
-
-ctx.executeAsync().then(
-   function () {
-     console.log("Success");
-   },
-   function (result) {
-     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-     console.log(result.traceMessages);
-   }
-);
-
-  ```
 [Back](#methods)
 
-### insertParagraph()
+### insertParagraph(paragraphText: string, insertLocation: string)
 
-Inserts a paragraph on the specified location.
+Inserts a paragraph at the specified location. The insertLocation value can be 'Before', 'After', 'Start' or 'End'. 
 
 #### Syntax
 ```js
-var ccs = document.insertParagraph("Some initial text", "Start");
+    contentControl.insertParagraph(paragraphText, insertLocation);
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`paragraphText`          | string | Paragrph text. null for blank Paragraph.
-`insertLocation`          | string | Either "Start" "End"  the body of the document
+`paragraphText`          | string | Paragrph text. null for blank Paragraph.|
+`insertLocation`          | string | The value can be 'Before', 'After', 'Start' or 'End'. |
 
 
 #### Returns
@@ -289,210 +213,94 @@ Parameter      | Type   | Description
 [Paragraph](Paragraph.md).
 
 
-#### Examples
-
-```js
-//Inserting paragraphs at the end of the document.
-
-var ctx = new Word.RequestContext();
-
-var myPar = ctx.document.body.insertParagraph("Bibliography","end");
-myPar.style = "Heading 1";
-
-var myPar2 = ctx.document.body.insertParagraph("this is my first book","end");
-myPar2.style = "Normal"
-
-
-
-ctx.executeAsync().then(
-     function () {
-         console.log("Success!!");
-     },
-     function (result) {
-         console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        // console.log(result.traceMessages);
-     }
-);
-```
 [Back](#methods)
 
-### insertContentControl()
+### insertFileFromBase64(base64File: string, insertLocation: string)
 
-Wraps the calling object with a Rich Text content control.
+Inserts a document into the current content control at the specified location.
 
 #### Syntax
 ```js
-var ccs = document.body.insertContentControl();
-```
-#### Parameters
-
-None
-
-#### Returns
-
-[ContentControl](contentControl.md).
-
-
-#### Examples
-
-```js
-//Insert a Content Control (on user's selection)  and changing the properties by using the selection
-
-var ctx = new Word.RequestContext();
-var range = ctx.document.getSelection();
-
-var myContentControl = range.insertContentControl();
-myContentControl.tag = "Customer-Address";
-myContentControl.title = "Enter Customer Address Here:";
-myContentControl.style = "Heading 1";
-myContentControl.insertText("One Microsoft Way,Redmond,WA,98052",'replace');
-myContentControl.cannotEdit = true;
-myContentControl.appearance = "tags";
-
-
-
-ctx.load(myContentControl);
-
-ctx.executeAsync().then(
-   function () {
-     console.log("Content control Id: " + myContentControl.id);
-   },
-   function (result) {
-     console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-     console.log(result.traceMessages);
-   }
-);
-
-
-
-```
-[Back](#methods)
-
-### search
-
-Executes a search on the scope of the calling object.
-
-#### Syntax
-```js
-var searchResults = document.body.search("Sales Report");
+    contentControl.insertFileFromBase64(base64File, insertLocation)
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | string | Required. Text to be searched.
+`base64File`          | string | Required. Base64 encoded contents of the file to be inserted. 
+`insertLocation`          | string | The value can be 'Replace', 'Start' or 'End'. |
+
 
 #### Returns
 
-[Ranges](searchResultCollection.md) collection.
+[Range](range.md)
 
 
-#### Examples
-
-```js
-///Search example! 
-
-var ctx = new Word.RequestContext();
-var options = Word.SearchOptions.newObject(ctx);
-
-options.matchCase = false
-
-var results = ctx.document.body.search("Video", options);
-ctx.load(results, {select:"text, font/color", expand:"font"});
-ctx.references.add(results);
-
-ctx.executeAsync().then(
-  function () {
-    console.log("Found count: " + results.items.length + " " + results.items[0].font.color );
-    for (var i = 0; i < results.items.length; i++) {
-      results.items[i].font.color = "#FF0000"    // Change color to Red
-      results.items[i].font.highlightColor = "#FFFF00";
-      results.items[i].font.bold = true;
-      if (i == 3)
-        results.items[i].select();
-    }
-    ctx.references.remove(results);
-    ctx.executeAsync().then(
-      function () {
-        console.log("Deleted");
-      }
-    );
-  }
-);
-```
 [Back](#methods)
 
+### insertBreak(breakType: string, insertLocation: string)
 
-### insertFile()
-
-Inserts the specified file on the specified location.
+Inserts a break at the specified location.
 
 #### Syntax
 ```js
-TBD
+    contentControl.insertBreak(breakType, insertLocation);
 ```
 #### Parameters
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
+`breakType`    | string | Required.  [Type of break](breakType.md)
+`insertLocation` | string | The value can be 'Before', 'After', 'Start' or 'End'. |
 
 
 #### Returns
 
 [Range](range.md) collection.
 
-
-#### Examples
-
-```js
-TBD
-
-```
 [Back](#methods)
 
-### insertBreak()
 
-Inserts the specified [type of break](breakType.md) on the specified location.
+### load(param: object)
+
+Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.
 
 #### Syntax
 ```js
-ctx.document.body.insertBreak("page", "End");
+    contentControl.load(param);
 ```
 #### Parameters
 
-Parameter      | Type   | Description
--------------- | ------ | ------------
-`breakType`          | string | Required.  [Type of break](breakType.md)
-`insertLocation`          | string | Either "Start" "End"  the body of the document.
-
+| Parameter      | Type   | Description
+|  ------------- | ------ | ------------
+|`param`         | object | A string, a string with comma separated value, an array of strings, or an object that specifies which properties to load.  |
 
 #### Returns
 
-[Range](range.md) collection.
+void
 
-
-#### Examples
-
-```js
-//inserts a page break and then adds a paragraph!
-
-var ctx = new Word.RequestContext();
-
-ctx.document.body.insertBreak("page", "End");
-ctx.document.body.insertParagraph("Hello after break!","End");
-
-ctx.executeAsync().then(
-  function () {
-    console.log("Success");
-  },
-  function (result) {
-    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-    console.log(result.traceMessages);
-  }
-);
-
-
-```
 [Back](#methods)
+
+### search(searchText : string, searchOptions: searchOptions)
+
+Performs a search with the specified search options on the scope of the content control object.
+
+#### Syntax
+```js
+    contentControl.search(text, searchOptions);
+```
+#### Parameters
+
+| Parameter      | Type   | Description
+|  ------------- | ------ | ------------
+|`text`          | string | Required. Text to be searched. |
+|`searchOptions` | string |  |
+
+#### Returns
+
+[searchResultCollection](searchResultCollection.md) that contains range objects.
+
+
+[Back](#methods)
+
+
