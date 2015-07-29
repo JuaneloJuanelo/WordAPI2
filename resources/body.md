@@ -24,17 +24,21 @@ Represents the body of a document or a section.
 
 | Method     | Return Type    |Description|
 |:-----------------|:--------|:----------|
-|[clear()](#clear)| void | Clears the contents of the body object. The user can still perform the undo operation on the cleared content. | 
+|[clear()](#clear)| void | Clears the contents of the body object. The user can perform the undo operation on the cleared content. | 
 |[getHtml()](#gethtml)| string  | Gets the HTML representation  of the body object.| 
 |[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation of the body object. | 
 |[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
 |[insertContentControl()](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the body object with a Rich Text content control. |
 |[insertFileFromBase64(base64File: string, insertLocation: string)](#insertfilefrombase64base64file-string-insertlocation-string)| string |Inserts a document into the current document at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
-|[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the document body at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Range', 'Start' or 'End'. | 
-|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Range', 'Start' or 'End'. | 
+|[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the document body at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
+|[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
+|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [Ranges](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a ranges collection. | 
+
+|[load(param: object)](#loadparam-object)|void|Fills the body proxy object created in the JavaScript layer with property and object values specified in the parameter.|
+
+
+|[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a collection of range objects. | 
 |[select()](#select)| void |Selects the body. This causes Word to scroll to the selection.  | 
 
 ## API Specification
@@ -366,7 +370,25 @@ None
 
 ```
 [Back](#methods)
-    
+
+### load(param: object)
+Fills the proxy object created in the JavaScript layer with the property and object values specified in the parameter.
+
+#### Syntax
+```js
+    document.body.load(param);
+```
+
+#### Parameters
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|param|object|Optional. Accepts parameter and relationship names as delimited string or an array. Or, provide [loadOption](loadoption.md) object.|
+
+#### Returns
+void
+
+[Back](#methods)
+
 ### search(searchText: string, searchOptions: searchOptions)
 
 Performs a search with the specified searchOptions on the scope of the body object.

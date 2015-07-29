@@ -41,113 +41,21 @@ Represents a content control. Content controls are bounded and potentially label
 |:-----------------|:--------|:----------|
 |[clear()](#clear)| void | Clears the contents of the content control. The user can perform the undo operation on the cleared content. |
 |[delete(keepContent: bool)](#deletekeepcontent-bool)| void  | Deletes the content control and its content from the document. If keepContent is set to true, the content is not deleted. | 
-|[getHtml()](#gethtml)| string  | Gets the HTML representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property| 
-|[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation  of the calling object. | IMPORTANT: we are deprecating this method in favor of the property | 
-|[insertContentControl()](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[insertFile(fileLocation:string, insertLocation:string)](#insertfile)| string |Inserts the complete specified document into the specified location. | | 
-|[insertBreak(breakType: string, insertLocation: string)](#insertBreak)|void  | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
-|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[insertPictureBase64(url: string, insertLocation: string)](#insertPictureBase64)| [Paragraph](paragraph.md)  |Inserts a picture on the specified location. |All locations may not apply. See method details. | 
-|[insertText(text: string, insertLocation: string)](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[insertHtml(html: string, insertLocation: string)](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[select(paragraphText: string, insertLocation: string)](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|[getHtml()](#gethtml)| string  | Gets the HTML representation  of the content control object. | 
+|[getOoxml()](#getooxml)| string  | Gets the Office Open XML (OOXML) representation  of the content control object. | 
+|[insertFileFromBase64(base64File: string, insertLocation: string)](#insertfilefrombase64base64file-string-insertlocation-string)| string |Inserts a document into the current content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'.| 
+|[insertBreak(breakType: string, insertLocation: string)](#insertbreakbreaktype-string-insertlocation-string)| void | Inserts a break at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
+|[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
+|[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
+|[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML into the content control at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
+|[load(param: object)](#loadparam-object)|void|Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.|
+
+|[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the content control object. The search results are a collection of range objects. | 
+|[select()](#select)| void |Selects the content control. This causes Word to scroll to the selection.  | 
   
 ## API Specification
 
-### ContentControls 
-
-The colection holds all the content controls in the document.
-
-#### Syntax
-```js
-  document.contentControls
-
-```
-
-#### Returns
-
-[ContentControls](contentControlCollection.md) collection. See ContentControl(contentControl.md) object.
-
-#### Examples
-
-```js
-// enumerates all the content controls in the document
-var ctx = new Word.RequestContext();
-var cCtrls = ctx.document.body.contentControls;
-ctx.load(cCtrls,{select:'appearance,text'});  // just need these properties!
-
-ctx.executeAsync().then(
-    function () {
-        var results = new Array();
-     
-        for (var i = 0; i < cCtrls.items.length; i++) {
-           console.log("contentControl[" + i + "].text = " + cCtrls.items[i].text + " Appearance:" +cCtrls.items[i].appearance );
-      }
-        ctx.executeAsync().then(
-            function () {
-               console.log("Success!!");
-            }
-        );
-    },
-    function (result) {
-        console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-        console.log(result.traceMessages);
-    }
-);
-
-
-```
-[Back](#relationships)
-
-
-### Paragraphs 
-
-The colection holds all the paragraphs in the scope.
-
-#### Syntax
-```js
-  document.body.paragraphs  // returns the paragraphs on the body of the document.
-  document.sections.getItemAt(0).paragraphs  //returns the paragraphs in the first section of the document.
-  document.selection.paragraphs   //returns the paragraphs contained in the selection.
-
-```
-
-#### Returns
-
-[Paragraphs](paragraphCollection.md) collection. See [Paragraph](paragrph.md) object.
-
-#### Examples
-
-```js
-
-// this example iterates all the paragraphs in the documents and reports back the text of each paragraph in the document
-var ctx = new Word.RequestContext();
-var paras = ctx.document.body.paragraphs;
-ctx.load(paras,{select:"text"});
-
-ctx.executeAsync().then(
-  function () {
-    for (var i = 0; i < paras.items.length; i++) {
-      console.log("paras[" + i + "].content  = " + paras.items[i].text);
-    }
-  },
-  function (result) {
-    console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-    console.log(result.traceMessages);
-  }
-);
-
-
-
-```
-[Back](#relationships)
-
-
-
-### Methods 
-
-#### Examples
 
 ### clear
 
