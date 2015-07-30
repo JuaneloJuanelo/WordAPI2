@@ -97,7 +97,7 @@ None
 
 ```js
     // grabs the first paragraph in the document and inserts an image at the end of it, then sets a
-    // few props, then wraps it inside a content control to finally adjust a few properties of the content control.
+    // few properties, then wraps it inside a content control.
     var ctx = new Word.RequestContext();
     var paras = ctx.document.body.paragraphs;
     ctx.load(paras);
@@ -129,7 +129,7 @@ None
 [Back](#methods)
 
 ### load(param: option)
-Fills the body proxy object created in the JavaScript layer with the property and object values specified in the parameter.
+Fills the inlinePicture proxy object created in the JavaScript layer with the property and object values specified in the parameter.
 
 #### Syntax
 ```js

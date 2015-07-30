@@ -1,4 +1,4 @@
-# InlinePicturesCollection
+# InlinePictureCollection
 
 Contains a collection of [InlinePicture](inlinePicture.md) objects. 
 
@@ -27,11 +27,13 @@ Gets an inline picture object by its index in the collection.
 
 #### Syntax
 ```js
-    inlinePicture.getBase64ImageSrc();
+    inlinePictureCollection.getItem(index);
 ```
 #### Parameters
 
-None
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|index|number|  A number that identifies the index location of an inline picture object.  |
 
 #### Returns
 
