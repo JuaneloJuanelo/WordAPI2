@@ -34,7 +34,7 @@ Represents the body of a document or a section.
 |[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
-|[load(param: object)](#loadparam-object)|void|Fills the body proxy object created in the JavaScript layer with property and object values specified in the parameter.|
+|[load(param: option)](#loadparam-option)|void|Fills the body proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 |[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a collection of range objects. | 
 |[select()](#select)| void |Selects the body. This causes Word to scroll to the selection.  | 
 
@@ -368,7 +368,7 @@ None
 ```
 [Back](#methods)
 
-### load(param: object)
+### load(param: option)
 Fills the body proxy object created in the JavaScript layer with the property and object values specified in the parameter.
 
 #### Syntax

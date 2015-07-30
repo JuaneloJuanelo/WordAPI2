@@ -49,7 +49,7 @@ Represents a content control. Content controls are bounded and potentially label
 |[insertText(text: string, insertLocation: string)](#inserttexttext-string-insertlocation-string)| [Range](range.md) | Inserts text into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertHtml(html: string, insertLocation: string)](#inserthtmlhtml-string-insertlocation-string)| [Range](range.md)  |Inserts HTML into the content control at the specified location. The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML into the content control at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
-|[load(param: object)](#loadparam-object)|void|Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.|
+|[load(param: option)](#loadparam-option)|void|Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 |[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the content control object. The search results are a collection of range objects. | 
 |[select()](#select)| void |Selects the content control. This causes Word to scroll to the selection.  | 
   
@@ -261,7 +261,7 @@ Parameter      | Type   | Description
 [Back](#methods)
 
 
-### load(param: object)
+### load(param: option)
 
 Fills the content control proxy object created in the JavaScript layer with property and object values specified in the parameter.
 

@@ -22,11 +22,11 @@ Represents a font.
 
 | Method     | Return Type    |Description|
 |:-----------------|:--------|:----------|
-|[load(param: object)](#loadparam-object)|void|Fills the font proxy object created in the JavaScript layer with property and object values specified in the parameter.|
+|[load(param: option)](#loadparam-option)|void|Fills the font proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 
 ## API Specification
 
-### load(param: object)
+### load(param: option)
 
 Fills the font proxy object created in the JavaScript layer with the property and object values specified in the parameter.
 
