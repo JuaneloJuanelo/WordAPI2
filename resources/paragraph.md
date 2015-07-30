@@ -1,32 +1,31 @@
 # Paragraph
-Represents a single paragraph in a selection, range or document. Its a member of the paragraphs collection. The paragraphs collection includes all the paragrpahs ina selection range or document. The Paragraph object is a member of the Paragraphs collection.
+Represents a single paragraph in a selection, range, document, or document body.
 
 ## Properties
 
-| Property         | Type    |Description|Notes |
-|:-----------------|:--------|:----------|:-----|
-|`parentContentControl`|  [ContentControl](contentControl.md)   |Returns the content control wrapping the object, if any. | Returns null if no content control|
-|`font`|  [Font](font.md) | Entry point for formatting content.|  Exposes font name, size, color, and other properties. |
-|`alignment`| String |Returns or sets an Alignment constant that represents the alignment for the specified paragraphs. | Can be "left", "centered", "right", "justified" |
-|`firstLineIndent`| Number |Gets or sets he value (in points) for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.  | Read/Write|
-|`leftIndent`| Number |Gets or sets the left indent value (in points) for the specified paragraph.   |  Read/Write|
-|`lineSpacing`| Number |Gets or sets the line spacing (in points) for the specified paragraphs.  |  Read/Write. (in the Word UI this value is divided by 12 )|
-|`lineUnitAfter`| Number |Gets or sets the amount of spacing (in gridlines) after the specified paragraph.  |  Read/Write|
-|`lineUnitBefore`| Number |Gets or sets the amount of spacing (in gridlines) before the specified paragraph.  | Read/Write |
-|`outlineLevel`| Number |Gets or sets the outline level for the specified paragraph.  | Read/Write|
-|`rightIndent`| Number |Gets or sets the right indent value (in points) for the specified paragraph.  |  Read/Write|
-|`spaceAfter`| Number |Gets or sets the spacing (in points) after the specified paragraphs. |  Read/Write|
-|`spaceBefore`| Number |Gets or sets the spacing (in points) before the specified paragraphs. |  Read/Write|
-|`text`|  String  |  Returns or sets the text of the Paragraph  | |
+| Property         | Type    |Description|
+|:-----------------|:--------|:----------|
+|parentContentControl|  [ContentControl](contentControl.md) | Gets the content control that contains the paragraph. Returns null if there isn't a parent content control.|
+|font|  [Font](font.md) | Gets the text format of the paragraph. Use this to get and set font name, size, color, and other properties. |
+|alignment| string |Gets or sets the alignment for a paragraph. The value can  be "left", "centered", "right", or "justified". |
+|firstLineIndent| number |Gets or sets the value, in points, for a first line or hanging indent. Use a positive value to set a first-line indent, and use a negative value to set a hanging indent.|
+|leftIndent| number | Gets or sets the left indent value, in points, for the paragraph.|
+|lineSpacing| number | Gets or sets the line spacing, (in points) for the specified paragraph. In the Word UI, this value is divided by 12. |
+|lineUnitAfter| number |Gets or sets the amount of spacing, in grid lines. after the paragraph.|
+|lineUnitBefore| number |Gets or sets the amount of spacing, in grid lines, before the paragraph.
+|outlineLevel| number |Gets or sets the outline level for the paragraph.
+|rightIndent| number |Gets or sets the right indent value, in points, for the paragraph.
+|spaceAfter| number |Gets or sets the spacing, in points, after the paragraph. |
+|spaceBefore| number |Gets or sets the spacing, in points, before the paragraph. |
+|text|  string  |  Gets or sets the text of the paragraph.  | 
 
 
 ## Relationships
-The Worksheet resource has the following relationships defined:
 
 | Relationship     | Type    |Description|Notes  |
 |:-----------------|:--------|:----------|:------|
-|[`contentControls`](#contentcontrols)| [ContentControls](contentControlCollection.md) collection |Collection of [contentControl](#contentcontrol.md) objects  in the current document | Includes content controls on the headers/footer and in the body of the document.  | 
-|[`inlinePictures`](#inlinepictures)| [InlinePictures](inlinePictureCollection.md) collection |Collection of [inlinePicture](inlinePicture.md) objects within the body. |Does not include floating images.  | 
+|contentControls| [contentControlCollection](contentControlCollection.md)  | Gets the collection of content control objects that are in the paragraph.|
+|inlinepictures| [inlinePictureCollection](inlinePictureCollection.md)  |Gets the collection of inlinePicture objects that are in the paragraph. The collection does not include floating images.  | 
 
 
 ## Methods
@@ -36,18 +35,18 @@ The Worksheet resource has the following relationships defined:
 |:-----------------|:--------|:----------|:------|
 |[`clear()`](#clear)| Void | Clears the content of the calling object. | Undo operation by the user is supported. | 
 |[`delete()`](#delete)| Void  |Deletes the content control and its content from the document | | 
-|[`getHtml()`](#gethtml)| String  | Gets the HTML representation  of the calling object. | | 
-|[`getOoxml()`](#getooxml)| String  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
+|[`getHtml()`](#gethtml)| string  | Gets the HTML representation  of the calling object. | | 
+|[`getOoxml()`](#getooxml)| string  | Gets the Office Open XML (OOXML) representation  of the calling object. |  | 
 |[`insertContentControl()`](#insertcontentcontrol)| [ContentControl](contentcontrol.md)  |Wraps the calling object with a Rich Text content control. |  | 
-|[`insertFile(fileLocation:String, insertLocation:String)`](#insertfile)| String |Inserts the complete specified document intopaoar the specified location. | | 
-|[`insertBreak(breakType: String, insertLocation: String)`](#insertBreak)| Void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
-|[`insertParagraph(paragraphText: String, insertLocation: String)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
-|[`insertPictureUrl(base64: String, insertLocation: String)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a picture  on the specified location. |All locations may not apply. See method details.| \
-|[`insertText(text: String, insertLocation: String)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
-|[`insertHtml(html: String, insertLocation: String)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
-|[`insertOoxml(ooxml: String, insertLocation: String)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
-|[`search(text: String)`](#search)| [Ranges](searchResultCollection.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
-|[`select(paragraphText: String, insertLocation: String)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
+|[`insertFile(fileLocation:string, insertLocation:string)`](#insertfile)| string |Inserts the complete specified document intopaoar the specified location. | | 
+|[`insertBreak(breakType: string, insertLocation: string)`](#insertBreak)| Void | Inserts the specified [type of break](breakType.md) on the specified location. |All locations may not apply. See method details. | 
+|[`insertParagraph(paragraphText: string, insertLocation: string)`](#insertparagraph)| [Paragraph](paragraph.md)  |Inserts a paragraph on the specified location. |All locations may not apply. See method details. | 
+|[`insertPictureUrl(base64: string, insertLocation: string)`](#insertPictureUrl)| [Paragraph](paragraph.md)  |Inserts a picture  on the specified location. |All locations may not apply. See method details.| \
+|[`insertText(text: string, insertLocation: string)`](#inserttext)| [Range](range.md) | Inserts the specified text on the specified location. | All locations may not apply. See method details. | 
+|[`insertHtml(html: string, insertLocation: string)`](#inserthtml)| [Range](range.md)  |Inserts the specified html on the specified location. | All locations may not apply. See method details.| 
+|[`insertOoxml(ooxml: string, insertLocation: string)`](#insertooxml)| [Range](range.md)  |Inserts the specified ooxml on the specified location.  | All locations may not apply.See method details.| 
+|[`search(text: string)`](#search)| [Ranges](searchResultCollection.md) |Executes a search on the scope of the calling object | Search results are a ranges collection. | 
+|[`select(paragraphText: string, insertLocation: string)`](#select)| [Paragraph](paragraph.md)  | Selects and Navigates to the paragraph ||
 
 
 ### Setting Paragraph Properties 
@@ -334,8 +333,8 @@ var myText = document.body.insertText("Hello World!", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be inserted.
-`location`          | String | Either "Start" "End"  the body of the document.
+`text`          | string | Required. Text to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document.
 
 #### Returns
 
@@ -362,8 +361,8 @@ var myRange = document.body.insertHtml("<b>This is some bold text</b>", "End");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`html`          | String | Required. the HTML to be inserted in the document.
-`location`          | String | Either "Start" "End"  the body of the document
+`html`          | string | Required. the HTML to be inserted in the document.
+`location`          | string | Either "Start" "End"  the body of the document
 
 #### Returns
 
@@ -416,8 +415,8 @@ ctx.executeAsync().then(
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`ooxml`          | String | Required. OOXML to be inserted.
-`location`          | String | Either "Start" "End"  the body of the document
+`ooxml`          | string | Required. OOXML to be inserted.
+`location`          | string | Either "Start" "End"  the body of the document
  
 #### Returns
 
@@ -461,8 +460,8 @@ var ccs = document.insertParagraph("Some initial text", "Start");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Paragrph text. null for blank Paragraph.
-`location`          | String | Either "Start" "End"  the body of the document
+`text`          | string | Paragrph text. null for blank Paragraph.
+`location`          | string | Either "Start" "End"  the body of the document
 
 
 #### Returns
@@ -553,7 +552,7 @@ var searchResults = document.body.search("Sales Report");
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`text`          | String | Required. Text to be searched.
+`text`          | string | Required. Text to be searched.
 
 #### Returns
 
@@ -608,8 +607,8 @@ TBD
 
 Parameter      | Type   | Description
 -------------- | ------ | ------------
-`fileLocation`          | String | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
-`location`          | String | Either "Start" "End"  the body of the document.
+`fileLocation`          | string | Required. Full path to the file to be inserted. Can be on the hard drive, or a url.
+`location`          | string | Either "Start" "End"  the body of the document.
 
 
 #### Returns
