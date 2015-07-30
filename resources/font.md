@@ -1,49 +1,73 @@
 # Font
 
-Contains font attributes (such as font name, font size and color) usally applicable to a Range.
+Represents a font.
 
 ## Properties
 
-| Property         | Type    |Description|Notes |
-|:-----------------|:--------|:----------|:-----|
-|`bold`| Boolean  | True if the font is formatted as bold. Read/write Long.| |
-|`color`| String  | Returns or sets the color for the specified font. Read/write . |  Read/write .  Like "#FF00FF" or color name |
-|`doubleStrikeThrough`| Boolean  |True if the specified font is formatted as double strikethrough text.| |
-|`highlightColor`| String  | Returns or sets the highlight color for the specified font. | Read/write .  Like "#FF00FF" or color name  |
-|`italic`| Boolean  | True if the font or range is formatted as italic.  | Read/write |
-|`name`| String  | Returns or sets the name of the specified object.  |Read/write |
-|`size`| number  | Returns or sets the font size, in points.| Read/write|
-|`strikeThrough`| Boolean  | True if the font is formatted as strikethrough text.|Read/write |
-|`subscript`| Boolean  |True if the font is formatted as subscript. | Read/write |
-|`superscript`| Boolean  | True if the font is formatted as superscript. | Read/write|
-|`underline`|  Boolean  | Returns or sets the type of underline applied to the font. |Read/write |
+| Property         | Type    |Description|
+|:-----------------|:--------|:----------|
+|bold| bool  | Gets or sets a value that indicates whether the font is bold. True if the font is formatted as bold, otherwise, false.|
+|color| string  | Gets or sets the color for the specified font. You can provide the value as either the hexidecimal color value or the color name. |
+|doubleStrikeThrough| bool | Gets or sets a value that indicates whether the font has a double strike through. True if the font is formatted as double strikethrough text, otherwise, false.| 
+|highlightColor| string  | Gets or sets the highlight color for the specified font. You can provide the value as either the hexidecimal color value or the color name. |
+|italic| bool  | Gets or sets a value that indicates whether the font is italicized. True if the font is italicized, otherwise, false. |
+|name| string  | Gets or sets a value that represents the name of the font. |
+|size| number  | Gets or sets a value that represents the font size in points.|
+|strikeThrough| bool  | Gets or sets a value that indicates whether the font has a strike through. True if the font is formatted as strikethrough text, otherwise, false. |
+|subscript| bool  |Gets or sets a value that indicates whether the font is a subscript. True if the font is formatted as subscript, otherwise, false. |
+|superscript| bool  | Gets or sets a value that indicates whether the font is a superscript. True if the font is formatted as superscript, otherwise, false. |
+|underline|  bool  | Gets or sets a value that indicates whether the font is underlined. True if the font is underlined, otherwise, false. |
 
+## Methods
 
+| Method     | Return Type    |Description|
+|:-----------------|:--------|:----------|
+|[load(param: object)](#loadparam-object)|void|Fills the font proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 
-#### Examples
+## API Specification
+
+### load(param: object)
+
+Fills the font proxy object created in the JavaScript layer with the property and object values specified in the parameter.
 
 #### Syntax
 ```js
-// insert a paragrpahs and use the font object to change font properties
+    font.load(param);
+```
 
-var ctx = new Word.RequestContext();
+#### Parameters
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|param|object| A string, a string with comma separated value, an array of strings, or an object that specifies which properties to load.  |
 
-var myPar = ctx.document.body.insertParagraph("Here is some text!","end");
-myPar.font.bold = true;
-myPar.font.italic = true;
-myPar.font.color = "#00FF00";  // lime green!
-myPar.font.doubleStrikeThrough = true;
+#### Returns
+void
+
+[Back](#methods)
 
 
-ctx.executeAsync().then(
-	 function () {
-		 console.log("Success!!");
-	 },
-	 function (result) {
-		 console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
-		// console.log(result.traceMessages);
-	 }
-);
+### Getter and Setter Examples
+
+#### Change font properties
+```js
+    // insert a paragraph and use the font object to change font properties
+
+    var ctx = new Word.RequestContext();
+
+    var myPar = ctx.document.body.insertParagraph("Here is some text!","end");
+    myPar.font.bold = true;
+    myPar.font.italic = true;
+    myPar.font.color = "#00FF00";  // lime green!
+    myPar.font.doubleStrikeThrough = true;
+
+    ctx.executeAsync().then(
+         function () {
+             console.log("Success!!");
+         },
+         function (result) {
+             console.log("Failed: ErrorCode=" + result.errorCode + ", ErrorMessage=" + result.errorMessage);
+         }
+    );
 
 ```
 
