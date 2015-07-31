@@ -1,11 +1,11 @@
-# Sections
-A collection of [Section](section.md) objects in a document
+# SectionCollection
+Contains a collection of [Section](section.md) objects.
 
 ## Properties
 
-| Property         | Type    |Description|Notes |
-|:-----------------|:--------|:----------|:-----|
-|`items`|  Array |Array containing the [Section](section.md) objects in the given scope. ||
+| Property         | Type    |Description|
+|:-----------------|:--------|:----------|
+|items|  array | Gets an array of section objects. |
 
 
 ## Relationships
@@ -13,36 +13,67 @@ None
 
 ## Methods
 
+| Method     | Return Type    |Description|
+|:-----------------|:--------|:----------|
+|[getItem(index: number)](#getitemindex-number)| [Section](section.md)  | Gets a section object by its index in the collection. |
+|[load(param: option)](#loadparam-option)|void|Fills the section collection proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 
-| Method     | Return Type    |Description|Notes  |
-|:-----------------|:--------|:----------|:------|
-|[`getItem(index:Number)`](#getitem)|[Section](section.md)   | Gets a [Section](section.md)  by its index in the collection. || 
+
+
+## API Specification
+
+### getItem(index: number)
+
+Gets a section object by its index in the collection.
+
+#### Syntax
+```js
+    sectionCollection.getItem(index);
+```
+#### Parameters
+
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|index|number|  A number that identifies the index location of a section object.  |
+
+#### Returns
+
+[Paragraph](paragraph.md)  
+
 
 #### Example
 ```js
-//gets access to seciton headers
+    var ctx = new Word.RequestContext();
 
-var ctx = new Word.RequestContext();
+    var mySections  = ctx.document.sections;
+    ctx.load(mySections);
 
-var mySections  = ctx.document.sections;
-ctx.load(mySections);
+    var myFooter = mySections.getItem(0).getFooter("primary");
+    myFooter.insertText("this is a footer!!","end");
 
-var myFooter = mySections.getItem(0).getFooter("primary");
-myFooter.insertText("this is a footer!!","end");
-myFooter.insertContentControl();
-
-ctx.executeAsync().then(
-	function(){
-				   
-				   console.log("Success!!");
-			
-                              console.log("Success!!");
-	}
-	
-);
-
-
+    ctx.executeAsync().then(
+        function(){
+           console.log("Success!!");
+        }
+    );
 ```
 
+[Back](#methods)
 
+### load(param: option)
+Fills the section collection proxy object created in the JavaScript layer with the property and object values specified in the parameter.
 
+#### Syntax
+```js
+    sectionCollection.load(param);
+```
+
+#### Parameters
+| Parameter       | Type    |Description|
+|:---------------|:--------|:----------|
+|param|object| A string, a string with comma separated value, an array of strings, or an object that specifies which properties to load.  |
+
+#### Returns
+void
+
+[Back](#methods)
