@@ -6,7 +6,9 @@ Welcome to the new Word Javascript API! We hope you enjoy it and find it useful.
 ## Release Notes for build 4229.1005
 
 Removed the Html and Ooxml properties. Added the getHtml and getOoxml properties.
+
 Added search to the paragraph object.
+
 Added insertBreak to the range object.
 
 ## Main Objects  
