@@ -1,7 +1,7 @@
 # Word JavaScript APIs
 Welcome to the new Word Javascript API! We hope you enjoy it and find it useful. Please open [issues](https://github.com/JuaneloJuanelo/WordAPI2/issues) if you find errors in the documentation or if you have suggested content or examples that we should add to this documentation. We're open to community contributions if you early adopters have found some useful information.
 
-[Get started with build 4429.1002](#get-started-with-build-4429.1002)
+[Get started with build 4429.1002](#getstarted)
 
 ## Release Notes for build 4229.1002
 
@@ -249,6 +249,7 @@ Let's put it all together by taking a look at a simple example that shows how yo
         });
 ```
 
+<a name="getstarted"></a>
 ### Get started with build 4429.1002
 
 Use these steps to get you started with WordJS. Please open an issue if you encounter a problem using these steps.
