@@ -27,7 +27,7 @@ Gets a paragraph object by its index in the collection.
 
 #### Syntax
 ```js
-    paragraph.getItem(index);
+    paragraphCollection.getItem(index);
 ```
 #### Parameters
 
@@ -48,7 +48,7 @@ Fills the paragraph collection proxy object created in the JavaScript layer with
 
 #### Syntax
 ```js
-    paragraph.load(param);
+    paragraphCollection.load(param);
 ```
 
 #### Parameters
