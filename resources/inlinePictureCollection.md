@@ -18,6 +18,7 @@ None
 | Method     | Return Type    |Description|
 |:-----------------|:--------|:----------|
 |[getItem(index: number)](#getitemindex-number)| [InlinePicture](inlinePicture.md)   | Gets an inline picture object by its index in the collection. |
+|[load(param: option)](#loadparam-option)|void|Fills the inline picture collection proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 
 ## API Specification
 

@@ -8,7 +8,7 @@ Represents the body of a document or a section.
 |font|  [Font](font.md) | Gets the text format of the body. Use this to get and set font name, size, color, and other properties. |
 |parentContentControl|  [ContentControl](contentControl.md) | Gets the content control that contains the body. Returns null if there isn't a parent content control.|
 |style| string | Gets or sets the style used for the content control. This is the name of the pre-installed or custom style. |
-|text| string | Gets the text of the content control.  Use the insertText method to insert text.  Read-Only. |
+|text| string | Gets the text of the content control.  Use the insertText method to insert text.  |
 
 ## Relationships
 
@@ -16,7 +16,7 @@ Represents the body of a document or a section.
 |:-----------------|:--------|:----------|
 |contentControls| [contentControlCollection](contentControlCollection.md)  | Gets the collection of content control objects that are in the current document body.|
 |inlinepictures| [inlinePictureCollection](inlinePictureCollection.md)  |Gets the collection of inlinePicture objects that are in the document body. The collection does not include floating images.  | 
-|paragraphs| [paragraphCollection](paragraphCollection.md)  | Gets the collection of paragraph objects that are in the docuemnt body. |      
+|paragraphs| [paragraphCollection](paragraphCollection.md)  | Gets the collection of paragraph objects that are in the document body. |      
     
 
 
@@ -35,15 +35,15 @@ Represents the body of a document or a section.
 |[insertOoxml(ooxml: string, insertLocation: string)](#insertooxmlooxml-string-insertlocation-string)| [Range](range.md)  |Inserts OOXML at the specified location.  The insertLocation value can be 'Replace', 'Start' or 'End'. | 
 |[insertParagraph(paragraphText: string, insertLocation: string)](#insertparagraphparagraphtext-string-insertlocation-string)| [Paragraph](paragraph.md)  |Inserts a paragraph at the specified location. The insertLocation value can be 'Start' or 'End'. | 
 |[load(param: option)](#loadparam-option)|void|Fills the body proxy object created in the JavaScript layer with property and object values specified in the parameter.|
-|[search(searchText : string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a collection of range objects. | 
-|[select()](#select)| void |Selects the body. This causes Word to scroll to the selection.  | 
+|[search(searchText: string, searchOptions: searchOptions)](#searchsearchtext-string-searchoptions-searchoptions)| [searchResultCollection](searchResultCollection.md) |Performs a search with the specified searchOptions on the scope of the body object. The search results are a collection of range objects. | 
+|[select()](#select)| void |Selects and navigates the Word UI to the paragraph. |
 
 ## API Specification
 
 
 ### clear()
 
-Clears the content of the calling object.
+Clears the contents of the body object.
 
 #### Syntax
 ```js
@@ -275,7 +275,7 @@ Inserts a paragraph into the document body at the specified location.
 
 #### Syntax
 ```js
-    var ccs = document.body.insertParagraph(paragraphText, insertLocation);
+    document.body.insertParagraph(paragraphText, insertLocation);
 ```
 #### Parameters
 
@@ -404,7 +404,7 @@ Parameter      | Type   | Description|
 
 #### Returns
 
-[Ranges](searchResultCollection.md) collection.
+[SearchResultCollection](searchResultCollection.md) collection.
 
 
 #### Examples
@@ -571,7 +571,7 @@ void
 ```
 [Back](#methods)
 
-### Getter and Setter Examples
+### Getter and setter examples
 
 #### contentControls
 

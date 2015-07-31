@@ -20,7 +20,7 @@ None
 |[getByTag(tag: string )](#getbytagtag-string)| [contentControlCollection](contentControlCollection.md)  |Gets the content controls that have the specified tag. | 
 |[getByTitle(title: string)](#getbytitletitle-string)| [contentControlCollection](contentControlCollection.md) |Gets the content controls that have the specified title. |   
 |[getItem(index: number)](#getitemindex-number)| [contentControl](contentControl.md)   | Gets a content control by its index in the collection. |
-
+|[load(param: option)](#loadparam-option)|void|Fills the content control collection proxy object created in the JavaScript layer with property and object values specified in the parameter.|
 
 ## API Specification
 

@@ -17,7 +17,7 @@ Represents a content control. Content controls are bounded and potentially label
 |placeholderText|  string   | Gets or sets the placeholder text of the content control. Dimmed text will be displayed when the  content control is empty.|
 |removeWhenEdited|  bool | Gets or sets a value that indicates whether the content control is removed after it is edited.|
 |title|  string  |  Gets or sets the title for a content control.   | 
-|text|  string  |  Gets or sets the text of the content control. |
+|text|  string  |  Gets the text of the content control. |
 |type|  string  | Gets or sets the content control type. Only rich text content controls are supported|
 |style| string |Gets or sets the style used for the content control. This is the name of the pre-installed or custom style.|
 |tag| string |Gets or sets a value to identify a content control. |
